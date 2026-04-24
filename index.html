@@ -928,17 +928,11 @@ img{max-width:100%;display:block}
           <div class="contact__info reveal">
             <div class="info-card">
               <div class="info-card__icon">@</div>
-              <div><h4>Email</h4><a href="mailto:hello@danson.dev">hello@danson.dev</a></div>
+              <div><h4>Email</h4><a href="mailto:Dansonhar8@gmail.com">Dansonhar8@gmail.com</a></div>
             </div>
             <div class="info-card">
               <div class="info-card__icon">&#9679;</div>
               <div><h4>Location</h4><p>Malaysia</p></div>
-            </div>
-            <div class="contact__socials">
-              <a href="#" class="social-btn">GH</a>
-              <a href="#" class="social-btn">LI</a>
-              <a href="#" class="social-btn">BE</a>
-              <a href="#" class="social-btn">DR</a>
             </div>
           </div>
         </div>
@@ -1107,15 +1101,12 @@ function initForm() {
   const form = document.getElementById('contactForm');
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const btn = form.querySelector('button[type="submit"]');
-    const orig = btn.textContent;
-    btn.textContent = 'Sent!';
-    btn.style.background = '#22c55e';
-    setTimeout(() => {
-      btn.textContent = orig;
-      btn.style.background = '';
-      form.reset();
-    }, 2500);
+    const name = form.querySelector('#name').value.trim();
+    const email = form.querySelector('#email').value.trim();
+    const subject = form.querySelector('#subject').value.trim() || 'Project inquiry';
+    const message = form.querySelector('#message').value.trim();
+    const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0A${message}`;
+    window.location.href = `mailto:Dansonhar8@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
   });
 }
 
