@@ -423,20 +423,28 @@
           </div>
           <div class="lightbox__gallery">
             <div class="gallery__main">
-              <img class="gallery__main-img" src="./assets/qbot-home-Ce_UzOKc.png" alt="Home" />
+              <img class="gallery__main-img" src="./images/qpos/qbot-home.png" alt="Home" />
               <button class="gallery__nav gallery__nav--prev"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg></button>
               <button class="gallery__nav gallery__nav--next"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg></button>
               <div class="gallery__counter"><span class="gallery__current">1</span> / <span class="gallery__total">3</span></div>
             </div>
             <div class="gallery__thumbs">
-              <button class="gallery__thumb active" data-index="0"><img src="./assets/qbot-home-Ce_UzOKc.png" alt="Home" /></button>
-              <button class="gallery__thumb" data-index="1"><img src="./assets/qbot-category-CQ-sHMaE.png" alt="Categories" /></button>
-              <button class="gallery__thumb" data-index="2"><img src="./assets/qbot-article-ZD5sJM3j.png" alt="Article" /></button>
+              <button class="gallery__thumb active" data-index="0"><img src="./images/qpos/qbot-home.png" alt="Home" /></button>
+              <button class="gallery__thumb" data-index="1"><img src="./images/qpos/qbot-category.png" alt="Categories" /></button>
+              <button class="gallery__thumb" data-index="2"><img src="./images/qpos/qbot-article.png" alt="Article" /></button>
             </div>
           </div>
         </div>
 
       </div>
+    </div>
+
+    <!-- Zoom overlay -->
+    <div id="zoomOverlay" class="zoom-overlay">
+      <button id="zoomClose" class="zoom-overlay__close" aria-label="Close zoom">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <img id="zoomImg" class="zoom-overlay__img" src="" alt="Full size" />
     </div>
 
   </body>

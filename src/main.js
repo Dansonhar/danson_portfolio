@@ -325,6 +325,42 @@ function initLightbox() {
 }
 
 // ============================================
+// ZOOM OVERLAY
+// ============================================
+function initZoom() {
+  const overlay = document.getElementById('zoomOverlay');
+  const zoomImg = document.getElementById('zoomImg');
+  const closeBtn = document.getElementById('zoomClose');
+  if (!overlay) return;
+
+  function openZoom(src, alt) {
+    zoomImg.src = src;
+    zoomImg.alt = alt || '';
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeZoom() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('click', (e) => {
+    const img = e.target.closest('.gallery__main-img');
+    if (img) openZoom(img.src, img.alt);
+  });
+
+  closeBtn.addEventListener('click', closeZoom);
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeZoom();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) closeZoom();
+  });
+}
+
+// ============================================
 // INIT
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -338,4 +374,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initForm();
   initScroll();
   initLightbox();
+  initZoom();
 });
