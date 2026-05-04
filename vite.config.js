@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   root: '.',
-  base: '/danson_portfolio/',
+  base: './',
   build: {
     outDir: 'dist',
     emptyOutDir: true,
