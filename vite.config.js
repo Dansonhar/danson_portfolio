@@ -4,7 +4,7 @@ export default defineConfig({
   root: '.',
   base: './',
   build: {
-    outDir: 'dist',
+    outDir: 'docs',
     emptyOutDir: true,
   },
   server: {
