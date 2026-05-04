@@ -128,29 +128,31 @@
         <div class="work__grid" id="workGrid">
 
           <article class="project reveal" data-category="web">
-            <div class="project__img">
-              <div class="project__placeholder" style="--hue:140">
-                <div class="placeholder__browser">
-                  <div class="placeholder__topbar"></div>
-                  <div class="placeholder__body">
-                    <div class="placeholder__sidebar"></div>
-                    <div class="placeholder__content">
-                      <div class="placeholder__line" style="width:80%"></div>
-                      <div class="placeholder__line" style="width:60%"></div>
-                      <div class="placeholder__line" style="width:90%"></div>
-                      <div class="placeholder__block"></div>
-                    </div>
-                  </div>
+            <div class="project__img project__img--game">
+              <div class="project__game-thumb">
+                <img src="/images/alien-vs-malaysian/bg.png" class="game-thumb__bg" alt="" />
+                <div class="game-thumb__chars">
+                  <img src="/images/alien-vs-malaysian/human-pakcik.png" alt="Pakcik" />
+                  <img src="/images/alien-vs-malaysian/alien-red.png" alt="Red Alien" />
+                  <img src="/images/alien-vs-malaysian/alien-green.png" alt="Green Alien" />
+                  <img src="/images/alien-vs-malaysian/human-aunty.png" alt="Aunty" />
+                </div>
+                <div class="game-thumb__title">
+                  <span>ALIENS</span>
+                  <em>vs</em>
+                  <span>MALAYSIANS</span>
                 </div>
               </div>
               <div class="project__overlay">
-                <a href="#" class="btn btn--small">View Project <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+                <button class="btn btn--small" data-lightbox="alien-vs-malaysian">
+                  View Project <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+                </button>
               </div>
             </div>
             <div class="project__info">
-              <div class="project__tags"><span>Web Development</span><span>UI/UX</span></div>
-              <h3>Fitness Booking System</h3>
-              <p>Full-stack booking platform with real-time scheduling.</p>
+              <div class="project__tags"><span>Web Game</span><span>JavaScript</span><span>2D</span></div>
+              <h3>Alien Vs Malaysian</h3>
+              <p>A fun web-based game where Malaysians defend their homeland against alien invaders. Multiple game modes included.</p>
             </div>
           </article>
 
@@ -378,6 +380,49 @@
         <a href="#home" class="footer__top">Back to Top</a>
       </div>
     </footer>
+
+    <!-- ===================== LIGHTBOX MODAL ===================== -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Project screenshots">
+      <div class="lightbox__backdrop" id="lightboxBackdrop"></div>
+      <div class="lightbox__panel">
+        <button class="lightbox__close" id="lightboxClose" aria-label="Close">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+
+        <!-- Alien Vs Malaysian -->
+        <div class="lightbox__content" data-project="alien-vs-malaysian">
+          <div class="lightbox__header">
+            <div class="lightbox__tags"><span>Web Game</span><span>JavaScript</span><span>2D</span></div>
+            <h2>Alien Vs Malaysian</h2>
+            <p>A fun web-based game where Malaysians defend their homeland against alien invaders. Multiple game modes included.</p>
+          </div>
+          <div class="lightbox__gallery">
+            <div class="gallery__main">
+              <img id="galleryMainImg" src="/images/alien-vs-malaysian/screenshot-1.png" alt="Screenshot 1" />
+              <button class="gallery__nav gallery__nav--prev" id="galleryPrev">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <button class="gallery__nav gallery__nav--next" id="galleryNext">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+              </button>
+              <div class="gallery__counter"><span id="galleryCurrentNum">1</span> / <span id="galleryTotalNum">3</span></div>
+            </div>
+            <div class="gallery__thumbs" id="galleryThumbs">
+              <button class="gallery__thumb active" data-index="0">
+                <img src="/images/alien-vs-malaysian/screenshot-1.png" alt="Screenshot 1" />
+              </button>
+              <button class="gallery__thumb" data-index="1">
+                <img src="/images/alien-vs-malaysian/screenshot-2.png" alt="Screenshot 2" />
+              </button>
+              <button class="gallery__thumb" data-index="2">
+                <img src="/images/alien-vs-malaysian/screenshot-3.png" alt="Screenshot 3" />
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
 
     <script type="module" src="/src/main.js"></script>
   </body>
