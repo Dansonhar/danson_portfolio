@@ -1,8 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(git push *)",
-      "PowerShell(git remote get-url origin)"
-    ]
-  }
-}
