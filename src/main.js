@@ -259,7 +259,14 @@ function initLightbox() {
     panel.classList.add('active');
     activePanel = panel;
 
-    images = Array.from(panel.querySelectorAll('.gallery__thumb img')).map((img) => img.src);
+    // Load thumbnails for this project now (deferred from page load)
+    panel.querySelectorAll('.gallery__thumb img[data-src]').forEach((img) => {
+      if (img.src !== img.dataset.src) img.src = img.dataset.src;
+    });
+
+    images = Array.from(panel.querySelectorAll('.gallery__thumb img')).map(
+      (img) => img.dataset.src || img.src
+    );
     const totalEl = panel.querySelector('.gallery__total');
     if (totalEl) totalEl.textContent = images.length;
 
