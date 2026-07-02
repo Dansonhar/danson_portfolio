@@ -9,7 +9,7 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
       rel="stylesheet"
-    />
+    />
     <script type="module" crossorigin src="./assets/index-Dtz7uNPL.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-CuS82W9T.css">
   </head>
@@ -121,12 +121,28 @@
         <div class="work__filters reveal">
           <button class="filter-btn active" data-filter="all">All</button>
           <button class="filter-btn" data-filter="web">Web</button>
-          <button class="filter-btn" data-filter="design">Design</button>
+          <button class="filter-btn" data-filter="design">3D Design</button>
           <button class="filter-btn" data-filter="app">App</button>
         </div>
 
         <!-- PROJECT GRID — ADD MORE ITEMS HERE -->
         <div class="work__grid" id="workGrid">
+
+          <article class="project reveal" data-category="web">
+            <div class="project__img project__img--screenshot">
+              <img src="./images/AlcPest/alcpest-home.webp" alt="ALC Pest Purge Solution website" class="project__screenshot-img" loading="lazy" decoding="async" />
+              <div class="project__overlay">
+                <button class="btn btn--small" data-lightbox="alcpest">
+                  View Project <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+                </button>
+              </div>
+            </div>
+            <div class="project__info">
+              <div class="project__tags"><span>Web</span><span>Business Site</span><span>Pest Control</span></div>
+              <h3>ALC Pest Purge Solution</h3>
+              <p>Business website for a pest control company in Cheras, KL &amp; Selangor — services, photo gallery, latest news, and contact pages built for a clean, professional presence.</p>
+            </div>
+          </article>
 
           <article class="project reveal" data-category="web">
             <div class="project__img project__img--game">
@@ -525,6 +541,37 @@
               <button class="gallery__thumb" data-index="3"><img src="./assets/park4-CoqZC5QL.png" alt="Screen 4" /></button>
               <button class="gallery__thumb" data-index="4"><img src="./assets/park4_mobile-CLetSyvl.png" alt="Mobile view" /></button>
               <button class="gallery__thumb" data-index="5"><img src="./assets/park5-BatjI9hL.png" alt="Screen 5" /></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ALC Pest Purge Solution -->
+        <div class="lightbox__content" data-project="alcpest">
+          <div class="lightbox__header">
+            <div class="lightbox__tags"><span>Web</span><span>Business Site</span><span>Pest Control</span></div>
+            <h2>ALC Pest Purge Solution</h2>
+            <p>A business website for ALC Pest Purge Solution Sdn Bhd, a professional pest control company serving Cheras, KL &amp; Selangor. Includes services, a photo gallery, latest news, and contact pages.</p>
+            <a class="lightbox__visit" href="https://dansonhar.github.io/AlcPestPurge/" target="_blank" rel="noopener noreferrer">
+              Visit Website
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg>
+            </a>
+          </div>
+          <div class="lightbox__gallery">
+            <div class="gallery__main">
+              <div class="gallery__scroll">
+                <img class="gallery__main-img" alt="ALC Pest Purge Solution screen 1" />
+              </div>
+              <button class="gallery__nav gallery__nav--prev"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg></button>
+              <button class="gallery__nav gallery__nav--next"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg></button>
+              <div class="gallery__counter"><span class="gallery__current">1</span> / <span class="gallery__total">6</span></div>
+            </div>
+            <div class="gallery__thumbs">
+              <button class="gallery__thumb active" data-index="0"><img data-src="./images/AlcPest/alcpest-home.webp" alt="Home page" /></button>
+              <button class="gallery__thumb" data-index="1"><img data-src="./images/AlcPest/alcpest-about.webp" alt="About Us" /></button>
+              <button class="gallery__thumb" data-index="2"><img data-src="./images/AlcPest/alcpest-services.webp" alt="Services" /></button>
+              <button class="gallery__thumb" data-index="3"><img data-src="./images/AlcPest/alcpest-gallery.webp" alt="Photo Gallery" /></button>
+              <button class="gallery__thumb" data-index="4"><img data-src="./images/AlcPest/alcpest-news.webp" alt="Latest News" /></button>
+              <button class="gallery__thumb" data-index="5"><img data-src="./images/AlcPest/alcpest-contact.webp" alt="Contact Us" /></button>
             </div>
           </div>
         </div>
