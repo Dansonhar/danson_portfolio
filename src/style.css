@@ -744,6 +744,12 @@ img{max-width:100%;display:block}
   object-fit:contain;border-radius:8px;
   box-shadow:0 0 60px rgba(0,0,0,.8);
 }
+/* Portrait / mobile screenshots: fit to viewport height instead of full width */
+.zoom-overlay__img--portrait{
+  width:auto;
+  max-width:min(520px,95vw);
+  max-height:calc(100vh - 80px);
+}
 .zoom-overlay__close{
   position:fixed;top:20px;right:20px;
   width:44px;height:44px;border-radius:50%;

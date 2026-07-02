@@ -341,8 +341,18 @@ function initZoom() {
   if (!overlay) return;
 
   function openZoom(src, alt) {
+    zoomImg.classList.remove('zoom-overlay__img--portrait');
     zoomImg.src = src;
     zoomImg.alt = alt || '';
+    const applyOrientation = () => {
+      // Only narrow, tall images (phone/mobile screenshots) fit to viewport height.
+      // Wide full-page web captures stay full-width and scroll, even when very tall.
+      const mobile =
+        zoomImg.naturalHeight > zoomImg.naturalWidth && zoomImg.naturalWidth <= 900;
+      zoomImg.classList.toggle('zoom-overlay__img--portrait', mobile);
+    };
+    if (zoomImg.complete && zoomImg.naturalWidth) applyOrientation();
+    else zoomImg.onload = applyOrientation;
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
