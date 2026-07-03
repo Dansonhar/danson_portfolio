@@ -1,5 +1,6 @@
 // Import styles
 import './style.css';
+import { initThreeBackground } from './three-bg.js';
 
 // ============================================
 // SCROLL REVEAL
@@ -101,6 +102,14 @@ function initFilters() {
 // ============================================
 function initCounters() {
   const nums = document.querySelectorAll('.stat__number');
+
+  // Keep the Projects stat in sync with the actual number of project cards.
+  const projectsStat = document.querySelector('.stat__number[data-count="projects"]');
+  if (projectsStat) {
+    const total = document.querySelectorAll('.work__grid .project').length;
+    if (total > 0) projectsStat.dataset.target = String(total);
+  }
+
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -144,26 +153,6 @@ function initSkillBars() {
     { threshold: 0.3 }
   );
   fills.forEach((f) => observer.observe(f));
-}
-
-// ============================================
-// CONTACT FORM
-// ============================================
-function initForm() {
-  const form = document.getElementById('contactForm');
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const btn = form.querySelector('button[type="submit"]');
-    const span = btn.querySelector('span');
-    const orig = span.textContent;
-    span.textContent = 'Sent!';
-    btn.style.background = '#22c55e';
-    setTimeout(() => {
-      span.textContent = orig;
-      btn.style.background = '';
-      form.reset();
-    }, 2500);
-  });
 }
 
 // ============================================
@@ -381,6 +370,7 @@ function initZoom() {
 // INIT
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
+  initThreeBackground();
   initHeroAnim();
   initMockupFloat();
   initReveal();

@@ -36,6 +36,12 @@ body{
 
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
+
+/* Three.js scroll background — fixed behind all content */
+.bg-canvas{
+  position:fixed;inset:0;width:100%;height:100%;
+  z-index:-1;pointer-events:none;display:block;
+}
 .container{max-width:var(--mw);margin:0 auto;padding:0 40px}
 ::selection{background:var(--green);color:var(--bg)}
 
@@ -197,6 +203,12 @@ img{max-width:100%;display:block}
 }
 .mockup__screen--dark{
   background:linear-gradient(145deg,#0f0f1a,#1a1a2e);
+}
+.mockup__screen--shot{
+  padding:0;min-height:0;background:#0d0d14;
+}
+.mockup__screen--shot img{
+  display:block;width:100%;height:180px;object-fit:cover;object-position:top center;
 }
 
 .mockup__nav-bar{
@@ -388,7 +400,7 @@ img{max-width:100%;display:block}
 /* ============================================
    ABOUT
    ============================================ */
-.about{padding:120px 0;background:var(--bg2)}
+.about{padding:120px 0;background:rgba(16,16,16,.72)}
 
 .about__grid{display:grid;grid-template-columns:1fr 1fr;gap:72px}
 
@@ -440,51 +452,34 @@ img{max-width:100%;display:block}
    ============================================ */
 .contact{padding:120px 0}
 
-.contact__grid{display:grid;grid-template-columns:1.2fr .8fr;gap:56px;align-items:start}
-
-.contact__form{display:flex;flex-direction:column;gap:16px}
-.form__row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.form__group{display:flex;flex-direction:column;gap:5px}
-.form__group label{
-  font-size:.72rem;font-weight:600;text-transform:uppercase;
-  letter-spacing:1.5px;color:var(--text2);
-}
-.form__group input,.form__group textarea{
-  width:100%;padding:14px 16px;background:var(--surface);
-  border:1px solid var(--border);border-radius:var(--r-sm);
-  color:var(--text);font-family:var(--font-b);font-size:.92rem;
-  transition:var(--tr);outline:none;resize:vertical;
-}
-.form__group input::placeholder,.form__group textarea::placeholder{color:var(--text3)}
-.form__group input:focus,.form__group textarea:focus{
-  border-color:var(--green);box-shadow:0 0 0 3px var(--green-dim);
+.contact__direct{max-width:640px}
+.contact__lead{
+  font-size:1.05rem;color:var(--text2);margin-bottom:32px;line-height:1.6;
 }
 
-.contact__info{display:flex;flex-direction:column;gap:18px;padding-top:24px}
-.info-card{
+.contact__cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px}
+.contact-card{
   display:flex;align-items:center;gap:16px;
-  padding:18px 22px;background:var(--surface);
+  padding:20px 22px;background:var(--surface);
   border:1px solid var(--border);border-radius:var(--r-sm);transition:var(--tr);
 }
-.info-card:hover{border-color:var(--green)}
-.info-card__icon{
-  width:42px;height:42px;display:flex;align-items:center;justify-content:center;
-  background:var(--green-dim);color:var(--green);border-radius:8px;font-weight:700;flex-shrink:0;
-}
-.info-card h4{
-  font-size:.68rem;text-transform:uppercase;letter-spacing:2px;
-  color:var(--text3);margin-bottom:2px;font-weight:500;
-}
-.info-card a,.info-card p{font-size:.92rem;color:var(--text);transition:var(--tr)}
-.info-card a:hover{color:var(--green)}
-
-.contact__socials{display:flex;gap:10px;margin-top:6px}
-.social-btn{
+.contact-card:hover{border-color:var(--green);transform:translateY(-2px)}
+.contact-card__icon{
   width:46px;height:46px;display:flex;align-items:center;justify-content:center;
-  background:var(--surface);border:1px solid var(--border);border-radius:8px;
-  color:var(--text2);font-size:.72rem;font-weight:700;letter-spacing:1px;transition:var(--tr);
+  background:var(--green-dim);color:var(--green);border-radius:10px;flex-shrink:0;
 }
-.social-btn:hover{background:var(--green);border-color:var(--green);color:var(--bg);transform:translateY(-2px)}
+.contact-card__text{display:flex;flex-direction:column;min-width:0}
+.contact-card__text h4{
+  font-size:.68rem;text-transform:uppercase;letter-spacing:2px;
+  color:var(--text3);margin-bottom:3px;font-weight:500;
+}
+.contact-card__text span{
+  font-size:.95rem;color:var(--text);font-weight:600;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+
+.contact__actions{display:flex;gap:14px;flex-wrap:wrap}
+.contact__actions .btn{flex:1;min-width:200px;justify-content:center}
 
 /* ============================================
    FOOTER
@@ -675,7 +670,9 @@ img{max-width:100%;display:block}
   .hero__mockups{display:none}
   .work__grid{grid-template-columns:1fr}
   .about__grid{grid-template-columns:1fr;gap:48px}
-  .contact__grid{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .contact__cards{grid-template-columns:1fr}
 }
 @media(max-width:768px){
   .container{padding:0 20px}
