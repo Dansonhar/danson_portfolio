@@ -3,6 +3,11 @@ import './style.css';
 import { initThreeBackground } from './three-bg.js';
 import { playIntro } from './intro.js';
 
+// Always land at the top (Home) on load/refresh — stop the browser from
+// restoring the previous scroll position.
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+window.scrollTo(0, 0);
+
 // ============================================
 // SCROLL REVEAL
 // ============================================
@@ -378,6 +383,14 @@ function initZoom() {
 // INIT
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
+  // Force the top on every load: clear any #hash and reset scroll.
+  if (location.hash) {
+    history.replaceState(null, '', location.pathname + location.search);
+  }
+  window.scrollTo(0, 0);
+  // Some browsers restore scroll slightly after load — pin it to top once more.
+  window.addEventListener('load', () => window.scrollTo(0, 0));
+
   initThreeBackground();
   initMockupFloat();
   initReveal();
