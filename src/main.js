@@ -2,6 +2,7 @@
 import './style.css';
 import { initThreeBackground } from './three-bg.js';
 import { playIntro } from './intro.js';
+import { initCursor } from './cursor.js';
 
 // Always land at the top (Home) on load/refresh — stop the browser from
 // restoring the previous scroll position.
@@ -432,6 +433,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Some browsers restore scroll slightly after load — pin it to top once more.
   window.addEventListener('load', () => window.scrollTo(0, 0));
 
+  initCursor();
   initThreeBackground();
   initMockupFloat();
   initReveal();
