@@ -1,6 +1,7 @@
 // Import styles
 import './style.css';
 import { initThreeBackground } from './three-bg.js';
+import { playIntro } from './intro.js';
 
 // ============================================
 // SCROLL REVEAL
@@ -53,15 +54,22 @@ function initNav() {
   const sections = document.querySelectorAll('section[id]');
   window.addEventListener('scroll', () => {
     const y = window.scrollY + 120;
+
+    // The current section is the last one whose top we've scrolled past.
+    let currentId = sections[0] ? sections[0].getAttribute('id') : null;
     sections.forEach((s) => {
-      const top = s.offsetTop;
-      const id = s.getAttribute('id');
-      if (y >= top && y < top + s.offsetHeight) {
-        allLinks.forEach((l) =>
-          l.classList.toggle('active', l.getAttribute('href') === `#${id}`)
-        );
-      }
+      if (y >= s.offsetTop) currentId = s.getAttribute('id');
     });
+
+    // At the very bottom of the page, always highlight the last section
+    // (a short final section like Contact may never reach the threshold otherwise).
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 2) {
+      currentId = sections[sections.length - 1].getAttribute('id');
+    }
+
+    allLinks.forEach((l) =>
+      l.classList.toggle('active', l.getAttribute('href') === `#${currentId}`)
+    );
   });
 }
 
@@ -371,15 +379,17 @@ function initZoom() {
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
   initThreeBackground();
-  initHeroAnim();
   initMockupFloat();
   initReveal();
   initNav();
   initFilters();
   initCounters();
   initSkillBars();
-  initForm();
   initScroll();
   initLightbox();
   initZoom();
+
+  // Play the Three.js opening animation, then reveal the hero.
+  // onReveal fires as the intro dissolves so the hero animates in behind it.
+  playIntro({ onReveal: initHeroAnim });
 });
