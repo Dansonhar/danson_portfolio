@@ -327,6 +327,9 @@ function initLightbox() {
   // Keyboard
   document.addEventListener('keydown', (e) => {
     if (!lightbox.classList.contains('open')) return;
+    // When the fullscreen zoom is open on top, let it handle the keys instead.
+    const zoom = document.getElementById('zoomOverlay');
+    if (zoom && zoom.classList.contains('open')) return;
     if (e.key === 'Escape') closeLightbox();
     if (e.key === 'ArrowLeft') goTo(currentIndex - 1);
     if (e.key === 'ArrowRight') goTo(currentIndex + 1);
@@ -340,7 +343,18 @@ function initZoom() {
   const overlay = document.getElementById('zoomOverlay');
   const zoomImg = document.getElementById('zoomImg');
   const closeBtn = document.getElementById('zoomClose');
+  const prevBtn = document.getElementById('zoomPrev');
+  const nextBtn = document.getElementById('zoomNext');
   if (!overlay) return;
+
+  // Show the prev/next arrows only when the current project has more than one image.
+  function updateNavVisibility() {
+    const panel = document.querySelector('.lightbox__content.active');
+    const count = panel ? panel.querySelectorAll('.gallery__thumb').length : 0;
+    const hide = count <= 1;
+    if (prevBtn) prevBtn.classList.toggle('zoom-overlay__nav--hidden', hide);
+    if (nextBtn) nextBtn.classList.toggle('zoom-overlay__nav--hidden', hide);
+  }
 
   function openZoom(src, alt) {
     zoomImg.classList.remove('zoom-overlay__img--portrait');
@@ -355,6 +369,8 @@ function initZoom() {
     };
     if (zoomImg.complete && zoomImg.naturalWidth) applyOrientation();
     else zoomImg.onload = applyOrientation;
+    overlay.scrollTop = 0;
+    updateNavVisibility();
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
@@ -364,18 +380,43 @@ function initZoom() {
     document.body.style.overflow = '';
   }
 
+  // Advance the underlying gallery (keeps its state in sync) and re-sync the zoom.
+  function navZoom(dir) {
+    const panel = document.querySelector('.lightbox__content.active');
+    if (!panel) return;
+    const btn = panel.querySelector(
+      dir > 0 ? '.gallery__nav--next' : '.gallery__nav--prev'
+    );
+    if (btn) btn.click();
+    const activeThumb = panel.querySelector('.gallery__thumb.active img');
+    if (activeThumb) openZoom(activeThumb.dataset.src || activeThumb.src, activeThumb.alt);
+  }
+
   document.addEventListener('click', (e) => {
     const img = e.target.closest('.gallery__main-img');
     if (img) openZoom(img.src, img.alt);
   });
 
   closeBtn.addEventListener('click', closeZoom);
+  if (prevBtn)
+    prevBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      navZoom(-1);
+    });
+  if (nextBtn)
+    nextBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      navZoom(1);
+    });
   overlay.addEventListener('click', (e) => {
     if (e.target === overlay) closeZoom();
   });
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && overlay.classList.contains('open')) closeZoom();
+    if (!overlay.classList.contains('open')) return;
+    if (e.key === 'Escape') closeZoom();
+    if (e.key === 'ArrowLeft') navZoom(-1);
+    if (e.key === 'ArrowRight') navZoom(1);
   });
 }
 

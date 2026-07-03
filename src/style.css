@@ -425,6 +425,13 @@ img{max-width:100%;display:block}
 
 .about__grid{display:grid;grid-template-columns:1fr 1fr;gap:72px}
 
+.about__photo{
+  width:190px;height:190px;border-radius:50%;
+  object-fit:cover;display:block;margin:0 0 32px;
+  border:3px solid var(--green);
+  box-shadow:0 0 0 8px rgba(184,255,43,.08),0 20px 50px rgba(0,0,0,.55);
+}
+
 .about__text p{color:var(--text2);margin-bottom:20px;font-size:1rem;line-height:1.8}
 
 .about__stats{
@@ -457,6 +464,14 @@ img{max-width:100%;display:block}
   flex-shrink:0;width:22px;height:22px;color:var(--green);transition:var(--tr);
 }
 .skill-box .ico--brand{fill:currentColor}
+/* brand-accurate icon colours */
+.skill-box .ico--react{color:#61dafb}
+.skill-box .ico--js{color:#f7df1e}
+.skill-box .ico--vscode{color:#0098ff}
+.skill-box .ico--docker{color:#2496ed}
+.skill-box .ico--github{color:#f5f5f5}
+.skill-box .ico--photoshop{color:#31a8ff}
+.skill-box .ico--illustrator{color:#ff9a00}
 .skill-box .ico--line{
   fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
 }
@@ -770,10 +785,25 @@ img{max-width:100%;display:block}
   max-height:calc(100vh - 80px);
 }
 .zoom-overlay__close{
-  position:fixed;top:20px;right:20px;
-  width:44px;height:44px;border-radius:50%;
-  background:rgba(255,255,255,.12);border:none;cursor:pointer;
+  position:fixed;top:20px;right:20px;z-index:10;
+  width:48px;height:48px;border-radius:50%;
+  background:rgba(20,20,20,.75);border:1px solid rgba(255,255,255,.18);cursor:pointer;
   display:flex;align-items:center;justify-content:center;
-  color:#fff;transition:background .2s ease;
+  color:#fff;transition:background .2s ease,color .2s ease;
+  backdrop-filter:blur(6px);
 }
-.zoom-overlay__close:hover{background:var(--green);color:var(--bg)}
+.zoom-overlay__close:hover{background:var(--green);color:var(--bg);border-color:var(--green)}
+
+/* Prev / next inside the enlarged view */
+.zoom-overlay__nav{
+  position:fixed;top:50%;transform:translateY(-50%);z-index:10;
+  width:52px;height:52px;border-radius:50%;
+  background:rgba(20,20,20,.75);border:1px solid rgba(255,255,255,.18);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;transition:background .2s ease,color .2s ease;
+  backdrop-filter:blur(6px);
+}
+.zoom-overlay__nav:hover{background:var(--green);color:var(--bg);border-color:var(--green)}
+.zoom-overlay__nav--prev{left:20px}
+.zoom-overlay__nav--next{right:20px}
+.zoom-overlay__nav--hidden{display:none}
