@@ -1,0 +1,14 @@
+# Normalize line endings so Windows CRLF doesn't create phantom diffs.
+# Git stores text as LF; your working files can stay whatever your OS uses.
+* text=auto
+
+# Keep binary assets untouched
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
