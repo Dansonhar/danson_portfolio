@@ -634,47 +634,6 @@ img{max-width:100%;display:block}
 }
 
 /* ============================================
-   SKILLS MARQUEE
-   ============================================ */
-.skills-marquee{
-  overflow:hidden;width:100%;position:relative;margin-bottom:12px;
-  -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 10%,#000 90%,transparent 100%);
-  mask-image:linear-gradient(to right,transparent 0%,#000 10%,#000 90%,transparent 100%);
-}
-.skills-marquee__track{
-  display:flex;gap:10px;width:max-content;will-change:transform;
-}
-.skills-marquee[data-dir="fwd"] .skills-marquee__track{
-  animation:marquee-fwd 30s linear infinite;
-}
-.skills-marquee[data-dir="rev"] .skills-marquee__track{
-  animation:marquee-rev 24s linear infinite;
-}
-.skills-marquee:hover .skills-marquee__track{animation-play-state:paused}
-@keyframes marquee-fwd{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-@keyframes marquee-rev{from{transform:translateX(-50%)}to{transform:translateX(0)}}
-
-.skill-chip{
-  display:inline-flex;align-items:center;gap:9px;
-  padding:10px 16px;border-radius:50px;
-  background:var(--surface);border:1px solid var(--border2);
-  font-size:.82rem;font-weight:600;color:var(--text);
-  white-space:nowrap;flex-shrink:0;cursor:default;
-  transition:border-color .3s ease,background .3s ease;
-}
-.skill-chip:hover{border-color:var(--green);background:var(--green-dim)}
-.skill-chip .ico{flex-shrink:0;width:20px;height:20px;color:var(--green)}
-.skill-chip .ico--brand{fill:currentColor}
-.skill-chip .ico--react{color:#61dafb}
-.skill-chip .ico--js{color:#f7df1e}
-.skill-chip .ico--vscode{color:#0098ff}
-.skill-chip .ico--docker{color:#2496ed}
-.skill-chip .ico--github{color:#f5f5f5}
-.skill-chip .ico--photoshop{color:#31a8ff}
-.skill-chip .ico--illustrator{color:#ff9a00}
-.skill-chip .ico--line{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-
-/* ============================================
    SCREENSHOT CARD THUMBNAIL
    ============================================ */
 .project__img--screenshot .project__placeholder{display:none}
