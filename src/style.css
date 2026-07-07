@@ -349,6 +349,27 @@ img{max-width:100%;display:block}
 }
 .btn--small:hover{background:var(--green-hover)}
 .btn--full{width:100%}
+.work__more{display:flex;justify-content:center;margin-top:48px}
+.work__more[hidden]{display:none}
+.work__more .btn{
+  text-decoration:none;background:var(--green);color:var(--bg);
+  border:1px solid var(--green);
+  box-shadow:0 0 20px rgba(184,255,43,.5),0 0 40px rgba(184,255,43,.25);
+  animation:glowPulse 2s ease-in-out infinite;
+}
+.work__more .btn:hover{
+  background:var(--green-hover);border-color:var(--green-hover);color:var(--bg);
+  transform:translateY(-2px);
+  box-shadow:0 0 28px rgba(184,255,43,.7),0 0 60px rgba(184,255,43,.4);
+}
+.work__more .btn svg{stroke:var(--bg)}
+@keyframes glowPulse{
+  0%,100%{box-shadow:0 0 18px rgba(184,255,43,.45),0 0 36px rgba(184,255,43,.2)}
+  50%{box-shadow:0 0 28px rgba(184,255,43,.75),0 0 60px rgba(184,255,43,.4)}
+}
+@media (prefers-reduced-motion:reduce){
+  .work__more .btn{animation:none}
+}
 
 /* ============================================
    SECTION HEADERS

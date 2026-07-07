@@ -85,12 +85,16 @@ function initNav() {
 function initFilters() {
   const btns = document.querySelectorAll('.filter-btn');
   const cards = document.querySelectorAll('.project');
+  const more3D = document.getElementById('workMore3D');
 
   btns.forEach((btn) => {
     btn.addEventListener('click', () => {
       btns.forEach((b) => b.classList.remove('active'));
       btn.classList.add('active');
       const f = btn.dataset.filter;
+
+      // Show the "View More 3D Projects" button only on the 3D Design filter.
+      if (more3D) more3D.hidden = f !== 'design';
 
       cards.forEach((card, i) => {
         const show = f === 'all' || card.dataset.category === f;
