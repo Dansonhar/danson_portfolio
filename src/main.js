@@ -1,8 +1,30 @@
 // Import styles
 import './style.css';
-import { initThreeBackground } from './three-bg.js';
-import { playIntro } from './intro.js';
 import { initCursor } from './cursor.js';
+import {
+  prefersReducedMotion,
+  shouldPlayIntro,
+  shouldLoadBackground,
+} from './motion.js';
+
+// Both decorative effects render on Canvas2D and are still code-split, so a
+// visitor who will not see them never downloads them: the gates in motion.js
+// decide before the import runs.
+function loadIntro() {
+  return import('./intro.js');
+}
+function loadBackground() {
+  return import('./background.js');
+}
+
+// Run work once the browser is idle, so it can never delay first paint.
+function whenIdle(fn) {
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(fn, { timeout: 2000 });
+  } else {
+    setTimeout(fn, 200);
+  }
+}
 
 // Always land at the top (Home) on load/refresh — stop the browser from
 // restoring the previous scroll position.
@@ -14,6 +36,14 @@ window.scrollTo(0, 0);
 // ============================================
 function initReveal() {
   const els = document.querySelectorAll('.reveal');
+
+  // No IntersectionObserver (or reduced motion): show the content outright
+  // rather than leaving it stuck at opacity 0.
+  if (!('IntersectionObserver' in window) || prefersReducedMotion()) {
+    els.forEach((el) => el.classList.add('visible'));
+    return;
+  }
+
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -96,10 +126,16 @@ function initFilters() {
       // Show the "View More 3D Projects" button only on the 3D Design filter.
       if (more3D) more3D.hidden = f !== 'design';
 
+      const still = prefersReducedMotion();
       cards.forEach((card, i) => {
         const show = f === 'all' || card.dataset.category === f;
         if (show) {
           card.classList.remove('hidden');
+          if (still) {
+            card.style.opacity = '';
+            card.style.transform = '';
+            return;
+          }
           card.style.opacity = '0';
           card.style.transform = 'translateY(20px)';
           setTimeout(() => {
@@ -122,10 +158,23 @@ function initCounters() {
   const nums = document.querySelectorAll('.stat__number');
 
   // Keep the Projects stat in sync with the actual number of project cards.
+  // The markup ships the real number so no-JS visitors never read "0"; this only
+  // corrects it when cards are added or removed.
   const projectsStat = document.querySelector('.stat__number[data-count="projects"]');
   if (projectsStat) {
     const total = document.querySelectorAll('.work__grid .project').length;
-    if (total > 0) projectsStat.dataset.target = String(total);
+    if (total > 0) {
+      projectsStat.dataset.target = String(total);
+      projectsStat.textContent = String(total);
+    }
+  }
+
+  // Reduced motion: show the final figures, skip the count-up entirely.
+  if (prefersReducedMotion()) {
+    nums.forEach((n) => {
+      if (n.dataset.target) n.textContent = n.dataset.target;
+    });
+    return;
   }
 
   const observer = new IntersectionObserver(
@@ -179,9 +228,18 @@ function initSkillBars() {
 function initScroll() {
   document.querySelectorAll('a[href^="#"]').forEach((a) => {
     a.addEventListener('click', (e) => {
+      const href = a.getAttribute('href');
+      // A bare "#" is the logo's back-to-top link; querySelector('#') throws.
+      if (href === '#') {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
+        return;
+      }
       e.preventDefault();
-      const t = document.querySelector(a.getAttribute('href'));
-      if (t) t.scrollIntoView({ behavior: 'smooth' });
+      const t = document.querySelector(href);
+      if (t) {
+        t.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
+      }
     });
   });
 }
@@ -190,11 +248,15 @@ function initScroll() {
 // HERO ENTRANCE ANIMATION
 // ============================================
 function initHeroAnim() {
+  // Reduced motion: the hero is already in its final state in the markup.
+  if (prefersReducedMotion()) return;
+
   // Stagger hero text elements
   const els = [
     document.querySelector('.hero__badge'),
     document.querySelector('.hero__title'),
     document.querySelector('.hero__subtitle-row'),
+    document.querySelector('.hero__lead'),
     document.querySelector('.hero__actions'),
   ].filter(Boolean);
 
@@ -226,6 +288,8 @@ function initHeroAnim() {
 // FLOATING MOCKUP SUBTLE ANIMATION
 // ============================================
 function initMockupFloat() {
+  if (prefersReducedMotion()) return;
+
   const mockups = document.querySelectorAll('.mockup');
   let frame;
 
@@ -437,19 +501,48 @@ document.addEventListener('DOMContentLoaded', () => {
   // Some browsers restore scroll slightly after load — pin it to top once more.
   window.addEventListener('load', () => window.scrollTo(0, 0));
 
-  initCursor();
-  initThreeBackground();
-  initMockupFloat();
-  initReveal();
-  initNav();
-  initFilters();
-  initCounters();
-  initSkillBars();
-  initScroll();
-  initLightbox();
-  initZoom();
+  // Each feature is independent, so isolate them: one throwing (a missing
+  // element, no WebGL) must not stop the rest from wiring up. Before this
+  // guard, a WebGL failure in the background left the whole page invisible.
+  [
+    initCursor,
+    initMockupFloat,
+    initReveal,
+    initNav,
+    initFilters,
+    initCounters,
+    initSkillBars,
+    initScroll,
+    initLightbox,
+    initZoom,
+  ].forEach((init) => {
+    try {
+      init();
+    } catch (e) {
+      console.error(`${init.name} failed:`, e);
+    }
+  });
 
-  // Play the Three.js opening animation, then reveal the hero.
-  // onReveal fires as the intro dissolves so the hero animates in behind it.
-  playIntro({ onReveal: initHeroAnim });
+  // Opening animation. The gate is checked before the import so visitors who
+  // will not see it never pay for the bundle; the hero then reveals itself.
+  if (shouldPlayIntro()) {
+    loadIntro()
+      .then(({ playIntro }) => playIntro({ onReveal: initHeroAnim }))
+      .catch((e) => {
+        console.error('intro failed to load:', e);
+        initHeroAnim();
+      });
+  } else {
+    initHeroAnim();
+  }
+
+  // Decorative scroll background: desktop only, and never before the page has
+  // settled — it must not compete with content for bandwidth or main thread.
+  if (shouldLoadBackground()) {
+    whenIdle(() => {
+      loadBackground()
+        .then(({ initBackground }) => initBackground())
+        .catch((e) => console.error('background failed to load:', e));
+    });
+  }
 });

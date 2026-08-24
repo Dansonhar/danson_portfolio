@@ -1,23 +1,42 @@
 // ============================================
-// THREE.JS INTRO / OPENING ANIMATION
-// Plays on every page load:
+// INTRO / OPENING ANIMATION
 //   1. Hyperspace particle warp rushes past the camera
 //   2. Particles converge to spell "DANSON"
-//   3. A brief hold + shimmer
-//   4. Everything zooms through the camera and dissolves, revealing the site
-// Click / tap / any key skips ahead. Respects prefers-reduced-motion.
+//   3. Everything zooms through the camera and dissolves, revealing the site
+// Click / tap / any key skips ahead.
+//
+// Rendered with the Canvas2D point renderer — the effect is identical, but it
+// no longer costs a WebGL library to draw a few thousand dots.
+//
+// First-visit friction is deliberately capped — see shouldPlayIntro() in
+// motion.js for who gets it at all. This module is only ever imported once
+// that gate has said yes:
+//   - the whole thing runs ~2.2s, and the site starts revealing at ~1.7s
+//   - it plays ONCE per visitor (12h window) — returning visitors go straight in
+//   - prefers-reduced-motion or ?intro=0 skip it entirely
 // ============================================
-import * as THREE from 'three';
+import { PointRenderer } from './points2d.js';
+import { markIntroSeen } from './motion.js';
 
 const NAME = 'DANSON';
 
-// Timeline (seconds)
-const FORM_START = 0.45;
-const WARP_FADE_START = 0.5;
-const WARP_FADE_END = 1.7;
-const FORM_END = 2.5;
-const HOLD_END = 3.3;
-const OUT_END = 4.15;
+// Timeline (seconds). Kept short on purpose: a recruiter's first visit should
+// reach the hero in under two seconds, not four.
+const FORM_START = 0.22;
+const WARP_FADE_START = 0.25;
+const WARP_FADE_END = 0.95;
+const FORM_END = 1.25;
+const HOLD_END = 1.65;
+const OUT_END = 2.2;
+
+// Per-frame delta is clamped below, so a slow device would stretch the timeline
+// in wall-clock terms. This is the real-time budget: once it passes, the intro
+// starts bowing out regardless of how many frames it managed to draw.
+const MAX_WALL_MS = 2600;
+
+const WARP_COUNT = 1400;
+const CAMERA_Z = 6;
+const FOV = 70;
 
 export function playIntro({ onReveal } = {}) {
   return new Promise((resolve) => {
@@ -32,82 +51,94 @@ export function playIntro({ onReveal } = {}) {
       }
     };
 
-    // Skip the whole thing for reduced-motion users.
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduceMotion) {
-      fireReveal();
-      resolve();
-      return;
-    }
+    markIntroSeen();
 
     // ---- Overlay + canvas -------------------------------------------------
     const overlay = document.createElement('div');
     overlay.className = 'intro-overlay';
     const canvas = document.createElement('canvas');
+    canvas.setAttribute('aria-hidden', 'true');
     overlay.appendChild(canvas);
     const skipBtn = document.createElement('button');
     skipBtn.className = 'intro-skip';
+    skipBtn.type = 'button';
     skipBtn.textContent = 'Skip Intro';
+    skipBtn.setAttribute('aria-label', 'Skip the intro animation and go to the site');
     overlay.appendChild(skipBtn);
     document.body.appendChild(overlay);
     document.body.style.overflow = 'hidden';
+    try {
+      skipBtn.focus({ preventScroll: true });
+    } catch (e) {}
+
+    // ---- Skip / finish ----------------------------------------------------
+    let elapsed = 0; // seconds since the loop started (own accumulator)
+    let skipFrom = null; // elapsed time when skip pressed
+    function doSkip() {
+      if (skipFrom !== null) return;
+      skipFrom = elapsed;
+    }
+    skipBtn.addEventListener('click', doSkip);
+    overlay.addEventListener('click', doSkip);
+    function keyHandler() {
+      doSkip();
+    }
+    window.addEventListener('keydown', keyHandler);
+
+    let finished = false;
+    let rafId = null;
+    let safety = null;
+    function cleanup(immediate) {
+      if (finished) return;
+      finished = true;
+      if (rafId) cancelAnimationFrame(rafId);
+      if (safety) clearTimeout(safety);
+      window.removeEventListener('resize', resize);
+      window.removeEventListener('keydown', keyHandler);
+      fireReveal();
+      const remove = () => {
+        overlay.remove();
+        document.body.style.overflow = '';
+        resolve();
+      };
+      if (immediate) {
+        remove();
+      } else {
+        overlay.classList.add('hide');
+        setTimeout(remove, 650);
+      }
+    }
 
     let renderer;
     try {
-      renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+      renderer = new PointRenderer(canvas, { fov: FOV, cameraZ: CAMERA_Z });
     } catch (e) {
-      // WebGL unavailable — bail gracefully.
+      // No 2D context — bail without ever showing the overlay.
       cleanup(true);
       return;
     }
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(70, aspect(), 0.1, 100);
-    camera.position.z = 6;
-    camera.lookAt(0, 0, 0);
-
-    function aspect() {
-      return window.innerWidth / Math.max(window.innerHeight, 1);
-    }
     function resize() {
-      camera.aspect = aspect();
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight, false);
+      renderer.resize();
     }
     window.addEventListener('resize', resize);
-    resize();
 
     // ---- Warp starfield ---------------------------------------------------
-    const WARP_COUNT = 1400;
-    const warpPos = new Float32Array(WARP_COUNT * 3);
+    const warp = new Float32Array(WARP_COUNT * 3);
     for (let i = 0; i < WARP_COUNT; i++) {
-      warpPos[i * 3] = (Math.random() - 0.5) * 10;
-      warpPos[i * 3 + 1] = (Math.random() - 0.5) * 10;
-      warpPos[i * 3 + 2] = -Math.random() * 42 + 6;
+      warp[i * 3] = (Math.random() - 0.5) * 10;
+      warp[i * 3 + 1] = (Math.random() - 0.5) * 10;
+      warp[i * 3 + 2] = -Math.random() * 42 + 6;
     }
-    const warpGeo = new THREE.BufferGeometry();
-    warpGeo.setAttribute('position', new THREE.BufferAttribute(warpPos, 3));
-    const warpMat = new THREE.PointsMaterial({
-      color: 0x9dff3d,
-      size: 0.07,
-      sizeAttenuation: true,
-      transparent: true,
-      opacity: 0.9,
-      depthWrite: false,
-      blending: THREE.AdditiveBlending,
-    });
-    const warp = new THREE.Points(warpGeo, warpMat);
-    scene.add(warp);
 
     // ---- Text particles (built after fonts are ready) ---------------------
-    let textPoints = null;
-    let textMat = null;
-    let start = null; // Float32Array scattered origins
-    let target = null; // Float32Array text positions
-    let curr = null; // Float32Array current, bound to geometry
+    let hasText = false;
+    let start = null; // scattered origins
+    let target = null; // text positions
+    let curr = null; // current, what gets drawn
     let phase = null; // per-particle random for shimmer
     let COUNT = 0;
+    let textOpacity = 0;
 
     function buildText() {
       const sample = sampleText(NAME);
@@ -115,8 +146,9 @@ export function playIntro({ onReveal } = {}) {
 
       const raw = sample.points;
       // Fit the word into world space (responsive).
-      const visibleH = 2 * camera.position.z * Math.tan((70 * Math.PI) / 360);
-      const maxW = visibleH * aspect() * 0.82;
+      const visibleH = 2 * CAMERA_Z * Math.tan((FOV * Math.PI) / 360);
+      const aspect = window.innerWidth / Math.max(window.innerHeight, 1);
+      const maxW = visibleH * aspect * 0.82;
       let scale = 1.85 / sample.h; // aim ~1.85 world-units tall
       if (sample.w * scale > maxW) scale = maxW / sample.w;
 
@@ -156,102 +188,54 @@ export function playIntro({ onReveal } = {}) {
         curr[k * 3 + 2] = start[k * 3 + 2];
         phase[k] = Math.random() * Math.PI * 2;
       }
-
-      const geo = new THREE.BufferGeometry();
-      geo.setAttribute('position', new THREE.BufferAttribute(curr, 3));
-      textMat = new THREE.PointsMaterial({
-        color: 0xd6ff70,
-        size: 0.055,
-        sizeAttenuation: true,
-        transparent: true,
-        opacity: 0,
-        depthWrite: false,
-        blending: THREE.AdditiveBlending,
-      });
-      textPoints = new THREE.Points(geo, textMat);
-      scene.add(textPoints);
-    }
-
-    // ---- Skip / finish ----------------------------------------------------
-    let elapsed = 0; // seconds since the loop started (own accumulator)
-    let skipFrom = null; // elapsed time when skip pressed
-    function doSkip() {
-      if (skipFrom !== null) return;
-      skipFrom = elapsed;
-    }
-    skipBtn.addEventListener('click', doSkip);
-    overlay.addEventListener('click', doSkip);
-    const keyHandler = () => doSkip();
-    window.addEventListener('keydown', keyHandler);
-
-    let finished = false;
-    function cleanup(immediate) {
-      if (finished) return;
-      finished = true;
-      window.removeEventListener('resize', resize);
-      window.removeEventListener('keydown', keyHandler);
-      fireReveal();
-      const remove = () => {
-        try {
-          renderer && renderer.dispose();
-        } catch (e) {}
-        overlay.remove();
-        document.body.style.overflow = '';
-        resolve();
-      };
-      if (immediate) {
-        remove();
-      } else {
-        overlay.classList.add('hide');
-        setTimeout(remove, 650);
-      }
+      hasText = true;
     }
 
     // ---- Render loop ------------------------------------------------------
-    const clock = new THREE.Clock();
-    let rafId = null;
-    // Safety net: never trap the user behind the overlay.
-    const safety = setTimeout(() => cleanup(true), 9000);
+    let last = performance.now();
+    const startWall = last;
 
     function frame() {
-      const dt = Math.min(clock.getDelta(), 0.05);
+      const now = performance.now();
+      const dt = Math.min((now - last) / 1000, 0.05);
+      last = now;
       elapsed += dt;
+      // Out of real-time budget (slow device, throttled tab) — bow out now.
+      if (skipFrom === null && now - startWall > MAX_WALL_MS) doSkip();
       let t = elapsed;
       // When skipping, fast-forward time toward the out phase.
       if (skipFrom !== null) {
         t = HOLD_END + (elapsed - skipFrom) * 3.2;
       }
 
+      renderer.clear();
+
       // Warp motion + fade
       const wOpacity =
         1 - clamp((t - WARP_FADE_START) / (WARP_FADE_END - WARP_FADE_START));
-      warpMat.opacity = 0.9 * wOpacity;
-      const speed = 26;
-      const arr = warpGeo.attributes.position.array;
       if (wOpacity > 0.01) {
+        const speed = 26;
         for (let i = 0; i < WARP_COUNT; i++) {
-          arr[i * 3 + 2] += speed * dt;
-          if (arr[i * 3 + 2] > 7) {
-            arr[i * 3] = (Math.random() - 0.5) * 10;
-            arr[i * 3 + 1] = (Math.random() - 0.5) * 10;
-            arr[i * 3 + 2] -= 46;
+          warp[i * 3 + 2] += speed * dt;
+          if (warp[i * 3 + 2] > 7) {
+            warp[i * 3] = (Math.random() - 0.5) * 10;
+            warp[i * 3 + 1] = (Math.random() - 0.5) * 10;
+            warp[i * 3 + 2] -= 46;
           }
         }
-        warpGeo.attributes.position.needsUpdate = true;
-        warp.visible = true;
-      } else {
-        warp.visible = false;
+        renderer.draw(warp, WARP_COUNT, {
+          color: '#9dff3d',
+          size: 0.07,
+          opacity: 0.9 * wOpacity,
+        });
       }
 
       // Text: form -> hold -> out
-      if (textPoints) {
-        const form = easeOutCubic(
-          clamp((t - FORM_START) / (FORM_END - FORM_START))
-        );
+      if (hasText) {
+        const form = easeOutCubic(clamp((t - FORM_START) / (FORM_END - FORM_START)));
         const out = clamp((t - HOLD_END) / (OUT_END - HOLD_END));
         const outE = easeInCubic(out);
 
-        const pos = textPoints.geometry.attributes.position.array;
         for (let k = 0; k < COUNT; k++) {
           const i = k * 3;
           let x = lerp(start[i], target[i], form);
@@ -259,7 +243,7 @@ export function playIntro({ onReveal } = {}) {
           let z = lerp(start[i + 2], target[i + 2], form);
 
           // Shimmer once formed
-          const sh = (1 - form) * 0.0 + form * 0.03;
+          const sh = form * 0.03;
           y += Math.sin(t * 2.2 + phase[k]) * sh;
           x += Math.cos(t * 1.8 + phase[k]) * sh;
 
@@ -269,46 +253,52 @@ export function playIntro({ onReveal } = {}) {
             x *= 1 + outE * 1.4;
             y *= 1 + outE * 1.4;
           }
-          pos[i] = x;
-          pos[i + 1] = y;
-          pos[i + 2] = z;
+          curr[i] = x;
+          curr[i + 1] = y;
+          curr[i + 2] = z;
         }
-        textPoints.geometry.attributes.position.needsUpdate = true;
-        textMat.opacity = clamp(form * 1.1) * (1 - easeInCubic(out));
+
+        textOpacity = clamp(form * 1.1) * (1 - easeInCubic(out));
 
         // gentle camera drift for depth during the hold
-        camera.position.x = Math.sin(t * 0.3) * 0.15 * form * (1 - out);
-        camera.position.y = Math.cos(t * 0.25) * 0.1 * form * (1 - out);
-        camera.lookAt(0, 0, 0);
+        renderer.cam.x = Math.sin(t * 0.3) * 0.15 * form * (1 - out);
+        renderer.cam.y = Math.cos(t * 0.25) * 0.1 * form * (1 - out);
+
+        renderer.draw(curr, COUNT, {
+          color: '#d6ff70',
+          size: 0.055,
+          opacity: textOpacity,
+        });
 
         // Kick off the site reveal + start fading the overlay near the end.
         if (out > 0.02) fireReveal();
         if (out >= 1) {
-          renderer.render(scene, camera);
-          clearTimeout(safety);
           cleanup(false);
           return;
         }
-        // Fade the black overlay away over the tail of the out phase.
-        overlay.style.background =
-          out > 0.35
-            ? `rgba(5,5,5,${(1 - (out - 0.35) / 0.65).toFixed(3)})`
-            : '#050505';
+        // Fade the black overlay away over the tail of the out phase, and stop
+        // it swallowing clicks meant for the page now showing through it.
+        if (out > 0.35) {
+          overlay.style.background = `rgba(5,5,5,${(1 - (out - 0.35) / 0.65).toFixed(3)})`;
+          overlay.style.pointerEvents = 'none';
+        } else {
+          overlay.style.background = '#050505';
+        }
       }
 
-      renderer.render(scene, camera);
       rafId = requestAnimationFrame(frame);
     }
 
     // Build text once the brand font is ready, then start rendering.
     ensureFont().then(() => {
+      if (finished) return;
       buildText();
-      // If sampling failed for any reason, still run the warp + a timed reveal.
-      clock.start();
+      // Last resort: if frames stop arriving entirely, never trap the user.
+      safety = setTimeout(() => cleanup(true), 4500);
+      last = performance.now();
       frame();
-      if (!textPoints) {
-        setTimeout(() => cleanup(false), 1600);
-      }
+      // If sampling failed for any reason, still run the warp + a timed reveal.
+      if (!hasText) setTimeout(() => cleanup(false), 900);
     });
   });
 }
@@ -335,7 +325,7 @@ function pseudoRand(i) {
 function ensureFont() {
   if (!document.fonts || !document.fonts.load) return Promise.resolve();
   return document.fonts
-    .load("900 200px 'Space Grotesk'")
+    .load("700 200px 'Space Grotesk'")
     .catch(() => {})
     .then(() => document.fonts.ready)
     .catch(() => {});

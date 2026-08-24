@@ -3,21 +3,50 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Danson | Portfolio</title>
+    <title>Danson Har — Frontend Developer &amp; UI Designer</title>
+    <meta
+      name="description"
+      content="Danson Har is a frontend developer building fast, responsive websites and web apps in JavaScript and React — with UI design, 3D and AI-assisted media as supporting craft."
+    />
+    <meta name="author" content="Danson Har" />
+    <link rel="canonical" href="https://dansonhar.com/" />
+
+    <!-- Social cards -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Danson Har — Frontend Developer &amp; UI Designer" />
+    <meta
+      property="og:description"
+      content="Frontend developer building fast, responsive websites and web apps in JavaScript and React."
+    />
+    <meta property="og:url" content="https://dansonhar.com/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Danson Har — Frontend Developer &amp; UI Designer" />
+    <meta
+      name="twitter:description"
+      content="Frontend developer building fast, responsive websites and web apps in JavaScript and React."
+    />
     <!-- Favicons / app icons -->
-    <link rel="icon" href="./favicon.ico" sizes="any" />
+    <!-- Declare only the small PNGs: sizes="any" on the 15 kB .ico made
+         browsers prefer it over the 1.2 kB icon. favicon.ico is still served
+         at the root for anything that requests it by convention. -->
     <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
     <link rel="manifest" href="./site.webmanifest" />
     <meta name="theme-color" content="#0b0b0b" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <!-- Fonts are self-hosted (see src/fonts.css), so there is no blocking
+         request to a third-party origin before text can paint. Preload the two
+         latin subsets this page always needs; latin-ext is unicode-range gated
+         and only fetched if an accented glyph actually appears. -->
+    <link rel="preload" href="./fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="./fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
     <script type="module" src="./src/main.js"></script>
+    <!-- Without JS the scroll-reveal observer never runs, so show everything. -->
+    <noscript>
+      <style>
+        .reveal { opacity: 1 !important; transform: none !important; }
+      </style>
+    </noscript>
   </head>
   <body>
     <!-- Navigation -->
@@ -46,16 +75,20 @@
         <div class="hero__left">
           <div class="hero__badge">
             <span class="badge__dot"></span>
-            Available for work
+            Open to new opportunities &middot; Based in Malaysia
           </div>
-          <h1 class="hero__title">PORTFOLIO</h1>
+          <h1 class="hero__title">FRONTEND</h1>
           <div class="hero__subtitle-row">
-            <span class="hero__ampersand">&</span>
             <h2 class="hero__subtitle">
-              FRONTEND<br />
-              <span class="hero__subtitle-highlight">DEVELOPMENT</span>
+              <span class="hero__subtitle-highlight">DEVELOPER</span>
             </h2>
           </div>
+          <p class="hero__lead">
+            I build fast, responsive websites and web apps in JavaScript and React.
+            <span class="hero__lead-muted">
+              UI design, 3D and AI-assisted media are how I make them feel finished.
+            </span>
+          </p>
           <div class="hero__actions">
             <a href="#work" class="btn btn--primary">
               View Projects
@@ -75,7 +108,7 @@
             <div class="mockup__browser">
               <div class="mockup__dots"><span></span><span></span><span></span></div>
               <div class="mockup__screen mockup__screen--shot">
-                <img src="./images/AlcPest/alcpest-home.webp" alt="ALC Pest Purge Solution website" loading="lazy" decoding="async" />
+                <img src="./images/opt/AlcPest-alcpest-home-400.webp" alt="ALC Pest Purge Solution website" loading="lazy" decoding="async" width="600" height="375" />
               </div>
             </div>
           </a>
@@ -83,7 +116,7 @@
             <div class="mockup__browser">
               <div class="mockup__dots"><span></span><span></span><span></span></div>
               <div class="mockup__screen mockup__screen--shot">
-                <img src="./images/qparking/park1.webp" alt="QParking parking management platform" loading="lazy" decoding="async" />
+                <img src="./images/opt/qparking-park1-400.webp" alt="QParking parking management platform" loading="lazy" decoding="async" width="600" height="375" />
               </div>
             </div>
           </a>
@@ -91,7 +124,7 @@
             <div class="mockup__browser">
               <div class="mockup__dots"><span></span><span></span><span></span></div>
               <div class="mockup__screen mockup__screen--shot">
-                <img src="./images/qpos/qbot-home.webp" alt="Qbot Support Center portal" loading="lazy" decoding="async" />
+                <img src="./images/opt/qpos-qbot-home-400.webp" alt="Qbot Support Center portal" loading="lazy" decoding="async" width="600" height="375" />
               </div>
             </div>
           </a>
@@ -110,6 +143,7 @@
         <div class="section__header">
           <div class="section__label reveal"><span class="label__line"></span>SELECTED WORK</div>
           <h2 class="section__title reveal">FEATURED <span class="text--green">PROJECTS</span></h2>
+          <p class="section__lead reveal">A selection of the products, sites and tools I've built — open any card for the full gallery.</p>
         </div>
 
         <div class="work__filters reveal">
@@ -124,7 +158,39 @@
 
           <article class="project reveal" data-category="web">
             <div class="project__img project__img--screenshot">
-              <img src="./images/aigenius/1.webp" alt="Alpreneur by AI Genius — gamified learning platform" class="project__screenshot-img" loading="lazy" decoding="async" />
+              <img src="./images/opt/Motion-website-ThemePark-00-hero-desktop-1200.webp" alt="Qstudio — connected theme park platform" class="project__screenshot-img" loading="lazy" decoding="async" srcset="./images/opt/Motion-website-ThemePark-00-hero-desktop-400.webp 400w, ./images/opt/Motion-website-ThemePark-00-hero-desktop-800.webp 800w, ./images/opt/Motion-website-ThemePark-00-hero-desktop-1200.webp 1200w" sizes="(max-width: 640px) calc(100vw - 80px), (max-width: 1024px) calc((100vw - 108px) / 2), 388px" width="1200" height="750" />
+              <div class="project__overlay">
+                <button class="btn btn--small" data-lightbox="qstudio">
+                  View Project <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+                </button>
+              </div>
+            </div>
+            <div class="project__info">
+              <div class="project__tags"><span>Marketing Site</span><span>Scroll Motion</span><span>AI Visuals</span></div>
+              <h3>Qstudio</h3>
+              <p>Scroll-driven site for connected commerce.</p>
+            </div>
+          </article>
+
+          <article class="project reveal" data-category="app">
+            <div class="project__img project__img--screenshot">
+              <img src="./images/opt/Motion-website-qstudio-mobile-card-1200.webp" alt="Qstudio mobile — theme park, gym and solutions on a phone" class="project__screenshot-img" loading="lazy" decoding="async" srcset="./images/opt/Motion-website-qstudio-mobile-card-400.webp 400w, ./images/opt/Motion-website-qstudio-mobile-card-800.webp 800w, ./images/opt/Motion-website-qstudio-mobile-card-1200.webp 1200w" sizes="(max-width: 640px) calc(100vw - 80px), (max-width: 1024px) calc((100vw - 108px) / 2), 388px" width="1200" height="750" />
+              <div class="project__overlay">
+                <button class="btn btn--small" data-lightbox="qstudio-mobile">
+                  View Project <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+                </button>
+              </div>
+            </div>
+            <div class="project__info">
+              <div class="project__tags"><span>Mobile Web</span><span>Responsive</span><span>Scroll Motion</span></div>
+              <h3>Qstudio — Mobile</h3>
+              <p>The Qstudio scroll story rebuilt for phones.</p>
+            </div>
+          </article>
+
+          <article class="project reveal" data-category="web">
+            <div class="project__img project__img--screenshot">
+              <img src="./images/opt/aigenius-1-1200.webp" alt="Alpreneur by AI Genius — gamified learning platform" class="project__screenshot-img" loading="lazy" decoding="async" srcset="./images/opt/aigenius-1-400.webp 400w, ./images/opt/aigenius-1-800.webp 800w, ./images/opt/aigenius-1-1200.webp 1200w" sizes="(max-width: 640px) calc(100vw - 80px), (max-width: 1024px) calc((100vw - 108px) / 2), 388px" width="1200" height="750" />
               <div class="project__overlay">
                 <button class="btn btn--small" data-lightbox="alpreneur">
                   View Project <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
@@ -134,13 +200,13 @@
             <div class="project__info">
               <div class="project__tags"><span>Web App</span><span>EdTech</span><span>Gamified 3D</span></div>
               <h3>Alpreneur — AI Genius</h3>
-              <p>A gamified EdTech platform where kids aged 5–12 learn real-world business skills by running virtual shops of real brands — featuring a 3D isometric shop world, quests, and a friendly AI mentor.</p>
+              <p>Gamified EdTech platform for ages 5–12.</p>
             </div>
           </article>
 
           <article class="project reveal" data-category="web">
             <div class="project__img project__img--screenshot">
-              <img src="./images/AlcPest/alcpest-home.webp" alt="ALC Pest Purge Solution website" class="project__screenshot-img" loading="lazy" decoding="async" />
+              <img src="./images/opt/AlcPest-alcpest-home-1200.webp" alt="ALC Pest Purge Solution website" class="project__screenshot-img" loading="lazy" decoding="async" srcset="./images/opt/AlcPest-alcpest-home-400.webp 400w, ./images/opt/AlcPest-alcpest-home-800.webp 800w, ./images/opt/AlcPest-alcpest-home-1200.webp 1200w" sizes="(max-width: 640px) calc(100vw - 80px), (max-width: 1024px) calc((100vw - 108px) / 2), 388px" width="1200" height="750" />
               <div class="project__overlay">
                 <button class="btn btn--small" data-lightbox="alcpest">
                   View Project <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
@@ -150,19 +216,19 @@
             <div class="project__info">
               <div class="project__tags"><span>Web</span><span>Business Site</span><span>Pest Control</span></div>
               <h3>ALC Pest Purge Solution</h3>
-              <p>Business website for a pest control company in Cheras, KL &amp; Selangor — services, photo gallery, latest news, and contact pages built for a clean, professional presence.</p>
+              <p>Business site for a pest control company.</p>
             </div>
           </article>
 
           <article class="project reveal" data-category="web">
             <div class="project__img project__img--game">
               <div class="project__game-thumb">
-                <img src="./images/alien-vs-malaysian/bg.webp" class="game-thumb__bg" alt="" loading="lazy" decoding="async" />
+                <img src="./images/opt/alien-vs-malaysian-bg-1200.webp" class="game-thumb__bg" alt="" loading="lazy" decoding="async" srcset="./images/opt/alien-vs-malaysian-bg-400.webp 400w, ./images/opt/alien-vs-malaysian-bg-800.webp 800w, ./images/opt/alien-vs-malaysian-bg-1200.webp 1200w" sizes="(max-width: 640px) calc(100vw - 80px), (max-width: 1024px) calc((100vw - 108px) / 2), 388px" width="1200" height="750" />
                 <div class="game-thumb__chars">
-                  <img src="./images/alien-vs-malaysian/human-pakcik.webp" alt="Pakcik" loading="lazy" decoding="async" />
-                  <img src="./images/alien-vs-malaysian/alien-red.webp" alt="Red Alien" loading="lazy" decoding="async" />
-                  <img src="./images/alien-vs-malaysian/alien-green.webp" alt="Green Alien" loading="lazy" decoding="async" />
-                  <img src="./images/alien-vs-malaysian/human-aunty.webp" alt="Aunty" loading="lazy" decoding="async" />
+                  <img src="./images/opt/alien-vs-malaysian-human-pakcik-300.webp" alt="Pakcik" loading="lazy" decoding="async" />
+                  <img src="./images/opt/alien-vs-malaysian-alien-red-300.webp" alt="Red Alien" loading="lazy" decoding="async" />
+                  <img src="./images/opt/alien-vs-malaysian-alien-green-300.webp" alt="Green Alien" loading="lazy" decoding="async" />
+                  <img src="./images/opt/alien-vs-malaysian-human-aunty-300.webp" alt="Aunty" loading="lazy" decoding="async" />
                 </div>
                 <div class="game-thumb__title">
                   <span>ALIENS</span>
@@ -179,13 +245,13 @@
             <div class="project__info">
               <div class="project__tags"><span>Web Game</span><span>JavaScript</span><span>2D</span></div>
               <h3>Alien Vs Malaysian</h3>
-              <p>A fun web-based game where Malaysians defend their homeland against alien invaders. Multiple game modes included.</p>
+              <p>Browser game — Malaysians vs alien invaders.</p>
             </div>
           </article>
 
           <article class="project reveal" data-category="design">
             <div class="project__img project__img--screenshot">
-              <img src="./images/3d-house/house-1.webp" alt="3D Wooden House" class="project__screenshot-img" loading="lazy" decoding="async" />
+              <img src="./images/opt/3d-house-house-1-1200.webp" alt="3D Wooden House" class="project__screenshot-img" loading="lazy" decoding="async" srcset="./images/opt/3d-house-house-1-400.webp 400w, ./images/opt/3d-house-house-1-800.webp 800w, ./images/opt/3d-house-house-1-1200.webp 1200w" sizes="(max-width: 640px) calc(100vw - 80px), (max-width: 1024px) calc((100vw - 108px) / 2), 388px" width="1200" height="750" />
               <div class="project__overlay">
                 <button class="btn btn--small" data-lightbox="3d-house">
                   View Project <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
@@ -195,13 +261,13 @@
             <div class="project__info">
               <div class="project__tags"><span>3D Design</span><span>Maya</span><span>Substance Painter</span></div>
               <h3>3D Wooden House</h3>
-              <p>A detailed 3D wooden house — modeled in Maya, textured in Substance Painter, and rendered for a warm, realistic finish.</p>
+              <p>Modeled in Maya, textured in Substance Painter.</p>
             </div>
           </article>
 
           <article class="project reveal" data-category="design">
             <div class="project__img project__img--screenshot">
-              <img src="./images/3d-rube-goldberg/rube-goldberg-1.webp" alt="3D Rube Goldberg Machine" class="project__screenshot-img" loading="lazy" decoding="async" />
+              <img src="./images/opt/3d-rube-goldberg-rube-goldberg-1-1200.webp" alt="3D Rube Goldberg Machine" class="project__screenshot-img" loading="lazy" decoding="async" srcset="./images/opt/3d-rube-goldberg-rube-goldberg-1-400.webp 400w, ./images/opt/3d-rube-goldberg-rube-goldberg-1-800.webp 800w, ./images/opt/3d-rube-goldberg-rube-goldberg-1-1200.webp 1200w" sizes="(max-width: 640px) calc(100vw - 80px), (max-width: 1024px) calc((100vw - 108px) / 2), 388px" width="1200" height="750" />
               <div class="project__overlay">
                 <button class="btn btn--small" data-lightbox="3d-rube-goldberg">
                   View Project <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
@@ -211,13 +277,13 @@
             <div class="project__info">
               <div class="project__tags"><span>3D Design</span><span>Maya</span><span>Render</span></div>
               <h3>3D Rube Goldberg</h3>
-              <p>A 3D Rube Goldberg machine — a chain-reaction contraption modeled in Maya, textured in Substance Painter, and rendered.</p>
+              <p>Chain-reaction contraption modeled in Maya.</p>
             </div>
           </article>
 
           <article class="project reveal" data-category="web">
             <div class="project__img project__img--screenshot">
-              <img src="./images/qpos/qbot-home.webp" alt="Qbot Support Center" class="project__screenshot-img" loading="lazy" decoding="async" />
+              <img src="./images/opt/qpos-qbot-home-1200.webp" alt="Qbot Support Center" class="project__screenshot-img" loading="lazy" decoding="async" srcset="./images/opt/qpos-qbot-home-400.webp 400w, ./images/opt/qpos-qbot-home-800.webp 800w, ./images/opt/qpos-qbot-home-1200.webp 1200w" sizes="(max-width: 640px) calc(100vw - 80px), (max-width: 1024px) calc((100vw - 108px) / 2), 388px" width="1200" height="750" />
               <div class="project__overlay">
                 <button class="btn btn--small" data-lightbox="qpos">
                   View Project <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
@@ -227,13 +293,13 @@
             <div class="project__info">
               <div class="project__tags"><span>Web App</span><span>Support System</span><span>SUPERPOS</span></div>
               <h3>Qbot Support Center</h3>
-              <p>Help desk and knowledge base portal for SUPERPOS POS users — browse articles by category, search solutions, and get instant answers without contacting support.</p>
+              <p>Help desk and knowledge base for SUPERPOS.</p>
             </div>
           </article>
 
           <article class="project reveal" data-category="web">
             <div class="project__img project__img--screenshot">
-              <img src="./images/qparking/park1.webp" alt="QParking" class="project__screenshot-img" loading="lazy" decoding="async" />
+              <img src="./images/opt/qparking-park1-1200.webp" alt="QParking" class="project__screenshot-img" loading="lazy" decoding="async" srcset="./images/opt/qparking-park1-400.webp 400w, ./images/opt/qparking-park1-800.webp 800w, ./images/opt/qparking-park1-1200.webp 1200w" sizes="(max-width: 640px) calc(100vw - 80px), (max-width: 1024px) calc((100vw - 108px) / 2), 388px" width="1200" height="750" />
               <div class="project__overlay">
                 <button class="btn btn--small" data-lightbox="qparking">
                   View Project <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
@@ -243,13 +309,13 @@
             <div class="project__info">
               <div class="project__tags"><span>Web App</span><span>Parking System</span><span>QBOT</span></div>
               <h3>QParking</h3>
-              <p>Online parking management platform at parking.qbot.now — book and manage parking spaces, view rates, and handle reservations from any device.</p>
+              <p>Online parking booking and management.</p>
             </div>
           </article>
 
           <article class="project reveal" data-category="app">
             <div class="project__img project__img--screenshot">
-              <img src="./images/Wedding-Invitations/page1.webp" alt="Digital Wedding Invitation" class="project__screenshot-img" loading="lazy" decoding="async" />
+              <img src="./images/opt/Wedding-Invitations-page1-1200.webp" alt="Digital Wedding Invitation" class="project__screenshot-img" loading="lazy" decoding="async" srcset="./images/opt/Wedding-Invitations-page1-400.webp 400w, ./images/opt/Wedding-Invitations-page1-800.webp 800w, ./images/opt/Wedding-Invitations-page1-1200.webp 1200w" sizes="(max-width: 640px) calc(100vw - 80px), (max-width: 1024px) calc((100vw - 108px) / 2), 388px" width="1200" height="750" />
               <div class="project__overlay">
                 <button class="btn btn--small" data-lightbox="wedding-invitation">
                   View Project <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
@@ -259,13 +325,13 @@
             <div class="project__info">
               <div class="project__tags"><span>Web App</span><span>Frontend</span><span>Interactive</span></div>
               <h3>Digital Wedding Invitation</h3>
-              <p>An interactive, multi-page digital wedding invitation web app — elegant page transitions, event details, and RSVP, fully responsive and built mobile-first.</p>
+              <p>Interactive multi-page invitation web app.</p>
             </div>
           </article>
 
           <article class="project reveal" data-category="app">
             <div class="project__img project__img--screenshot">
-              <img src="./images/agency_crm/2.png" alt="AgencyFlow CRM Dashboard" class="project__screenshot-img" loading="lazy" decoding="async" />
+              <img src="./images/opt/agency_crm-2-1200.webp" alt="AgencyFlow CRM Dashboard" class="project__screenshot-img" loading="lazy" decoding="async" srcset="./images/opt/agency_crm-2-400.webp 400w, ./images/opt/agency_crm-2-800.webp 800w, ./images/opt/agency_crm-2-1200.webp 1200w" sizes="(max-width: 640px) calc(100vw - 80px), (max-width: 1024px) calc((100vw - 108px) / 2), 388px" width="1200" height="750" />
               <div class="project__overlay">
                 <button class="btn btn--small" data-lightbox="agency-crm">
                   View Project <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
@@ -275,7 +341,7 @@
             <div class="project__info">
               <div class="project__tags"><span>Web App</span><span>CRM</span><span>Telegram Bot</span></div>
               <h3>AgencyFlow CRM</h3>
-              <p>A full-featured agency CRM with Telegram Bot integration — manage clients, track a multi-stage leads pipeline, monitor projects, and receive automated executive summary alerts directly in Telegram.</p>
+              <p>Agency CRM with Telegram bot alerts.</p>
             </div>
           </article>
 
@@ -298,83 +364,97 @@
         </div>
         <div class="about__grid">
           <div class="about__text reveal">
-            <img src="./images/danson-profile.png" alt="Danson Har" class="about__photo" width="200" height="200" loading="lazy" decoding="async" />
+            <img src="./images/opt/danson-profile-400.webp" alt="Danson Har" class="about__photo" width="200" height="200" loading="lazy" decoding="async" />
             <p>I am a Frontend Developer and UI Designer focused on building clean, responsive, and user-friendly websites. My work includes business websites, web apps, support portals, booking platforms, interactive pages, and creative frontend experiences.</p>
             <p>I also work with visual assets, including 3D models, animations, and AI-assisted media, to make web projects feel more engaging and modern. My main strength is frontend development, supported by a strong eye for layout, interface design, and visual presentation.</p>
             <div class="about__stats">
               <div class="stat">
-                <span class="stat__number" data-target="7" data-count="projects">0</span>
+                <span class="stat__number" data-target="11" data-count="projects">11</span>
                 <span class="stat__label">Projects</span>
               </div>
             </div>
           </div>
           <div class="about__skills reveal">
             <h3>What I Do</h3>
-            <div class="skills__grid">
-              <div class="skill-box">
-                <img class="ico ico--img" src="./images/create_anything_logo.png" alt="Create Anything logo" loading="lazy" decoding="async" />
-                Create Anything
+            <div class="skills__group">
+              <h4 class="skills__group-title">Core frontend</h4>
+              <div class="skills__grid">
+                <div class="skill-box">
+                  <svg class="ico ico--brand ico--js" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z"/></svg>
+                  JavaScript
+                </div>
+                <div class="skill-box">
+                  <svg class="ico ico--brand ico--react" viewBox="0 0 24 24"><path d="M14.23 12.004a2.236 2.236 0 0 1-2.235 2.236 2.236 2.236 0 0 1-2.236-2.236 2.236 2.236 0 0 1 2.235-2.236 2.236 2.236 0 0 1 2.236 2.236zm2.648-10.69c-1.346 0-3.107.96-4.888 2.622-1.78-1.653-3.542-2.602-4.887-2.602-.41 0-.783.093-1.106.278-1.375.793-1.683 3.264-.973 6.365C1.98 8.917 0 10.42 0 12.004c0 1.59 1.99 3.097 5.043 4.03-.704 3.113-.39 5.588.988 6.38.32.187.69.275 1.102.275 1.345 0 3.107-.96 4.888-2.624 1.78 1.654 3.542 2.603 4.887 2.603.41 0 .783-.09 1.106-.275 1.374-.792 1.683-3.263.973-6.365C22.02 15.096 24 13.59 24 12.004c0-1.59-1.99-3.097-5.043-4.032.704-3.11.39-5.587-.988-6.38-.318-.184-.688-.277-1.092-.278zm-.005 1.09v.006c.225 0 .406.044.558.127.666.382.955 1.835.73 3.704-.054.46-.142.945-.25 1.44-.96-.236-2.006-.417-3.107-.534-.66-.905-1.345-1.727-2.035-2.447 1.592-1.48 3.087-2.292 4.105-2.295zm-9.77.02c1.012 0 2.514.808 4.11 2.28-.686.72-1.37 1.537-2.02 2.442-1.107.117-2.154.298-3.113.538-.112-.49-.195-.964-.254-1.42-.23-1.868.054-3.32.714-3.707.19-.09.4-.127.563-.132zm4.882 3.05c.455.468.91.992 1.36 1.564-.44-.02-.89-.034-1.345-.034-.46 0-.915.01-1.36.034.44-.572.895-1.096 1.345-1.565zM12 8.1c.74 0 1.477.034 2.202.093.406.582.802 1.203 1.183 1.86.372.64.71 1.29 1.018 1.946-.308.655-.646 1.31-1.013 1.95-.38.66-.773 1.288-1.18 1.87-.728.063-1.466.098-2.21.098-.74 0-1.477-.035-2.202-.093-.406-.582-.802-1.204-1.183-1.86-.372-.64-.71-1.29-1.018-1.946.303-.657.646-1.313 1.013-1.954.38-.66.773-1.286 1.18-1.868.728-.064 1.466-.098 2.21-.098zm-3.635.254c-.24.377-.48.763-.704 1.16-.225.39-.435.782-.635 1.174-.265-.656-.49-1.31-.676-1.947.64-.15 1.315-.283 2.015-.386zm7.26 0c.695.103 1.365.23 2.006.387-.18.632-.405 1.282-.66 1.933-.2-.39-.41-.783-.64-1.174-.225-.392-.465-.774-.705-1.146zm3.063.675c.484.15.944.317 1.375.498 1.732.74 2.852 1.708 2.852 2.476-.005.768-1.125 1.74-2.857 2.475-.42.18-.88.342-1.355.493-.28-.958-.646-1.956-1.1-2.98.45-1.017.81-2.01 1.085-2.964zm-13.395.004c.278.96.645 1.957 1.1 2.98-.45 1.017-.812 2.01-1.086 2.964-.484-.15-.944-.318-1.37-.5-1.732-.737-2.852-1.706-2.852-2.474 0-.768 1.12-1.742 2.852-2.476.42-.18.88-.342 1.356-.494zm11.678 4.28c.265.657.49 1.312.676 1.948-.64.157-1.316.29-2.016.39.24-.375.48-.762.705-1.158.225-.39.435-.788.636-1.18zm-9.945.02c.2.392.41.783.64 1.175.23.39.465.772.705 1.143-.695-.102-1.365-.23-2.006-.386.18-.63.406-1.282.66-1.933zM17.92 16.32c.112.493.2.968.254 1.423.23 1.868-.054 3.32-.714 3.708-.147.09-.338.128-.563.128-1.012 0-2.514-.807-4.11-2.28.686-.72 1.37-1.536 2.02-2.44 1.107-.118 2.154-.3 3.113-.54zm-11.83.01c.96.234 2.006.415 3.107.532.66.905 1.345 1.727 2.035 2.446-1.595 1.483-3.092 2.295-4.11 2.295-.22-.005-.406-.05-.553-.132-.666-.38-.955-1.834-.73-3.703.054-.46.142-.944.25-1.438zm4.56.64c.44.02.89.034 1.345.034.46 0 .915-.01 1.36-.034-.44.572-.895 1.095-1.345 1.565-.455-.47-.91-.993-1.36-1.565z"/></svg>
+                  React
+                </div>
+                <div class="skill-box">
+                  <svg class="ico ico--line" viewBox="0 0 24 24"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>
+                  Web Development
+                </div>
+                <div class="skill-box">
+                  <svg class="ico ico--line" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                  UI/UX Design
+                </div>
               </div>
-              <div class="skill-box">
-                <svg class="ico ico--brand ico--cloudflare" viewBox="0 0 24 24"><path d="M16.5088 16.8447c.1475-.5068.0908-.9707-.1553-1.3154-.2246-.3164-.6045-.499-1.0615-.5205l-8.6592-.1123a.1559.1559 0 0 1-.1333-.0713c-.0283-.042-.0351-.0986-.0215-.1548.0263-.084.1042-.1479.1919-.1553l8.7402-.1123c1.0361-.0479 2.1592-.8877 2.5518-1.918l.498-1.2998a.2705.2705 0 0 0 .0127-.1553c-.5615-2.541-2.8281-4.4365-5.5391-4.4365-2.499 0-4.6172 1.6123-5.3789 3.8506a2.5732 2.5732 0 0 0-1.8027-.499c-1.2129.1201-2.1885 1.0947-2.3086 2.3076-.0303.3135-.0068.6172.0664.8984C1.4258 12.751 0 14.207 0 16.002c0 .1611.0117.3193.0332.4756a.1547.1547 0 0 0 .1533.1338l15.9873.002h.0009c.0752 0 .1445-.0498.166-.123l.1681-.5947zM19.2354 9.9014c-.0791 0-.1592.002-.2383.0059-.0537.002-.1006.041-.1201.0947l-.3398 1.1699c-.1475.5078-.0908.9707.1553 1.3164.2246.3154.6045.498 1.0615.5195l1.8467.1133c.0537.002.1006.0361.1289.0781.0283.043.0361.1006.0215.1553-.0264.084-.1045.1475-.1924.1553l-1.9169.1123c-1.041.0488-2.1592.8877-2.5518 1.9179l-.1387.3604c-.0273.0703.0234.1416.0996.1416h6.5977a.1668.1668 0 0 0 .1611-.124c.1123-.4053.1729-.832.1729-1.2725 0-2.5859-2.1006-4.6875-4.6875-4.6875"/></svg>
-                Cloudflare
+            </div>
+            <div class="skills__group skills__group--sub">
+              <h4 class="skills__group-title">Tooling &amp; delivery</h4>
+              <div class="skills__grid">
+                <div class="skill-box">
+                  <svg class="ico ico--brand ico--github" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                  GitHub
+                </div>
+                <div class="skill-box">
+                  <svg class="ico ico--brand ico--docker" viewBox="0 0 24 24"><path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.184-.186h-2.12a.186.186 0 00-.186.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.082.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.376 11.376 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 003.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288z"/></svg>
+                  Docker
+                </div>
+                <div class="skill-box">
+                  <svg class="ico ico--brand ico--cloudflare" viewBox="0 0 24 24"><path d="M16.5088 16.8447c.1475-.5068.0908-.9707-.1553-1.3154-.2246-.3164-.6045-.499-1.0615-.5205l-8.6592-.1123a.1559.1559 0 0 1-.1333-.0713c-.0283-.042-.0351-.0986-.0215-.1548.0263-.084.1042-.1479.1919-.1553l8.7402-.1123c1.0361-.0479 2.1592-.8877 2.5518-1.918l.498-1.2998a.2705.2705 0 0 0 .0127-.1553c-.5615-2.541-2.8281-4.4365-5.5391-4.4365-2.499 0-4.6172 1.6123-5.3789 3.8506a2.5732 2.5732 0 0 0-1.8027-.499c-1.2129.1201-2.1885 1.0947-2.3086 2.3076-.0303.3135-.0068.6172.0664.8984C1.4258 12.751 0 14.207 0 16.002c0 .1611.0117.3193.0332.4756a.1547.1547 0 0 0 .1533.1338l15.9873.002h.0009c.0752 0 .1445-.0498.166-.123l.1681-.5947zM19.2354 9.9014c-.0791 0-.1592.002-.2383.0059-.0537.002-.1006.041-.1201.0947l-.3398 1.1699c-.1475.5078-.0908.9707.1553 1.3164.2246.3154.6045.498 1.0615.5195l1.8467.1133c.0537.002.1006.0361.1289.0781.0283.043.0361.1006.0215.1553-.0264.084-.1045.1475-.1924.1553l-1.9169.1123c-1.041.0488-2.1592.8877-2.5518 1.9179l-.1387.3604c-.0273.0703.0234.1416.0996.1416h6.5977a.1668.1668 0 0 0 .1611-.124c.1123-.4053.1729-.832.1729-1.2725 0-2.5859-2.1006-4.6875-4.6875-4.6875"/></svg>
+                  Cloudflare
+                </div>
+                <div class="skill-box">
+                  <svg class="ico ico--brand ico--vscode" viewBox="0 0 24 24"><path d="M23.15 2.587L18.21.21a1.494 1.494 0 0 0-1.705.29l-9.46 8.63-4.12-3.128a.999.999 0 0 0-1.276.057L.327 7.261A1 1 0 0 0 .326 8.74L3.899 12 .326 15.26a1 1 0 0 0 .001 1.479L1.65 17.94a.999.999 0 0 0 1.276.057l4.12-3.128 9.46 8.63a1.492 1.492 0 0 0 1.704.29l4.942-2.377A1.5 1.5 0 0 0 24 20.06V3.939a1.5 1.5 0 0 0-.85-1.352zm-5.146 14.861L10.826 12l7.178-5.448v10.896z"/></svg>
+                  VS Code
+                </div>
               </div>
-              <div class="skill-box">
-                <svg class="ico ico--brand ico--react" viewBox="0 0 24 24"><path d="M14.23 12.004a2.236 2.236 0 0 1-2.235 2.236 2.236 2.236 0 0 1-2.236-2.236 2.236 2.236 0 0 1 2.235-2.236 2.236 2.236 0 0 1 2.236 2.236zm2.648-10.69c-1.346 0-3.107.96-4.888 2.622-1.78-1.653-3.542-2.602-4.887-2.602-.41 0-.783.093-1.106.278-1.375.793-1.683 3.264-.973 6.365C1.98 8.917 0 10.42 0 12.004c0 1.59 1.99 3.097 5.043 4.03-.704 3.113-.39 5.588.988 6.38.32.187.69.275 1.102.275 1.345 0 3.107-.96 4.888-2.624 1.78 1.654 3.542 2.603 4.887 2.603.41 0 .783-.09 1.106-.275 1.374-.792 1.683-3.263.973-6.365C22.02 15.096 24 13.59 24 12.004c0-1.59-1.99-3.097-5.043-4.032.704-3.11.39-5.587-.988-6.38-.318-.184-.688-.277-1.092-.278zm-.005 1.09v.006c.225 0 .406.044.558.127.666.382.955 1.835.73 3.704-.054.46-.142.945-.25 1.44-.96-.236-2.006-.417-3.107-.534-.66-.905-1.345-1.727-2.035-2.447 1.592-1.48 3.087-2.292 4.105-2.295zm-9.77.02c1.012 0 2.514.808 4.11 2.28-.686.72-1.37 1.537-2.02 2.442-1.107.117-2.154.298-3.113.538-.112-.49-.195-.964-.254-1.42-.23-1.868.054-3.32.714-3.707.19-.09.4-.127.563-.132zm4.882 3.05c.455.468.91.992 1.36 1.564-.44-.02-.89-.034-1.345-.034-.46 0-.915.01-1.36.034.44-.572.895-1.096 1.345-1.565zM12 8.1c.74 0 1.477.034 2.202.093.406.582.802 1.203 1.183 1.86.372.64.71 1.29 1.018 1.946-.308.655-.646 1.31-1.013 1.95-.38.66-.773 1.288-1.18 1.87-.728.063-1.466.098-2.21.098-.74 0-1.477-.035-2.202-.093-.406-.582-.802-1.204-1.183-1.86-.372-.64-.71-1.29-1.018-1.946.303-.657.646-1.313 1.013-1.954.38-.66.773-1.286 1.18-1.868.728-.064 1.466-.098 2.21-.098zm-3.635.254c-.24.377-.48.763-.704 1.16-.225.39-.435.782-.635 1.174-.265-.656-.49-1.31-.676-1.947.64-.15 1.315-.283 2.015-.386zm7.26 0c.695.103 1.365.23 2.006.387-.18.632-.405 1.282-.66 1.933-.2-.39-.41-.783-.64-1.174-.225-.392-.465-.774-.705-1.146zm3.063.675c.484.15.944.317 1.375.498 1.732.74 2.852 1.708 2.852 2.476-.005.768-1.125 1.74-2.857 2.475-.42.18-.88.342-1.355.493-.28-.958-.646-1.956-1.1-2.98.45-1.017.81-2.01 1.085-2.964zm-13.395.004c.278.96.645 1.957 1.1 2.98-.45 1.017-.812 2.01-1.086 2.964-.484-.15-.944-.318-1.37-.5-1.732-.737-2.852-1.706-2.852-2.474 0-.768 1.12-1.742 2.852-2.476.42-.18.88-.342 1.356-.494zm11.678 4.28c.265.657.49 1.312.676 1.948-.64.157-1.316.29-2.016.39.24-.375.48-.762.705-1.158.225-.39.435-.788.636-1.18zm-9.945.02c.2.392.41.783.64 1.175.23.39.465.772.705 1.143-.695-.102-1.365-.23-2.006-.386.18-.63.406-1.282.66-1.933zM17.92 16.32c.112.493.2.968.254 1.423.23 1.868-.054 3.32-.714 3.708-.147.09-.338.128-.563.128-1.012 0-2.514-.807-4.11-2.28.686-.72 1.37-1.536 2.02-2.44 1.107-.118 2.154-.3 3.113-.54zm-11.83.01c.96.234 2.006.415 3.107.532.66.905 1.345 1.727 2.035 2.446-1.595 1.483-3.092 2.295-4.11 2.295-.22-.005-.406-.05-.553-.132-.666-.38-.955-1.834-.73-3.703.054-.46.142-.944.25-1.438zm4.56.64c.44.02.89.034 1.345.034.46 0 .915-.01 1.36-.034-.44.572-.895 1.095-1.345 1.565-.455-.47-.91-.993-1.36-1.565z"/></svg>
-                React
+            </div>
+            <div class="skills__group skills__group--sub">
+              <h4 class="skills__group-title">Design, 3D &amp; AI media</h4>
+              <div class="skills__grid">
+                <div class="skill-box">
+                  <svg class="ico ico--figma" viewBox="0 0 38 57"><path fill="#1abcfe" d="M19 28.5a9.5 9.5 0 1 1 19 0 9.5 9.5 0 1 1-19 0z"/><path fill="#0acf83" d="M0 47.5A9.5 9.5 0 0 1 9.5 38H19v9.5a9.5 9.5 0 1 1-19 0z"/><path fill="#ff7262" d="M19 0v19h9.5a9.5 9.5 0 1 0 0-19H19z"/><path fill="#f24e1e" d="M0 9.5A9.5 9.5 0 0 0 9.5 19H19V0H9.5A9.5 9.5 0 0 0 0 9.5z"/><path fill="#a259ff" d="M0 28.5A9.5 9.5 0 0 0 9.5 38H19V19H9.5A9.5 9.5 0 0 0 0 28.5z"/></svg>
+                  Figma
+                </div>
+                <div class="skill-box">
+                  <svg class="ico ico--brand ico--photoshop" viewBox="0 0 24 24"><path d="M9.85 8.42c-.37-.15-.77-.21-1.18-.2-.26 0-.49 0-.68.01-.2-.01-.34 0-.41.01v3.36c.14.01.27.02.39.02h.53c.39 0 .78-.06 1.15-.18.32-.09.6-.28.82-.53.21-.25.31-.59.31-1.03.01-.31-.07-.62-.23-.89-.17-.26-.41-.46-.7-.57zM19.75.3H4.25C1.9.3 0 2.2 0 4.55v14.899c0 2.35 1.9 4.25 4.25 4.25h15.5c2.35 0 4.25-1.9 4.25-4.25V4.55C24 2.2 22.1.3 19.75.3zm-7.391 11.65c-.399.56-.959.98-1.609 1.22-.68.25-1.43.34-2.25.34-.24 0-.4 0-.5-.01s-.24-.01-.43-.01v3.209c.01.07-.04.131-.11.141H5.52c-.08 0-.12-.041-.12-.131V6.42c0-.07.03-.11.1-.11.17 0 .33 0 .56-.01.24-.01.49-.01.76-.02s.56-.01.87-.02c.31-.01.61-.01.91-.01.82 0 1.5.1 2.06.31.5.17.96.45 1.34.82.32.32.57.71.73 1.14.149.42.229.85.229 1.3.001.86-.199 1.57-.6 2.13zm7.091 3.89c-.28.4-.671.709-1.12.891-.49.209-1.09.318-1.811.318-.459 0-.91-.039-1.359-.129-.35-.061-.7-.17-1.02-.32-.07-.039-.121-.109-.111-.189v-1.74c0-.029.011-.07.041-.09.029-.02.06-.01.09.01.39.23.8.391 1.24.49.379.1.779.15 1.18.15.38 0 .65-.051.83-.141.16-.07.27-.24.27-.42 0-.141-.08-.27-.24-.4-.16-.129-.489-.279-.979-.471-.51-.18-.979-.42-1.42-.719-.31-.221-.569-.51-.761-.85-.159-.32-.239-.67-.229-1.021 0-.43.12-.84.341-1.21.25-.4.619-.72 1.049-.92.469-.239 1.059-.349 1.769-.349.41 0 .83.03 1.24.09.3.04.59.12.86.23.039.01.08.05.1.09.01.04.02.08.02.12v1.63c0 .04-.02.08-.05.1-.09.02-.14.02-.18 0-.3-.16-.62-.27-.96-.34-.37-.08-.74-.13-1.12-.13-.2-.01-.41.02-.601.07-.129.03-.24.1-.31.2-.05.08-.08.18-.08.27s.04.18.101.26c.09.11.209.2.34.27.229.12.47.23.709.33.541.18 1.061.43 1.541.73.33.209.6.49.789.83.16.318.24.67.23 1.029.011.471-.129.94-.389 1.331z"/></svg>
+                  Photoshop
+                </div>
+                <div class="skill-box">
+                  <svg class="ico ico--brand ico--illustrator" viewBox="0 0 24 24"><path d="M10.53 10.73c-.1-.31-.19-.61-.29-.92-.1-.31-.19-.6-.27-.89-.08-.28-.15-.54-.22-.78h-.02c-.09.43-.2.86-.34 1.29-.15.48-.3.98-.46 1.48-.14.51-.29.98-.44 1.4h2.54c-.06-.211-.14-.46-.23-.721-.09-.269-.18-.559-.27-.859zM19.75.3H4.25C1.9.3 0 2.2 0 4.55v14.9c0 2.35 1.9 4.25 4.25 4.25h15.5c2.35 0 4.25-1.9 4.25-4.25V4.55C24 2.2 22.1.3 19.75.3zM14.7 16.83h-2.091c-.069.01-.139-.04-.159-.11l-.82-2.38H7.91l-.76 2.35c-.02.09-.1.15-.19.141H5.08c-.11 0-.14-.061-.11-.18L8.19 7.38c.03-.1.06-.21.1-.33.04-.21.06-.43.06-.65-.01-.05.03-.1.08-.11h2.59c.08 0 .12.03.13.08l3.65 10.3c.03.109 0 .16-.1.16zm3.4-.15c0 .11-.039.16-.129.16H16.01c-.1 0-.15-.061-.15-.16v-7.7c0-.1.041-.14.131-.14h1.98c.09 0 .129.05.129.14v7.7zm-.209-9.03c-.231.24-.571.37-.911.35-.33.01-.65-.12-.891-.35-.23-.25-.35-.58-.34-.92-.01-.34.12-.66.359-.89.242-.23.562-.35.892-.35.391 0 .689.12.91.35.22.24.34.56.33.89.01.34-.11.67-.349.92z"/></svg>
+                  Illustrator
+                </div>
+                <div class="skill-box">
+                  <svg class="ico ico--logo" viewBox="0 0 512 512"><path fill="#4aa0cd" d="M56 128 120 100V404l-64 28z"/><path fill="#2f6d88" d="M140 100h296a20 20 0 0 1 20 20v272a20 20 0 0 1-20 20H140a20 20 0 0 1-20-20V120a20 20 0 0 1 20-20z"/><path fill="#3d8db5" d="M120 120a20 20 0 0 1 20-20h296a20 20 0 0 1 20 20v208H120z"/><text x="288" y="290" font-family="Arial,Helvetica,sans-serif" font-size="220" font-weight="800" fill="#fff" text-anchor="middle">M</text><text x="290" y="394" font-family="Arial,Helvetica,sans-serif" font-size="70" font-weight="800" letter-spacing="4" fill="#fff" text-anchor="middle">AYA</text></svg>
+                  Maya
+                </div>
+                <div class="skill-box">
+                  <svg class="ico ico--logo" viewBox="0 0 512 512"><path fill="#e0342b" d="M256 40 452 154v204L256 472 60 358V154z"/><text x="256" y="368" font-family="Arial,Helvetica,sans-serif" font-size="330" font-weight="800" fill="#fff" text-anchor="middle">S</text></svg>
+                  Substance Painter
+                </div>
+                <div class="skill-box">
+                  <svg class="ico ico--line" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96 12 12.01l8.73-5.05"/><path d="M12 22.08V12"/></svg>
+                  3D Model/Render
+                </div>
+                <div class="skill-box">
+                  <svg class="ico ico--line" viewBox="0 0 24 24"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2"/></svg>
+                  AI Development
+                </div>
+                <div class="skill-box">
+                  <img class="ico ico--img" src="./images/opt/create_anything_logo-48.webp" alt="Create Anything logo" loading="lazy" decoding="async" width="22" height="22" />
+                  Create Anything
+                </div>
               </div>
-              <div class="skill-box">
-                <svg class="ico ico--brand ico--js" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z"/></svg>
-                JavaScript
-              </div>
-              <div class="skill-box">
-                <svg class="ico ico--brand ico--vscode" viewBox="0 0 24 24"><path d="M23.15 2.587L18.21.21a1.494 1.494 0 0 0-1.705.29l-9.46 8.63-4.12-3.128a.999.999 0 0 0-1.276.057L.327 7.261A1 1 0 0 0 .326 8.74L3.899 12 .326 15.26a1 1 0 0 0 .001 1.479L1.65 17.94a.999.999 0 0 0 1.276.057l4.12-3.128 9.46 8.63a1.492 1.492 0 0 0 1.704.29l4.942-2.377A1.5 1.5 0 0 0 24 20.06V3.939a1.5 1.5 0 0 0-.85-1.352zm-5.146 14.861L10.826 12l7.178-5.448v10.896z"/></svg>
-                VS Code
-              </div>
-              <div class="skill-box">
-                <svg class="ico ico--brand ico--docker" viewBox="0 0 24 24"><path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.184-.186h-2.12a.186.186 0 00-.186.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.082.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.376 11.376 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 003.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288z"/></svg>
-                Docker
-              </div>
-              <div class="skill-box">
-                <svg class="ico ico--brand ico--github" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-                GitHub
-              </div>
-              <div class="skill-box">
-                <svg class="ico ico--figma" viewBox="0 0 38 57"><path fill="#1abcfe" d="M19 28.5a9.5 9.5 0 1 1 19 0 9.5 9.5 0 1 1-19 0z"/><path fill="#0acf83" d="M0 47.5A9.5 9.5 0 0 1 9.5 38H19v9.5a9.5 9.5 0 1 1-19 0z"/><path fill="#ff7262" d="M19 0v19h9.5a9.5 9.5 0 1 0 0-19H19z"/><path fill="#f24e1e" d="M0 9.5A9.5 9.5 0 0 0 9.5 19H19V0H9.5A9.5 9.5 0 0 0 0 9.5z"/><path fill="#a259ff" d="M0 28.5A9.5 9.5 0 0 0 9.5 38H19V19H9.5A9.5 9.5 0 0 0 0 28.5z"/></svg>
-                Figma
-              </div>
-              <div class="skill-box">
-                <svg class="ico ico--brand ico--photoshop" viewBox="0 0 24 24"><path d="M9.85 8.42c-.37-.15-.77-.21-1.18-.2-.26 0-.49 0-.68.01-.2-.01-.34 0-.41.01v3.36c.14.01.27.02.39.02h.53c.39 0 .78-.06 1.15-.18.32-.09.6-.28.82-.53.21-.25.31-.59.31-1.03.01-.31-.07-.62-.23-.89-.17-.26-.41-.46-.7-.57zM19.75.3H4.25C1.9.3 0 2.2 0 4.55v14.899c0 2.35 1.9 4.25 4.25 4.25h15.5c2.35 0 4.25-1.9 4.25-4.25V4.55C24 2.2 22.1.3 19.75.3zm-7.391 11.65c-.399.56-.959.98-1.609 1.22-.68.25-1.43.34-2.25.34-.24 0-.4 0-.5-.01s-.24-.01-.43-.01v3.209c.01.07-.04.131-.11.141H5.52c-.08 0-.12-.041-.12-.131V6.42c0-.07.03-.11.1-.11.17 0 .33 0 .56-.01.24-.01.49-.01.76-.02s.56-.01.87-.02c.31-.01.61-.01.91-.01.82 0 1.5.1 2.06.31.5.17.96.45 1.34.82.32.32.57.71.73 1.14.149.42.229.85.229 1.3.001.86-.199 1.57-.6 2.13zm7.091 3.89c-.28.4-.671.709-1.12.891-.49.209-1.09.318-1.811.318-.459 0-.91-.039-1.359-.129-.35-.061-.7-.17-1.02-.32-.07-.039-.121-.109-.111-.189v-1.74c0-.029.011-.07.041-.09.029-.02.06-.01.09.01.39.23.8.391 1.24.49.379.1.779.15 1.18.15.38 0 .65-.051.83-.141.16-.07.27-.24.27-.42 0-.141-.08-.27-.24-.4-.16-.129-.489-.279-.979-.471-.51-.18-.979-.42-1.42-.719-.31-.221-.569-.51-.761-.85-.159-.32-.239-.67-.229-1.021 0-.43.12-.84.341-1.21.25-.4.619-.72 1.049-.92.469-.239 1.059-.349 1.769-.349.41 0 .83.03 1.24.09.3.04.59.12.86.23.039.01.08.05.1.09.01.04.02.08.02.12v1.63c0 .04-.02.08-.05.1-.09.02-.14.02-.18 0-.3-.16-.62-.27-.96-.34-.37-.08-.74-.13-1.12-.13-.2-.01-.41.02-.601.07-.129.03-.24.1-.31.2-.05.08-.08.18-.08.27s.04.18.101.26c.09.11.209.2.34.27.229.12.47.23.709.33.541.18 1.061.43 1.541.73.33.209.6.49.789.83.16.318.24.67.23 1.029.011.471-.129.94-.389 1.331z"/></svg>
-                Photoshop
-              </div>
-              <div class="skill-box">
-                <svg class="ico ico--brand ico--illustrator" viewBox="0 0 24 24"><path d="M10.53 10.73c-.1-.31-.19-.61-.29-.92-.1-.31-.19-.6-.27-.89-.08-.28-.15-.54-.22-.78h-.02c-.09.43-.2.86-.34 1.29-.15.48-.3.98-.46 1.48-.14.51-.29.98-.44 1.4h2.54c-.06-.211-.14-.46-.23-.721-.09-.269-.18-.559-.27-.859zM19.75.3H4.25C1.9.3 0 2.2 0 4.55v14.9c0 2.35 1.9 4.25 4.25 4.25h15.5c2.35 0 4.25-1.9 4.25-4.25V4.55C24 2.2 22.1.3 19.75.3zM14.7 16.83h-2.091c-.069.01-.139-.04-.159-.11l-.82-2.38H7.91l-.76 2.35c-.02.09-.1.15-.19.141H5.08c-.11 0-.14-.061-.11-.18L8.19 7.38c.03-.1.06-.21.1-.33.04-.21.06-.43.06-.65-.01-.05.03-.1.08-.11h2.59c.08 0 .12.03.13.08l3.65 10.3c.03.109 0 .16-.1.16zm3.4-.15c0 .11-.039.16-.129.16H16.01c-.1 0-.15-.061-.15-.16v-7.7c0-.1.041-.14.131-.14h1.98c.09 0 .129.05.129.14v7.7zm-.209-9.03c-.231.24-.571.37-.911.35-.33.01-.65-.12-.891-.35-.23-.25-.35-.58-.34-.92-.01-.34.12-.66.359-.89.242-.23.562-.35.892-.35.391 0 .689.12.91.35.22.24.34.56.33.89.01.34-.11.67-.349.92z"/></svg>
-                Illustrator
-              </div>
-              <div class="skill-box">
-                <svg class="ico ico--logo" viewBox="0 0 512 512"><path fill="#4aa0cd" d="M56 128 120 100V404l-64 28z"/><path fill="#2f6d88" d="M140 100h296a20 20 0 0 1 20 20v272a20 20 0 0 1-20 20H140a20 20 0 0 1-20-20V120a20 20 0 0 1 20-20z"/><path fill="#3d8db5" d="M120 120a20 20 0 0 1 20-20h296a20 20 0 0 1 20 20v208H120z"/><text x="288" y="290" font-family="Arial,Helvetica,sans-serif" font-size="220" font-weight="800" fill="#fff" text-anchor="middle">M</text><text x="290" y="394" font-family="Arial,Helvetica,sans-serif" font-size="70" font-weight="800" letter-spacing="4" fill="#fff" text-anchor="middle">AYA</text></svg>
-                Maya
-              </div>
-              <div class="skill-box">
-                <svg class="ico ico--logo" viewBox="0 0 512 512"><path fill="#e0342b" d="M256 40 452 154v204L256 472 60 358V154z"/><text x="256" y="368" font-family="Arial,Helvetica,sans-serif" font-size="330" font-weight="800" fill="#fff" text-anchor="middle">S</text></svg>
-                Substance Painter
-              </div>
-              <div class="skill-box">
-                <svg class="ico ico--line" viewBox="0 0 24 24"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2"/></svg>
-                AI Development
-              </div>
-              <div class="skill-box">
-                <svg class="ico ico--line" viewBox="0 0 24 24"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>
-                Web Development
-              </div>
-              <div class="skill-box">
-                <svg class="ico ico--line" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-                UI/UX Design
-              </div>
-              <div class="skill-box">
-                <svg class="ico ico--line" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96 12 12.01l8.73-5.05"/><path d="M12 22.08V12"/></svg>
-                3D Model/Render
-              </div>
+            </div>
             </div>
           </div>
         </div>
@@ -434,6 +514,74 @@
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
         </button>
 
+        <!-- Qstudio -->
+        <div class="lightbox__content" data-project="qstudio">
+          <div class="lightbox__header">
+            <div class="lightbox__tags"><span>Marketing Site</span><span>Scroll Motion</span><span>Multi-Vertical</span><span>AI Visuals</span></div>
+            <h2>Qstudio</h2>
+            <p>A cinematic marketing site for a connected commerce and operations platform. One page, three switchable industry stories — a theme park running ticketing, food, retail and gate entry on a single system; a gym where members enrol their face at a kiosk and walk straight in; and a business-operations arm covering restaurants, retail, fitness, leisure and hospitality. Each story is told as numbered full-bleed scenes that pin in place and advance as you scroll, with AI-generated photography and product UI composed into every frame. Built responsive, with the scroll sequence reworked for mobile.</p>
+            <a class="lightbox__visit" href="https://dansonhar.github.io/Motion-Website/" target="_blank" rel="noopener noreferrer">
+              Visit Website
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg>
+            </a>
+          </div>
+          <div class="lightbox__gallery">
+            <div class="gallery__main">
+              <div class="gallery__scroll">
+                <img class="gallery__main-img" alt="Qstudio theme park hero" />
+              </div>
+              <button class="gallery__nav gallery__nav--prev"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg></button>
+              <button class="gallery__nav gallery__nav--next"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg></button>
+              <div class="gallery__counter"><span class="gallery__current">1</span> / <span class="gallery__total">10</span></div>
+            </div>
+            <div class="gallery__thumbs">
+              <button class="gallery__thumb active" data-index="0"><img data-src="./images/opt/Motion-website-ThemePark-00-hero-desktop-g1600.webp" alt="Theme park hero — Every Sale, Every Gate, One System" /></button>
+              <button class="gallery__thumb" data-index="1"><img data-src="./images/opt/Motion-website-ThemePark-03-scene-desktop-g1600.webp" alt="Theme park — Order From the App" /></button>
+              <button class="gallery__thumb" data-index="2"><img data-src="./images/opt/Motion-website-ThemePark-05-scene-desktop-g1600.webp" alt="Theme park — Café & Retail POS" /></button>
+              <button class="gallery__thumb" data-index="3"><img data-src="./images/opt/Motion-website-ThemePark-08-scene-desktop-g1600.webp" alt="Theme park — Scan and Walk Straight In" /></button>
+              <button class="gallery__thumb" data-index="4"><img data-src="./images/opt/Motion-website-ThemePark-09-scene-desktop-g1600.webp" alt="Theme park — One AI Dashboard" /></button>
+              <button class="gallery__thumb" data-index="5"><img data-src="./images/opt/Motion-website-Gym-00-hero-desktop-g1600.webp" alt="Gym — Smarter Gym Access Starts Here" /></button>
+              <button class="gallery__thumb" data-index="6"><img data-src="./images/opt/Motion-website-Gym-02-solutions-desktop-g1600.webp" alt="Gym — One Connected Gym Entrance" /></button>
+              <button class="gallery__thumb" data-index="7"><img data-src="./images/opt/Motion-website-Gym-08-qsentry-desktop-g1600.webp" alt="Gym — QSentry AI turnstile" /></button>
+              <button class="gallery__thumb" data-index="8"><img data-src="./images/opt/Motion-website-Solution-00-hero-desktop-g1600.webp" alt="Solution — We design the business behind the operation" /></button>
+              <button class="gallery__thumb" data-index="9"><img data-src="./images/opt/Motion-website-Solution-03-solutions-desktop-g1600.webp" alt="Solution — Every place the business sells" /></button>
+            </div>
+          </div>
+        </div>
+        <!-- Qstudio — Mobile -->
+        <div class="lightbox__content" data-project="qstudio-mobile">
+          <div class="lightbox__header">
+            <div class="lightbox__tags"><span>Mobile Web</span><span>Responsive</span><span>Scroll Motion</span><span>Multi-Vertical</span></div>
+            <h2>Qstudio — Mobile</h2>
+            <p>The same connected-commerce site on a phone. The desktop version leans on wide full-bleed scenes with type set beside the subject; on mobile that had to be rebuilt rather than reflowed — scenes re-crop to keep the subject in frame, chapter grids collapse into stacked cards, and the numbered scroll story keeps its pacing in a single narrow column. Shown here across all three verticals: theme park ticketing, gym entry, and business operations.</p>
+            <a class="lightbox__visit" href="https://dansonhar.github.io/Motion-Website/" target="_blank" rel="noopener noreferrer">
+              Visit Website
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg>
+            </a>
+          </div>
+          <div class="lightbox__gallery">
+            <div class="gallery__main">
+              <div class="gallery__scroll">
+                <img class="gallery__main-img" alt="Qstudio theme park hero on mobile" />
+              </div>
+              <button class="gallery__nav gallery__nav--prev"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg></button>
+              <button class="gallery__nav gallery__nav--next"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg></button>
+              <div class="gallery__counter"><span class="gallery__current">1</span> / <span class="gallery__total">10</span></div>
+            </div>
+            <div class="gallery__thumbs">
+              <button class="gallery__thumb active" data-index="0"><img data-src="./images/opt/Motion-website-ThemePark-00-hero-mobile-p800.webp" alt="Theme park hero on mobile" /></button>
+              <button class="gallery__thumb" data-index="1"><img data-src="./images/opt/Motion-website-ThemePark-03-scene-mobile-p800.webp" alt="Theme park — Four Ways to Buy a Ticket" /></button>
+              <button class="gallery__thumb" data-index="2"><img data-src="./images/opt/Motion-website-ThemePark-07-scene-mobile-p800.webp" alt="Theme park — One Gate, Every Ticket" /></button>
+              <button class="gallery__thumb" data-index="3"><img data-src="./images/opt/Motion-website-ThemePark-11-scene-mobile-p800.webp" alt="Theme park — the turnstile every ticket ends up at" /></button>
+              <button class="gallery__thumb" data-index="4"><img data-src="./images/opt/Motion-website-ThemePark-12-scene-mobile-p800.webp" alt="Theme park — Sell everywhere, manage it in one place" /></button>
+              <button class="gallery__thumb" data-index="5"><img data-src="./images/opt/Motion-website-Gym-00-hero-mobile-p800.webp" alt="Gym hero on mobile" /></button>
+              <button class="gallery__thumb" data-index="6"><img data-src="./images/opt/Motion-website-Gym-02-solutions-mobile-p800.webp" alt="Gym — One Connected Gym Entrance" /></button>
+              <button class="gallery__thumb" data-index="7"><img data-src="./images/opt/Motion-website-Gym-06-section-mobile-p800.webp" alt="Gym — what a tailgate looks like" /></button>
+              <button class="gallery__thumb" data-index="8"><img data-src="./images/opt/Motion-website-Solution-00-hero-mobile-p800.webp" alt="Solution hero on mobile" /></button>
+              <button class="gallery__thumb" data-index="9"><img data-src="./images/opt/Motion-website-Solution-05-where-the-business-sells-mobile-p800.webp" alt="Solution — Every place the business sells" /></button>
+            </div>
+          </div>
+        </div>
         <!-- Alpreneur — AI Genius -->
         <div class="lightbox__content" data-project="alpreneur">
           <div class="lightbox__header">

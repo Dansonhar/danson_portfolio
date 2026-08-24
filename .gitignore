@@ -1,2 +1,6 @@
 node_modules/
 .DS_Store
+
+# Raw image library and archived duplicates — not deployed.
+# Referenced assets live in public/images/, derivatives in public/images/opt/.
+images-archive/
