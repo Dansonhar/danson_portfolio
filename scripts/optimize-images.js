@@ -87,6 +87,7 @@ const JOBS = [
   { rel: '3d-rube-goldberg/rube-goldberg-1.webp',kind: 'card' },
   { rel: 'Wedding-Invitations/page1.webp',       kind: 'card' },
   { rel: 'agency_crm/2.png',                     kind: 'card' },
+  { rel: 'product-explode/viewer-desktop.webp',  kind: 'card' },
   { rel: 'alien-vs-malaysian/bg.webp',           kind: 'card', position: 'centre' },
   { rel: 'alien-vs-malaysian/alien-red.webp',    kind: 'sprite' },
   { rel: 'alien-vs-malaysian/alien-green.webp',  kind: 'sprite' },
