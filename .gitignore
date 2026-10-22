@@ -4,3 +4,6 @@ node_modules/
 # Raw image library and archived duplicates — not deployed.
 # Referenced assets live in public/images/, derivatives in public/images/opt/.
 images-archive/
+
+# Separate project with its own git repo — not part of this site.
+crm_app/
