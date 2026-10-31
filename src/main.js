@@ -294,6 +294,9 @@ function initMockupFloat() {
   let frame;
 
   function animate() {
+    frame = requestAnimationFrame(animate);
+    // Hidden behind an open lightbox — don't restyle them every frame.
+    if (document.body.classList.contains('lightbox-open')) return;
     const t = Date.now() / 1000;
     mockups.forEach((m, i) => {
       const offset = i * 1.2;
@@ -301,7 +304,6 @@ function initMockupFloat() {
       const baseRotation = ['-4', '6', '-8'][i] || '0';
       m.style.transform = `rotate(${baseRotation}deg) translateY(${y}px)`;
     });
-    frame = requestAnimationFrame(animate);
   }
 
   // Start after entrance animation
@@ -311,6 +313,14 @@ function initMockupFloat() {
 // ============================================
 // LIGHTBOX — generic, works for any project
 // ============================================
+
+// './images/AlcPest/home.webp' -> './images/opt/AlcPest-home-t240.webp'.
+// Must match outName() for 'thumb' in scripts/optimize-images.js.
+function thumbSrc(src) {
+  const rel = src.replace(/^\.\/images\//, '').replace(/\.(webp|png|jpe?g)$/i, '');
+  return `./images/opt/${rel.replace(/\//g, '-')}-t240.webp`;
+}
+
 function initLightbox() {
   const lightbox = document.getElementById('lightbox');
   if (!lightbox) return;
@@ -330,9 +340,19 @@ function initLightbox() {
     panel.classList.add('active');
     activePanel = panel;
 
-    // Load thumbnails for this project now (deferred from page load)
+    // Load thumbnails for this project now (deferred from page load). They use
+    // small pre-cropped derivatives — decoding every full-size screenshot just
+    // to fill 120px buttons froze the page on open. data-src stays the full
+    // image for the main view.
     panel.querySelectorAll('.gallery__thumb img[data-src]').forEach((img) => {
-      if (img.src !== img.dataset.src) img.src = img.dataset.src;
+      if (img.dataset.loaded) return;
+      img.dataset.loaded = '1';
+      img.decoding = 'async';
+      img.onerror = () => {
+        img.onerror = null;
+        img.src = img.dataset.src;
+      };
+      img.src = thumbSrc(img.dataset.src);
     });
 
     images = Array.from(panel.querySelectorAll('.gallery__thumb img')).map(
@@ -344,11 +364,14 @@ function initLightbox() {
     goTo(0);
     lightbox.classList.add('open');
     document.body.style.overflow = 'hidden';
+    // Background animations check this and stop drawing while they're hidden.
+    document.body.classList.add('lightbox-open');
   }
 
   function closeLightbox() {
     lightbox.classList.remove('open');
     document.body.style.overflow = '';
+    document.body.classList.remove('lightbox-open');
     activePanel = null;
   }
 
@@ -360,6 +383,7 @@ function initLightbox() {
     const currentEl = activePanel.querySelector('.gallery__current');
 
     if (mainImg) {
+      mainImg.decoding = 'async';
       mainImg.style.opacity = '0';
       setTimeout(() => {
         mainImg.src = images[currentIndex];
@@ -426,7 +450,7 @@ function initZoom() {
   }
 
   function openZoom(src, alt) {
-    zoomImg.classList.remove('zoom-overlay__img--portrait');
+    zoomImg.classList.remove('zoom-overlay__img--portrait', 'zoom-overlay__img--landscape');
     zoomImg.src = src;
     zoomImg.alt = alt || '';
     const applyOrientation = () => {
@@ -435,6 +459,11 @@ function initZoom() {
       const mobile =
         zoomImg.naturalHeight > zoomImg.naturalWidth && zoomImg.naturalWidth <= 900;
       zoomImg.classList.toggle('zoom-overlay__img--portrait', mobile);
+      // Landscape shots fit the whole screen, centred.
+      zoomImg.classList.toggle(
+        'zoom-overlay__img--landscape',
+        zoomImg.naturalWidth >= zoomImg.naturalHeight
+      );
     };
     if (zoomImg.complete && zoomImg.naturalWidth) applyOrientation();
     else zoomImg.onload = applyOrientation;

@@ -82,7 +82,8 @@ export function initBackground() {
   }
 
   function loop() {
-    renderFrame();
+    // Covered by an open lightbox — skip the redraw (the last frame stays).
+    if (!document.body.classList.contains('lightbox-open')) renderFrame();
     rafId = requestAnimationFrame(loop);
   }
 

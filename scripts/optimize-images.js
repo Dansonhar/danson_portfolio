@@ -11,7 +11,7 @@
 //   node scripts/optimize-images.js
 // ============================================
 import sharp from 'sharp';
-import { mkdir, stat, readdir } from 'fs/promises';
+import { mkdir, stat, readdir, readFile } from 'fs/promises';
 import { dirname, join, resolve } from 'path';
 
 const ROOT = resolve(import.meta.dirname, '..');
@@ -88,6 +88,7 @@ const JOBS = [
   { rel: 'Wedding-Invitations/page1.webp',       kind: 'card' },
   { rel: 'agency_crm/2.png',                     kind: 'card' },
   { rel: 'product-explode/flatwise-offset.webp', kind: 'card' },
+  { rel: 'hunter/architecture.webp',             kind: 'card', position: 'left top' },
   { rel: 'alien-vs-malaysian/bg.webp',           kind: 'card', position: 'centre' },
   { rel: 'alien-vs-malaysian/alien-red.webp',    kind: 'sprite' },
   { rel: 'alien-vs-malaysian/alien-green.webp',  kind: 'sprite' },
@@ -108,6 +109,10 @@ const KINDS = {
   sprite:  { widths: [300],       ratio: null,    quality: 80 },
   square:  { widths: [400],       ratio: 1,       quality: 80 },
   icon:    { widths: [48],        ratio: 1,       quality: 85 },
+  // Lightbox gallery thumbnails: a 120x70 button, 2x for retina. Opening a
+  // gallery used to decode every full-size screenshot just to fill these
+  // (up to ~97 MB of pixels for one project), which froze the page.
+  thumb:   { widths: [240],       ratio: 120 / 70, quality: 70 },
 };
 
 function outName(rel, width, kind) {
@@ -116,7 +121,16 @@ function outName(rel, width, kind) {
   // overwrite each other.
   if (kind === 'gallery') return `${stem}-g${width}.webp`;
   if (kind === 'phone') return `${stem}-p${width}.webp`;
+  // Must match thumbSrc() in src/main.js.
+  if (kind === 'thumb') return `${stem}-t${width}.webp`;
   return `${stem}-${width}.webp`;
+}
+
+// Every lightbox thumbnail in index.html gets a 'thumb' derivative, so new
+// projects are covered without listing their images here.
+const html = await readFile(join(ROOT, 'index.html'), 'utf8');
+for (const [, rel] of html.matchAll(/class="gallery__thumb[^"]*"[^>]*><img data-src="\.\/images\/([^"]+)"/g)) {
+  JOBS.push({ rel, kind: 'thumb' });
 }
 
 await mkdir(OUT, { recursive: true });
@@ -141,7 +155,7 @@ for (const job of JOBS) {
         height: Math.round(width / spec.ratio),
         fit: 'cover',
         // Cards use object-position:top, so crop from the top to match.
-        position: job.position === 'centre' ? 'centre' : 'top',
+        position: job.position ?? 'top',
         withoutEnlargement: true,
       });
     } else {
