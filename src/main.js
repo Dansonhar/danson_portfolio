@@ -1,35 +1,86 @@
 // Import styles
 import './style.css';
-import { initCursor } from './cursor.js';
-import {
-  prefersReducedMotion,
-  shouldPlayIntro,
-  shouldLoadBackground,
-} from './motion.js';
-
-// Both decorative effects render on Canvas2D and are still code-split, so a
-// visitor who will not see them never downloads them: the gates in motion.js
-// decide before the import runs.
-function loadIntro() {
-  return import('./intro.js');
-}
-function loadBackground() {
-  return import('./background.js');
-}
-
-// Run work once the browser is idle, so it can never delay first paint.
-function whenIdle(fn) {
-  if ('requestIdleCallback' in window) {
-    requestIdleCallback(fn, { timeout: 2000 });
-  } else {
-    setTimeout(fn, 200);
-  }
-}
+import { prefersReducedMotion } from './motion.js';
 
 // Always land at the top (Home) on load/refresh — stop the browser from
 // restoring the previous scroll position.
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 window.scrollTo(0, 0);
+
+// ============================================
+// HERO ENTRANCE
+// ============================================
+function initHero() {
+  if (prefersReducedMotion()) return;
+  document.querySelectorAll('[data-hero]').forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = `opacity 1s cubic-bezier(.2,.7,.2,1) ${0.1 + i * 0.12}s, transform 1s cubic-bezier(.2,.7,.2,1) ${0.1 + i * 0.12}s`;
+    requestAnimationFrame(() =>
+      requestAnimationFrame(() => {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+      })
+    );
+  });
+}
+
+// ============================================
+// LOCAL TIME — Kuala Lumpur
+// ============================================
+function initClock() {
+  const el = document.getElementById('clock');
+  if (!el) return;
+  const fmt = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Asia/Kuala_Lumpur',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+  const tick = () => (el.textContent = fmt.format(new Date()));
+  tick();
+  setInterval(tick, 15000);
+}
+
+// ============================================
+// INDEX HOVER PREVIEW
+// A screenshot follows the pointer over the project index. Desktop pointers
+// only; touch screens get the inline thumbnail instead (see style.css).
+// ============================================
+function initPreview() {
+  const box = document.getElementById('preview');
+  if (!box || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  const img = box.querySelector('img');
+  let x = 0, y = 0, cx = 0, cy = 0, raf = null;
+
+  function loop() {
+    // Ease toward the pointer so the preview trails it slightly.
+    cx += (x - cx) * 0.18;
+    cy += (y - cy) * 0.18;
+    box.style.transform = `translate3d(${cx + 28}px, ${cy - 110}px, 0)`;
+    raf = Math.abs(x - cx) + Math.abs(y - cy) > 0.5 ? requestAnimationFrame(loop) : null;
+  }
+  function move(e) {
+    x = e.clientX;
+    y = e.clientY;
+    if (!raf) raf = requestAnimationFrame(loop);
+  }
+
+  document.querySelectorAll('.row[data-preview]').forEach((row) => {
+    row.addEventListener('mouseenter', (e) => {
+      if (img.getAttribute('src') !== row.dataset.preview) img.src = row.dataset.preview;
+      if (!box.classList.contains('on')) {
+        // Jump straight to the pointer on first show instead of sliding in.
+        cx = x = e.clientX;
+        cy = y = e.clientY;
+        loop();
+      }
+      box.classList.add('on');
+    });
+    row.addEventListener('mousemove', move);
+    row.addEventListener('mouseleave', () => box.classList.remove('on'));
+    row.addEventListener('click', () => box.classList.remove('on'));
+  });
+}
 
 // ============================================
 // SCROLL REVEAL
@@ -127,9 +178,11 @@ function initFilters() {
       if (more3D) more3D.hidden = f !== 'design';
 
       const still = prefersReducedMotion();
-      cards.forEach((card, i) => {
+      let shown = 0;
+      cards.forEach((card) => {
         const show = f === 'all' || card.dataset.category === f;
         if (show) {
+          const order = shown++;
           card.classList.remove('hidden');
           if (still) {
             card.style.opacity = '';
@@ -137,16 +190,20 @@ function initFilters() {
             return;
           }
           card.style.opacity = '0';
-          card.style.transform = 'translateY(20px)';
+          card.style.transform = 'translateY(12px)';
           setTimeout(() => {
             card.style.transition = 'opacity .45s ease, transform .45s ease';
             card.style.opacity = '1';
             card.style.transform = 'translateY(0)';
-          }, i * 70);
+          }, order * 45);
         } else {
           card.classList.add('hidden');
         }
       });
+
+      // The little count next to "Index" follows the filter.
+      const count = document.getElementById('workCount');
+      if (count) count.textContent = shown;
     });
   });
 }
@@ -204,25 +261,6 @@ function animateCount(el, target) {
 }
 
 // ============================================
-// SKILL BARS
-// ============================================
-function initSkillBars() {
-  const fills = document.querySelectorAll('.skill-fill');
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animated');
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.3 }
-  );
-  fills.forEach((f) => observer.observe(f));
-}
-
-// ============================================
 // SMOOTH SCROLL
 // ============================================
 function initScroll() {
@@ -242,72 +280,6 @@ function initScroll() {
       }
     });
   });
-}
-
-// ============================================
-// HERO ENTRANCE ANIMATION
-// ============================================
-function initHeroAnim() {
-  // Reduced motion: the hero is already in its final state in the markup.
-  if (prefersReducedMotion()) return;
-
-  // Stagger hero text elements
-  const els = [
-    document.querySelector('.hero__badge'),
-    document.querySelector('.hero__title'),
-    document.querySelector('.hero__subtitle-row'),
-    document.querySelector('.hero__lead'),
-    document.querySelector('.hero__actions'),
-  ].filter(Boolean);
-
-  els.forEach((el, i) => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(50px)';
-    el.style.transition = `opacity .7s ease ${0.15 + i * 0.12}s, transform .7s ease ${0.15 + i * 0.12}s`;
-    requestAnimationFrame(() => {
-      el.style.opacity = '1';
-      el.style.transform = 'translateY(0)';
-    });
-  });
-
-  // Mockups fly in
-  const mockups = document.querySelectorAll('.mockup');
-  mockups.forEach((m, i) => {
-    const origTransform = getComputedStyle(m).transform;
-    m.style.opacity = '0';
-    m.style.transition = `opacity .8s ease ${0.4 + i * 0.15}s, transform .8s ease ${0.4 + i * 0.15}s`;
-    m.style.transform += ' translateX(80px)';
-    requestAnimationFrame(() => {
-      m.style.opacity = '1';
-      m.style.transform = '';
-    });
-  });
-}
-
-// ============================================
-// FLOATING MOCKUP SUBTLE ANIMATION
-// ============================================
-function initMockupFloat() {
-  if (prefersReducedMotion()) return;
-
-  const mockups = document.querySelectorAll('.mockup');
-  let frame;
-
-  function animate() {
-    frame = requestAnimationFrame(animate);
-    // Hidden behind an open lightbox — don't restyle them every frame.
-    if (document.body.classList.contains('lightbox-open')) return;
-    const t = Date.now() / 1000;
-    mockups.forEach((m, i) => {
-      const offset = i * 1.2;
-      const y = Math.sin(t * 0.6 + offset) * 8;
-      const baseRotation = ['-4', '6', '-8'][i] || '0';
-      m.style.transform = `rotate(${baseRotation}deg) translateY(${y}px)`;
-    });
-  }
-
-  // Start after entrance animation
-  setTimeout(animate, 1600);
 }
 
 // ============================================
@@ -534,14 +506,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // element, no WebGL) must not stop the rest from wiring up. Before this
   // guard, a WebGL failure in the background left the whole page invisible.
   [
-    initCursor,
-    initMockupFloat,
+    initHero,
+    initClock,
     initReveal,
     initNav,
     initFilters,
     initCounters,
-    initSkillBars,
     initScroll,
+    initPreview,
     initLightbox,
     initZoom,
   ].forEach((init) => {
@@ -551,27 +523,4 @@ document.addEventListener('DOMContentLoaded', () => {
       console.error(`${init.name} failed:`, e);
     }
   });
-
-  // Opening animation. The gate is checked before the import so visitors who
-  // will not see it never pay for the bundle; the hero then reveals itself.
-  if (shouldPlayIntro()) {
-    loadIntro()
-      .then(({ playIntro }) => playIntro({ onReveal: initHeroAnim }))
-      .catch((e) => {
-        console.error('intro failed to load:', e);
-        initHeroAnim();
-      });
-  } else {
-    initHeroAnim();
-  }
-
-  // Decorative scroll background: desktop only, and never before the page has
-  // settled — it must not compete with content for bandwidth or main thread.
-  if (shouldLoadBackground()) {
-    whenIdle(() => {
-      loadBackground()
-        .then(({ initBackground }) => initBackground())
-        .catch((e) => console.error('background failed to load:', e));
-    });
-  }
 });

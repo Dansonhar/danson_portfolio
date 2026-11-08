@@ -33,13 +33,12 @@
     <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
     <link rel="manifest" href="./site.webmanifest" />
-    <meta name="theme-color" content="#0b0b0b" />
+    <meta name="theme-color" content="#f6f2fb" />
     <!-- Fonts are self-hosted (see src/fonts.css), so there is no blocking
          request to a third-party origin before text can paint. Preload the two
          latin subsets this page always needs; latin-ext is unicode-range gated
          and only fetched if an accented glyph actually appears. -->
     <link rel="preload" href="./fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="./fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
     <script type="module" src="./src/main.js"></script>
     <!-- Without JS the scroll-reveal observer never runs, so show everything. -->
     <noscript>
@@ -49,436 +48,352 @@
     </noscript>
   </head>
   <body>
-    <!-- Navigation -->
+    <!-- ===================== TOP BAR ===================== -->
     <nav class="nav" id="nav">
-      <div class="nav__container">
-        <a href="#" class="nav__logo">DANSON<span>.</span></a>
+      <div class="nav__inner">
+        <a href="#" class="nav__mark">Danson Har</a>
         <ul class="nav__links" id="navLinks">
-          <li><a href="#home" class="nav__link active">Home</a></li>
-          <li><a href="#work" class="nav__link">Portfolio</a></li>
+          <li><a href="#home" class="nav__link active">Index</a></li>
+          <li><a href="#work" class="nav__link">Work</a></li>
           <li><a href="#about" class="nav__link">About</a></li>
           <li><a href="#contact" class="nav__link">Contact</a></li>
         </ul>
-        <a href="#contact" class="nav__cta">Let's Connect</a>
-        <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+        <span class="nav__status"><i class="dot"></i>Available for work</span>
+        <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" hidden><span></span><span></span></button>
       </div>
     </nav>
 
     <!-- ===================== HERO ===================== -->
     <section class="hero" id="home">
-      <div class="hero__container">
-        <!-- Left side: text -->
-        <div class="hero__left">
-          <div class="hero__badge">
-            <span class="badge__dot"></span>
-            Open to new opportunities &middot; Based in Malaysia
-          </div>
-          <h1 class="hero__title">FRONTEND</h1>
-          <div class="hero__subtitle-row">
-            <h2 class="hero__subtitle">
-              <span class="hero__subtitle-highlight">DEVELOPER</span>
-            </h2>
-          </div>
+      <div class="wrap">
+        <p class="hero__kicker mono" data-hero>Portfolio / 2026 — Frontend developer &amp; UI designer</p>
+        <h1 class="hero__title" data-hero>
+          I design and build digital experiences<span class="hero__soft"> from concept to reality.</span>
+        </h1>
+        <div class="hero__foot" data-hero>
           <p class="hero__lead">
-            I build fast, responsive websites and web apps in JavaScript and React.
-            <span class="hero__lead-muted">
-              UI design, 3D and AI-assisted media are how I make them feel finished.
-            </span>
+            I'm Danson, a frontend developer based in Malaysia. I build websites and web applications using
+            JavaScript and React, with an interest in UI/UX design, 3D creation and AI-powered tools.
+            I enjoy exploring new technologies and turning ideas into digital experiences.
           </p>
           <div class="hero__actions">
-            <a href="#work" class="btn btn--primary">
-              View Projects
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-            </a>
-            <a href="#contact" class="btn btn--outline">Get In Touch</a>
-            <a href="./Danson-Resume.pdf" class="btn btn--outline" download="Danson-Resume.pdf">
-              Resume
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
-            </a>
+            <a href="#work" class="link-btn link-btn--solid">See the work <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+            <a href="./Danson-Resume.pdf" class="link-btn" download="Danson-Resume.pdf">Resume (PDF)</a>
           </div>
         </div>
-
-        <!-- Right side: floating angled mockups -->
-        <div class="hero__mockups">
-          <a href="#work" class="mockup mockup--1">
-            <div class="mockup__browser">
-              <div class="mockup__dots"><span></span><span></span><span></span></div>
-              <div class="mockup__screen mockup__screen--shot">
-                <img src="./images/opt/AlcPest-alcpest-home-400.webp" alt="ALC Pest Purge Solution website" loading="lazy" decoding="async" width="600" height="375" />
-              </div>
-            </div>
-          </a>
-          <a href="#work" class="mockup mockup--2">
-            <div class="mockup__browser">
-              <div class="mockup__dots"><span></span><span></span><span></span></div>
-              <div class="mockup__screen mockup__screen--shot">
-                <img src="./images/opt/qparking-park1-400.webp" alt="QParking parking management platform" loading="lazy" decoding="async" width="600" height="375" />
-              </div>
-            </div>
-          </a>
-          <a href="#work" class="mockup mockup--3">
-            <div class="mockup__browser">
-              <div class="mockup__dots"><span></span><span></span><span></span></div>
-              <div class="mockup__screen mockup__screen--shot">
-                <img src="./images/opt/qpos-qbot-home-400.webp" alt="Qbot Support Center portal" loading="lazy" decoding="async" width="600" height="375" />
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-
-      <div class="hero__scroll">
-        <div class="scroll__line"></div>
-        <span>SCROLL</span>
+        <dl class="facts" data-hero>
+          <div><dt class="mono">Based in</dt><dd>Kuala Lumpur, Malaysia</dd></div>
+          <div><dt class="mono">Local time</dt><dd><span id="clock">—</span> <span class="facts__dim">GMT+8</span></dd></div>
+          <div><dt class="mono">Focus</dt><dd>JavaScript, React, UI</dd></div>
+          <div><dt class="mono">Status</dt><dd>Open to new opportunities</dd></div>
+        </dl>
       </div>
     </section>
 
-    <!-- ===================== PORTFOLIO ===================== -->
+    <!-- ===================== WORK ===================== -->
     <section class="work" id="work">
-      <div class="container">
-        <div class="section__header">
-          <div class="section__label reveal"><span class="label__line"></span>SELECTED WORK</div>
-          <h2 class="section__title reveal">FEATURED <span class="text--green">PROJECTS</span></h2>
-          <p class="section__lead reveal">A selection of the products, sites and tools I've built — open any card for the full gallery.</p>
+      <div class="wrap">
+        <header class="sect reveal">
+          <span class="sect__no mono">01</span>
+          <h2 class="sect__title">Selected work</h2>
+          <p class="sect__aside">Recent builds first. Open any project for the full gallery and a live link.</p>
+        </header>
+
+        <div class="features">
+          <article class="feature reveal">
+            <button class="feature__media" data-lightbox="product-explode" aria-label="Open CRAVE ProductViu gallery">
+              <img src="./images/opt/product-explode-flatwise-offset-1200.webp" srcset="./images/opt/product-explode-flatwise-offset-400.webp 400w, ./images/opt/product-explode-flatwise-offset-800.webp 800w, ./images/opt/product-explode-flatwise-offset-1200.webp 1200w" sizes="(max-width: 900px) calc(100vw - 40px), 46vw" alt="CRAVE ProductViu" loading="lazy" decoding="async" width="1200" height="750" />
+            </button>
+            <div class="feature__meta">
+              <span class="mono">01</span>
+              <div>
+                <h3 class="feature__name">CRAVE ProductViu</h3>
+                <p class="feature__note">Interactive 3D viewer for 24 busduct products — exploded views, X-ray and part callouts.</p>
+              </div>
+              <span class="feature__stack mono">Codex · Blender · Three.js</span>
+            </div>
+          </article>
+          <article class="feature reveal">
+            <button class="feature__media" data-lightbox="hunter" aria-label="Open Hunter gallery">
+              <img src="./images/opt/hunter-architecture-1200.webp" srcset="./images/opt/hunter-architecture-400.webp 400w, ./images/opt/hunter-architecture-800.webp 800w, ./images/opt/hunter-architecture-1200.webp 1200w" sizes="(max-width: 900px) calc(100vw - 40px), 46vw" alt="Hunter" loading="lazy" decoding="async" width="1200" height="750" />
+            </button>
+            <div class="feature__meta">
+              <span class="mono">02</span>
+              <div>
+                <h3 class="feature__name">Hunter</h3>
+                <p class="feature__note">AI job-hunting assistant that finds roles daily, scores each match and tailors your resume.</p>
+              </div>
+              <span class="feature__stack mono">React · Gemini · Supabase</span>
+            </div>
+          </article>
         </div>
 
-        <div class="work__filters reveal">
-          <button class="filter-btn active" data-filter="all">All</button>
-          <button class="filter-btn" data-filter="web">Web</button>
-          <button class="filter-btn" data-filter="design">3D Design</button>
-          <button class="filter-btn" data-filter="app">App</button>
-        </div>
+        <div class="index">
+          <div class="index__head reveal">
+            <h3 class="index__title">Projects <sup class="mono" id="workCount">12</sup></h3>
+            <div class="work__filters" role="group" aria-label="Filter projects">
+              <button class="filter-btn active" data-filter="all">All</button>
+              <button class="filter-btn" data-filter="web">Web</button>
+              <button class="filter-btn" data-filter="design">3D design</button>
+              <button class="filter-btn" data-filter="app">App</button>
+            </div>
+          </div>
+          <div class="index__cols mono" aria-hidden="true">
+            <span>No.</span><span>Project</span><span>Type</span><span>Built with</span>
+          </div>
 
-        <!-- PROJECT GRID — ADD MORE ITEMS HERE -->
-        <div class="work__grid" id="workGrid">
-
+          <!-- PROJECT INDEX — ADD MORE ROWS HERE (and a lightbox panel below) -->
+          <div class="work__grid" id="workGrid">
           <article class="project reveal" data-category="web">
-            <div class="project__img project__img--screenshot">
-              <img src="./images/opt/product-explode-flatwise-offset-1200.webp" alt="CRAVE ProductViu exploded Flatwise Offset busduct" class="project__screenshot-img" loading="lazy" decoding="async" srcset="./images/opt/product-explode-flatwise-offset-400.webp 400w, ./images/opt/product-explode-flatwise-offset-800.webp 800w, ./images/opt/product-explode-flatwise-offset-1200.webp 1200w" sizes="(max-width: 640px) calc(100vw - 80px), (max-width: 1024px) calc((100vw - 108px) / 2), 388px" width="1200" height="750" />
-              <div class="project__overlay">
-                <button class="btn btn--small" data-lightbox="product-explode">
-                  View Project <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-                </button>
-              </div>
-            </div>
-            <div class="project__info">
-              <div class="project__tags"><span>Codex</span><span>Blender 3D</span><span>Three.js</span></div>
-              <h3>CRAVE ProductViu</h3>
-              <p>Interactive 3D viewer for 24 busduct products — exploded views, X-ray and part callouts.</p>
-            </div>
-          </article>
-
-          <article class="project reveal" data-category="web">
-            <div class="project__img project__img--screenshot">
-              <img src="./images/opt/hunter-architecture-1200.webp" alt="Hunter AI job-hunting assistant architecture" class="project__screenshot-img" loading="lazy" decoding="async" srcset="./images/opt/hunter-architecture-400.webp 400w, ./images/opt/hunter-architecture-800.webp 800w, ./images/opt/hunter-architecture-1200.webp 1200w" sizes="(max-width: 640px) calc(100vw - 80px), (max-width: 1024px) calc((100vw - 108px) / 2), 388px" width="1200" height="750" />
-              <div class="project__overlay">
-                <button class="btn btn--small" data-lightbox="hunter">
-                  View Project <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-                </button>
-              </div>
-            </div>
-            <div class="project__info">
-              <div class="project__tags"><span>AI Web App</span><span>React</span><span>Gemini</span></div>
-              <h3>Hunter — AI Job Hunter</h3>
-              <p>AI job-hunting assistant that finds roles daily, scores each match and tailors your resume.</p>
-            </div>
+            <button class="row" data-lightbox="product-explode" data-preview="./images/opt/product-explode-flatwise-offset-800.webp">
+              <span class="row__no mono">01</span>
+              <img class="row__thumb" src="./images/opt/product-explode-flatwise-offset-400.webp" alt="" loading="lazy" decoding="async" width="400" height="250" />
+              <span class="row__title">
+                <span class="row__name">CRAVE ProductViu</span>
+                <span class="row__note">Interactive 3D viewer for 24 busduct products — exploded views, X-ray and part callouts.</span>
+              </span>
+              <span class="row__type">Web app</span>
+              <span class="row__stack mono">Codex · Blender · Three.js</span>
+              <span class="row__go"><svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span>
+            </button>
           </article>
           <article class="project reveal" data-category="web">
-            <div class="project__img project__img--screenshot">
-              <img src="./images/opt/Motion-website-ThemePark-00-hero-desktop-1200.webp" alt="Qstudio — connected theme park platform" class="project__screenshot-img" loading="lazy" decoding="async" srcset="./images/opt/Motion-website-ThemePark-00-hero-desktop-400.webp 400w, ./images/opt/Motion-website-ThemePark-00-hero-desktop-800.webp 800w, ./images/opt/Motion-website-ThemePark-00-hero-desktop-1200.webp 1200w" sizes="(max-width: 640px) calc(100vw - 80px), (max-width: 1024px) calc((100vw - 108px) / 2), 388px" width="1200" height="750" />
-              <div class="project__overlay">
-                <button class="btn btn--small" data-lightbox="qstudio">
-                  View Project <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-                </button>
-              </div>
-            </div>
-            <div class="project__info">
-              <div class="project__tags"><span>Marketing Site</span><span>Scroll Motion</span><span>AI Visuals</span></div>
-              <h3>Qstudio</h3>
-              <p>Scroll-driven site for connected commerce.</p>
-            </div>
+            <button class="row" data-lightbox="hunter" data-preview="./images/opt/hunter-architecture-800.webp">
+              <span class="row__no mono">02</span>
+              <img class="row__thumb" src="./images/opt/hunter-architecture-400.webp" alt="" loading="lazy" decoding="async" width="400" height="250" />
+              <span class="row__title">
+                <span class="row__name">Hunter</span>
+                <span class="row__note">AI job-hunting assistant that finds roles daily, scores each match and tailors your resume.</span>
+              </span>
+              <span class="row__type">AI web app</span>
+              <span class="row__stack mono">React · Gemini · Supabase</span>
+              <span class="row__go"><svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span>
+            </button>
           </article>
-
+          <article class="project reveal" data-category="web">
+            <button class="row" data-lightbox="qstudio" data-preview="./images/opt/Motion-website-ThemePark-00-hero-desktop-800.webp">
+              <span class="row__no mono">03</span>
+              <img class="row__thumb" src="./images/opt/Motion-website-ThemePark-00-hero-desktop-400.webp" alt="" loading="lazy" decoding="async" width="400" height="250" />
+              <span class="row__title">
+                <span class="row__name">Qstudio</span>
+                <span class="row__note">Scroll-driven site for connected commerce.</span>
+              </span>
+              <span class="row__type">Marketing site</span>
+              <span class="row__stack mono">Scroll motion · AI visuals</span>
+              <span class="row__go"><svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span>
+            </button>
+          </article>
+          <article class="project reveal" data-category="web">
+            <button class="row" data-lightbox="alpreneur" data-preview="./images/opt/aigenius-1-800.webp">
+              <span class="row__no mono">04</span>
+              <img class="row__thumb" src="./images/opt/aigenius-1-400.webp" alt="" loading="lazy" decoding="async" width="400" height="250" />
+              <span class="row__title">
+                <span class="row__name">Alpreneur — AI Genius</span>
+                <span class="row__note">Gamified EdTech platform for ages 5–12.</span>
+              </span>
+              <span class="row__type">Web app</span>
+              <span class="row__stack mono">EdTech · Gamified 3D</span>
+              <span class="row__go"><svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span>
+            </button>
+          </article>
+          <article class="project reveal" data-category="web">
+            <button class="row" data-lightbox="alcpest" data-preview="./images/opt/AlcPest-alcpest-home-800.webp">
+              <span class="row__no mono">05</span>
+              <img class="row__thumb" src="./images/opt/AlcPest-alcpest-home-400.webp" alt="" loading="lazy" decoding="async" width="400" height="250" />
+              <span class="row__title">
+                <span class="row__name">ALC Pest Purge Solution</span>
+                <span class="row__note">Business site for a pest control company.</span>
+              </span>
+              <span class="row__type">Business site</span>
+              <span class="row__stack mono">Web · Pest control</span>
+              <span class="row__go"><svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span>
+            </button>
+          </article>
+          <article class="project reveal" data-category="web">
+            <button class="row" data-lightbox="alien-vs-malaysian" data-preview="./images/opt/alien-vs-malaysian-bg-800.webp">
+              <span class="row__no mono">06</span>
+              <img class="row__thumb" src="./images/opt/alien-vs-malaysian-bg-400.webp" alt="" loading="lazy" decoding="async" width="400" height="250" />
+              <span class="row__title">
+                <span class="row__name">Alien Vs Malaysian</span>
+                <span class="row__note">Browser game — Malaysians vs alien invaders.</span>
+              </span>
+              <span class="row__type">Web game</span>
+              <span class="row__stack mono">JavaScript · 2D</span>
+              <span class="row__go"><svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span>
+            </button>
+          </article>
+          <article class="project reveal" data-category="web">
+            <button class="row" data-lightbox="qpos" data-preview="./images/opt/qpos-qbot-home-800.webp">
+              <span class="row__no mono">07</span>
+              <img class="row__thumb" src="./images/opt/qpos-qbot-home-400.webp" alt="" loading="lazy" decoding="async" width="400" height="250" />
+              <span class="row__title">
+                <span class="row__name">Qbot Support Center</span>
+                <span class="row__note">Help desk and knowledge base for SUPERPOS.</span>
+              </span>
+              <span class="row__type">Web app</span>
+              <span class="row__stack mono">Support system · SUPERPOS</span>
+              <span class="row__go"><svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span>
+            </button>
+          </article>
+          <article class="project reveal" data-category="web">
+            <button class="row" data-lightbox="qparking" data-preview="./images/opt/qparking-park1-800.webp">
+              <span class="row__no mono">08</span>
+              <img class="row__thumb" src="./images/opt/qparking-park1-400.webp" alt="" loading="lazy" decoding="async" width="400" height="250" />
+              <span class="row__title">
+                <span class="row__name">QParking</span>
+                <span class="row__note">Online parking booking and management.</span>
+              </span>
+              <span class="row__type">Web app</span>
+              <span class="row__stack mono">Parking system · QBOT</span>
+              <span class="row__go"><svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span>
+            </button>
+          </article>
+          <article class="project reveal" data-category="web">
+            <button class="row" data-lightbox="agency-crm" data-preview="./images/opt/agency_crm-2-800.webp">
+              <span class="row__no mono">09</span>
+              <img class="row__thumb" src="./images/opt/agency_crm-2-400.webp" alt="" loading="lazy" decoding="async" width="400" height="250" />
+              <span class="row__title">
+                <span class="row__name">AgencyFlow CRM</span>
+                <span class="row__note">Agency CRM with Telegram bot alerts.</span>
+              </span>
+              <span class="row__type">Web app</span>
+              <span class="row__stack mono">CRM · Telegram bot</span>
+              <span class="row__go"><svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span>
+            </button>
+          </article>
           <article class="project reveal" data-category="app">
-            <div class="project__img project__img--screenshot">
-              <img src="./images/opt/Motion-website-qstudio-mobile-card-1200.webp" alt="Qstudio mobile — theme park, gym and solutions on a phone" class="project__screenshot-img" loading="lazy" decoding="async" srcset="./images/opt/Motion-website-qstudio-mobile-card-400.webp 400w, ./images/opt/Motion-website-qstudio-mobile-card-800.webp 800w, ./images/opt/Motion-website-qstudio-mobile-card-1200.webp 1200w" sizes="(max-width: 640px) calc(100vw - 80px), (max-width: 1024px) calc((100vw - 108px) / 2), 388px" width="1200" height="750" />
-              <div class="project__overlay">
-                <button class="btn btn--small" data-lightbox="qstudio-mobile">
-                  View Project <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-                </button>
-              </div>
-            </div>
-            <div class="project__info">
-              <div class="project__tags"><span>Mobile Web</span><span>Responsive</span><span>Scroll Motion</span></div>
-              <h3>Qstudio — Mobile</h3>
-              <p>The Qstudio scroll story rebuilt for phones.</p>
-            </div>
+            <button class="row" data-lightbox="qstudio-mobile" data-preview="./images/opt/Motion-website-qstudio-mobile-card-800.webp">
+              <span class="row__no mono">10</span>
+              <img class="row__thumb" src="./images/opt/Motion-website-qstudio-mobile-card-400.webp" alt="" loading="lazy" decoding="async" width="400" height="250" />
+              <span class="row__title">
+                <span class="row__name">Qstudio Mobile</span>
+                <span class="row__note">The Qstudio scroll story rebuilt for phones.</span>
+              </span>
+              <span class="row__type">Mobile web</span>
+              <span class="row__stack mono">Responsive · Scroll motion</span>
+              <span class="row__go"><svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span>
+            </button>
           </article>
-
-          <article class="project reveal" data-category="web">
-            <div class="project__img project__img--screenshot">
-              <img src="./images/opt/aigenius-1-1200.webp" alt="Alpreneur by AI Genius — gamified learning platform" class="project__screenshot-img" loading="lazy" decoding="async" srcset="./images/opt/aigenius-1-400.webp 400w, ./images/opt/aigenius-1-800.webp 800w, ./images/opt/aigenius-1-1200.webp 1200w" sizes="(max-width: 640px) calc(100vw - 80px), (max-width: 1024px) calc((100vw - 108px) / 2), 388px" width="1200" height="750" />
-              <div class="project__overlay">
-                <button class="btn btn--small" data-lightbox="alpreneur">
-                  View Project <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-                </button>
-              </div>
-            </div>
-            <div class="project__info">
-              <div class="project__tags"><span>Web App</span><span>EdTech</span><span>Gamified 3D</span></div>
-              <h3>Alpreneur — AI Genius</h3>
-              <p>Gamified EdTech platform for ages 5–12.</p>
-            </div>
-          </article>
-
-          <article class="project reveal" data-category="web">
-            <div class="project__img project__img--screenshot">
-              <img src="./images/opt/AlcPest-alcpest-home-1200.webp" alt="ALC Pest Purge Solution website" class="project__screenshot-img" loading="lazy" decoding="async" srcset="./images/opt/AlcPest-alcpest-home-400.webp 400w, ./images/opt/AlcPest-alcpest-home-800.webp 800w, ./images/opt/AlcPest-alcpest-home-1200.webp 1200w" sizes="(max-width: 640px) calc(100vw - 80px), (max-width: 1024px) calc((100vw - 108px) / 2), 388px" width="1200" height="750" />
-              <div class="project__overlay">
-                <button class="btn btn--small" data-lightbox="alcpest">
-                  View Project <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-                </button>
-              </div>
-            </div>
-            <div class="project__info">
-              <div class="project__tags"><span>Web</span><span>Business Site</span><span>Pest Control</span></div>
-              <h3>ALC Pest Purge Solution</h3>
-              <p>Business site for a pest control company.</p>
-            </div>
-          </article>
-
-          <article class="project reveal" data-category="web">
-            <div class="project__img project__img--game">
-              <div class="project__game-thumb">
-                <img src="./images/opt/alien-vs-malaysian-bg-1200.webp" class="game-thumb__bg" alt="" loading="lazy" decoding="async" srcset="./images/opt/alien-vs-malaysian-bg-400.webp 400w, ./images/opt/alien-vs-malaysian-bg-800.webp 800w, ./images/opt/alien-vs-malaysian-bg-1200.webp 1200w" sizes="(max-width: 640px) calc(100vw - 80px), (max-width: 1024px) calc((100vw - 108px) / 2), 388px" width="1200" height="750" />
-                <div class="game-thumb__chars">
-                  <img src="./images/opt/alien-vs-malaysian-human-pakcik-300.webp" alt="Pakcik" loading="lazy" decoding="async" />
-                  <img src="./images/opt/alien-vs-malaysian-alien-red-300.webp" alt="Red Alien" loading="lazy" decoding="async" />
-                  <img src="./images/opt/alien-vs-malaysian-alien-green-300.webp" alt="Green Alien" loading="lazy" decoding="async" />
-                  <img src="./images/opt/alien-vs-malaysian-human-aunty-300.webp" alt="Aunty" loading="lazy" decoding="async" />
-                </div>
-                <div class="game-thumb__title">
-                  <span>ALIENS</span>
-                  <em>vs</em>
-                  <span>MALAYSIANS</span>
-                </div>
-              </div>
-              <div class="project__overlay">
-                <button class="btn btn--small" data-lightbox="alien-vs-malaysian">
-                  View Project <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-                </button>
-              </div>
-            </div>
-            <div class="project__info">
-              <div class="project__tags"><span>Web Game</span><span>JavaScript</span><span>2D</span></div>
-              <h3>Alien Vs Malaysian</h3>
-              <p>Browser game — Malaysians vs alien invaders.</p>
-            </div>
-          </article>
-
           <article class="project reveal" data-category="design">
-            <div class="project__img project__img--screenshot">
-              <img src="./images/opt/3d-house-house-1-1200.webp" alt="3D Wooden House" class="project__screenshot-img" loading="lazy" decoding="async" srcset="./images/opt/3d-house-house-1-400.webp 400w, ./images/opt/3d-house-house-1-800.webp 800w, ./images/opt/3d-house-house-1-1200.webp 1200w" sizes="(max-width: 640px) calc(100vw - 80px), (max-width: 1024px) calc((100vw - 108px) / 2), 388px" width="1200" height="750" />
-              <div class="project__overlay">
-                <button class="btn btn--small" data-lightbox="3d-house">
-                  View Project <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-                </button>
-              </div>
-            </div>
-            <div class="project__info">
-              <div class="project__tags"><span>3D Design</span><span>Maya</span><span>Substance Painter</span></div>
-              <h3>3D Wooden House</h3>
-              <p>Modeled in Maya, textured in Substance Painter.</p>
-            </div>
+            <button class="row" data-lightbox="3d-house" data-preview="./images/opt/3d-house-house-1-800.webp">
+              <span class="row__no mono">11</span>
+              <img class="row__thumb" src="./images/opt/3d-house-house-1-400.webp" alt="" loading="lazy" decoding="async" width="400" height="250" />
+              <span class="row__title">
+                <span class="row__name">3D Wooden House</span>
+                <span class="row__note">Modeled in Maya, textured in Substance Painter.</span>
+              </span>
+              <span class="row__type">3D design</span>
+              <span class="row__stack mono">Maya · Substance Painter</span>
+              <span class="row__go"><svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span>
+            </button>
           </article>
-
           <article class="project reveal" data-category="design">
-            <div class="project__img project__img--screenshot">
-              <img src="./images/opt/3d-rube-goldberg-rube-goldberg-1-1200.webp" alt="3D Rube Goldberg Machine" class="project__screenshot-img" loading="lazy" decoding="async" srcset="./images/opt/3d-rube-goldberg-rube-goldberg-1-400.webp 400w, ./images/opt/3d-rube-goldberg-rube-goldberg-1-800.webp 800w, ./images/opt/3d-rube-goldberg-rube-goldberg-1-1200.webp 1200w" sizes="(max-width: 640px) calc(100vw - 80px), (max-width: 1024px) calc((100vw - 108px) / 2), 388px" width="1200" height="750" />
-              <div class="project__overlay">
-                <button class="btn btn--small" data-lightbox="3d-rube-goldberg">
-                  View Project <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-                </button>
-              </div>
-            </div>
-            <div class="project__info">
-              <div class="project__tags"><span>3D Design</span><span>Maya</span><span>Render</span></div>
-              <h3>3D Rube Goldberg</h3>
-              <p>Chain-reaction contraption modeled in Maya.</p>
-            </div>
+            <button class="row" data-lightbox="3d-rube-goldberg" data-preview="./images/opt/3d-rube-goldberg-rube-goldberg-1-800.webp">
+              <span class="row__no mono">12</span>
+              <img class="row__thumb" src="./images/opt/3d-rube-goldberg-rube-goldberg-1-400.webp" alt="" loading="lazy" decoding="async" width="400" height="250" />
+              <span class="row__title">
+                <span class="row__name">3D Rube Goldberg</span>
+                <span class="row__note">Chain-reaction contraption modeled in Maya.</span>
+              </span>
+              <span class="row__type">3D design</span>
+              <span class="row__stack mono">Maya · Render</span>
+              <span class="row__go"><svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span>
+            </button>
           </article>
+          </div>
 
-          <article class="project reveal" data-category="web">
-            <div class="project__img project__img--screenshot">
-              <img src="./images/opt/qpos-qbot-home-1200.webp" alt="Qbot Support Center" class="project__screenshot-img" loading="lazy" decoding="async" srcset="./images/opt/qpos-qbot-home-400.webp 400w, ./images/opt/qpos-qbot-home-800.webp 800w, ./images/opt/qpos-qbot-home-1200.webp 1200w" sizes="(max-width: 640px) calc(100vw - 80px), (max-width: 1024px) calc((100vw - 108px) / 2), 388px" width="1200" height="750" />
-              <div class="project__overlay">
-                <button class="btn btn--small" data-lightbox="qpos">
-                  View Project <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-                </button>
-              </div>
-            </div>
-            <div class="project__info">
-              <div class="project__tags"><span>Web App</span><span>Support System</span><span>SUPERPOS</span></div>
-              <h3>Qbot Support Center</h3>
-              <p>Help desk and knowledge base for SUPERPOS.</p>
-            </div>
-          </article>
-
-          <article class="project reveal" data-category="web">
-            <div class="project__img project__img--screenshot">
-              <img src="./images/opt/qparking-park1-1200.webp" alt="QParking" class="project__screenshot-img" loading="lazy" decoding="async" srcset="./images/opt/qparking-park1-400.webp 400w, ./images/opt/qparking-park1-800.webp 800w, ./images/opt/qparking-park1-1200.webp 1200w" sizes="(max-width: 640px) calc(100vw - 80px), (max-width: 1024px) calc((100vw - 108px) / 2), 388px" width="1200" height="750" />
-              <div class="project__overlay">
-                <button class="btn btn--small" data-lightbox="qparking">
-                  View Project <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-                </button>
-              </div>
-            </div>
-            <div class="project__info">
-              <div class="project__tags"><span>Web App</span><span>Parking System</span><span>QBOT</span></div>
-              <h3>QParking</h3>
-              <p>Online parking booking and management.</p>
-            </div>
-          </article>
-
-
-          <article class="project reveal" data-category="web">
-            <div class="project__img project__img--screenshot">
-              <img src="./images/opt/agency_crm-2-1200.webp" alt="AgencyFlow CRM Dashboard" class="project__screenshot-img" loading="lazy" decoding="async" srcset="./images/opt/agency_crm-2-400.webp 400w, ./images/opt/agency_crm-2-800.webp 800w, ./images/opt/agency_crm-2-1200.webp 1200w" sizes="(max-width: 640px) calc(100vw - 80px), (max-width: 1024px) calc((100vw - 108px) / 2), 388px" width="1200" height="750" />
-              <div class="project__overlay">
-                <button class="btn btn--small" data-lightbox="agency-crm">
-                  View Project <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-                </button>
-              </div>
-            </div>
-            <div class="project__info">
-              <div class="project__tags"><span>Web App</span><span>CRM</span><span>Telegram Bot</span></div>
-              <h3>AgencyFlow CRM</h3>
-              <p>Agency CRM with Telegram bot alerts.</p>
-            </div>
-          </article>
-
-        </div>
-
-        <div class="work__more" id="workMore3D" hidden>
-          <a href="https://www.behance.net/dansonhar" target="_blank" rel="noopener noreferrer" class="btn btn--outline">
-            View More 3D Projects <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-          </a>
+          <div class="work__more" id="workMore3D" hidden>
+            <a href="https://www.behance.net/dansonhar" target="_blank" rel="noopener noreferrer" class="link-btn">More 3D work on Behance <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+          </div>
         </div>
       </div>
+      <div class="preview" id="preview" aria-hidden="true"><img alt="" /></div>
     </section>
 
     <!-- ===================== ABOUT ===================== -->
     <section class="about" id="about">
-      <div class="container">
-        <div class="section__header">
-          <div class="section__label reveal"><span class="label__line"></span>ABOUT ME</div>
-          <h2 class="section__title reveal">FRONTEND DEVELOPER &amp; <span class="text--green">UI DESIGNER</span></h2>
-        </div>
+      <div class="wrap">
+        <header class="sect reveal">
+          <span class="sect__no mono">02</span>
+          <h2 class="sect__title">About</h2>
+        </header>
         <div class="about__grid">
           <div class="about__text reveal">
-            <img src="./images/opt/danson-profile-400.webp" alt="Danson Har" class="about__photo" width="200" height="200" loading="lazy" decoding="async" />
-            <p>I am a Frontend Developer and UI Designer focused on building clean, responsive, and user-friendly websites. My work includes business websites, web apps, support portals, booking platforms, interactive pages, and creative frontend experiences.</p>
-            <p>I also work with visual assets, including 3D models, animations, and AI-assisted media, to make web projects feel more engaging and modern. My main strength is frontend development, supported by a strong eye for layout, interface design, and visual presentation.</p>
+            <p class="about__big">I'm a frontend developer and UI designer focused on clean, responsive, user-friendly websites.</p>
+            <p>My work focuses on building business websites, web applications, support portals, booking platforms and interactive web experiences.</p>
+            <p>I focus on creating responsive, user-friendly interfaces with clean layouts, thoughtful interactions and consistent design. From structuring the frontend to refining the smallest interface details, I aim to build websites and applications that are practical, intuitive and enjoyable to use.</p>
             <div class="about__stats">
-              <div class="stat">
-                <span class="stat__number" data-target="11" data-count="projects">11</span>
-                <span class="stat__label">Projects</span>
-              </div>
+              <div class="stat"><span class="stat__number" data-target="12" data-count="projects">12</span><span class="stat__label">projects shipped &amp; shown here</span></div>
+              <div class="stat"><span class="stat__number" data-target="3" >3</span><span class="stat__label">disciplines — code, UI, 3D</span></div>
             </div>
           </div>
-          <div class="about__skills reveal">
-            <h3>What I Do</h3>
-            <div class="skills__group">
-              <h4 class="skills__group-title">Core frontend</h4>
-              <div class="skills__grid">
-                <div class="skill-box">
-                  <svg class="ico ico--brand ico--js" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z"/></svg>
-                  JavaScript
-                </div>
-                <div class="skill-box">
-                  <svg class="ico ico--brand ico--react" viewBox="0 0 24 24"><path d="M14.23 12.004a2.236 2.236 0 0 1-2.235 2.236 2.236 2.236 0 0 1-2.236-2.236 2.236 2.236 0 0 1 2.235-2.236 2.236 2.236 0 0 1 2.236 2.236zm2.648-10.69c-1.346 0-3.107.96-4.888 2.622-1.78-1.653-3.542-2.602-4.887-2.602-.41 0-.783.093-1.106.278-1.375.793-1.683 3.264-.973 6.365C1.98 8.917 0 10.42 0 12.004c0 1.59 1.99 3.097 5.043 4.03-.704 3.113-.39 5.588.988 6.38.32.187.69.275 1.102.275 1.345 0 3.107-.96 4.888-2.624 1.78 1.654 3.542 2.603 4.887 2.603.41 0 .783-.09 1.106-.275 1.374-.792 1.683-3.263.973-6.365C22.02 15.096 24 13.59 24 12.004c0-1.59-1.99-3.097-5.043-4.032.704-3.11.39-5.587-.988-6.38-.318-.184-.688-.277-1.092-.278zm-.005 1.09v.006c.225 0 .406.044.558.127.666.382.955 1.835.73 3.704-.054.46-.142.945-.25 1.44-.96-.236-2.006-.417-3.107-.534-.66-.905-1.345-1.727-2.035-2.447 1.592-1.48 3.087-2.292 4.105-2.295zm-9.77.02c1.012 0 2.514.808 4.11 2.28-.686.72-1.37 1.537-2.02 2.442-1.107.117-2.154.298-3.113.538-.112-.49-.195-.964-.254-1.42-.23-1.868.054-3.32.714-3.707.19-.09.4-.127.563-.132zm4.882 3.05c.455.468.91.992 1.36 1.564-.44-.02-.89-.034-1.345-.034-.46 0-.915.01-1.36.034.44-.572.895-1.096 1.345-1.565zM12 8.1c.74 0 1.477.034 2.202.093.406.582.802 1.203 1.183 1.86.372.64.71 1.29 1.018 1.946-.308.655-.646 1.31-1.013 1.95-.38.66-.773 1.288-1.18 1.87-.728.063-1.466.098-2.21.098-.74 0-1.477-.035-2.202-.093-.406-.582-.802-1.204-1.183-1.86-.372-.64-.71-1.29-1.018-1.946.303-.657.646-1.313 1.013-1.954.38-.66.773-1.286 1.18-1.868.728-.064 1.466-.098 2.21-.098zm-3.635.254c-.24.377-.48.763-.704 1.16-.225.39-.435.782-.635 1.174-.265-.656-.49-1.31-.676-1.947.64-.15 1.315-.283 2.015-.386zm7.26 0c.695.103 1.365.23 2.006.387-.18.632-.405 1.282-.66 1.933-.2-.39-.41-.783-.64-1.174-.225-.392-.465-.774-.705-1.146zm3.063.675c.484.15.944.317 1.375.498 1.732.74 2.852 1.708 2.852 2.476-.005.768-1.125 1.74-2.857 2.475-.42.18-.88.342-1.355.493-.28-.958-.646-1.956-1.1-2.98.45-1.017.81-2.01 1.085-2.964zm-13.395.004c.278.96.645 1.957 1.1 2.98-.45 1.017-.812 2.01-1.086 2.964-.484-.15-.944-.318-1.37-.5-1.732-.737-2.852-1.706-2.852-2.474 0-.768 1.12-1.742 2.852-2.476.42-.18.88-.342 1.356-.494zm11.678 4.28c.265.657.49 1.312.676 1.948-.64.157-1.316.29-2.016.39.24-.375.48-.762.705-1.158.225-.39.435-.788.636-1.18zm-9.945.02c.2.392.41.783.64 1.175.23.39.465.772.705 1.143-.695-.102-1.365-.23-2.006-.386.18-.63.406-1.282.66-1.933zM17.92 16.32c.112.493.2.968.254 1.423.23 1.868-.054 3.32-.714 3.708-.147.09-.338.128-.563.128-1.012 0-2.514-.807-4.11-2.28.686-.72 1.37-1.536 2.02-2.44 1.107-.118 2.154-.3 3.113-.54zm-11.83.01c.96.234 2.006.415 3.107.532.66.905 1.345 1.727 2.035 2.446-1.595 1.483-3.092 2.295-4.11 2.295-.22-.005-.406-.05-.553-.132-.666-.38-.955-1.834-.73-3.703.054-.46.142-.944.25-1.438zm4.56.64c.44.02.89.034 1.345.034.46 0 .915-.01 1.36-.034-.44.572-.895 1.095-1.345 1.565-.455-.47-.91-.993-1.36-1.565z"/></svg>
-                  React
-                </div>
-                <div class="skill-box">
-                  <svg class="ico ico--line" viewBox="0 0 24 24"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>
-                  Web Development
-                </div>
-                <div class="skill-box">
-                  <svg class="ico ico--line" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-                  UI/UX Design
+        </div>
+
+        <div class="caps">
+          <header class="caps__head reveal">
+            <h3 class="caps__title">What I <span class="caps__grad">work with</span></h3>
+            <p class="caps__sub">Tools, frameworks and platforms I use to build, design and create.</p>
+          </header>
+          <div class="caps__grid reveal">
+            <div class="cap cap--a">
+              <div class="cap__head">
+                <span class="cap__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg></span>
+                <div>
+                  <h4 class="cap__title">Core frontend</h4>
+                  <p class="cap__sub">Build beautiful and responsive interfaces.</p>
                 </div>
               </div>
+              <ul class="cap__list">
+                <li class="skill-box"><svg class="ico ico--brand ico--html5" viewBox="0 0 24 24"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z"/></svg><span>HTML5</span></li>
+                <li class="skill-box"><svg class="ico ico--brand ico--css3" viewBox="0 0 24 24"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm17.09 4.413L5.41 4.41l.213 2.622 10.125.002-.255 2.716h-6.64l.24 2.573h6.182l-.366 3.523-2.91.804-2.956-.81-.188-2.11h-2.61l.29 3.855L12 19.288l5.373-1.53L18.59 4.414z"/></svg><span>CSS3</span></li>
+                <li class="skill-box"><svg class="ico ico--brand ico--js" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z"/></svg><span>JavaScript</span></li>
+                <li class="skill-box"><svg class="ico ico--brand ico--typescript" viewBox="0 0 24 24"><path d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0zm17.363 9.75c.612 0 1.154.037 1.627.111a6.38 6.38 0 0 1 1.306.34v2.458a3.95 3.95 0 0 0-.643-.361 5.093 5.093 0 0 0-.717-.26 5.453 5.453 0 0 0-1.426-.2c-.3 0-.573.028-.819.086a2.1 2.1 0 0 0-.623.242c-.17.104-.3.229-.393.374a.888.888 0 0 0-.14.49c0 .196.053.373.156.529.104.156.252.304.443.444s.423.276.696.41c.273.135.582.274.926.416.47.197.892.407 1.266.628.374.222.695.473.963.753.268.279.472.598.614.957.142.359.214.776.214 1.253 0 .657-.125 1.21-.373 1.656a3.033 3.033 0 0 1-1.012 1.085 4.38 4.38 0 0 1-1.487.596c-.566.12-1.163.18-1.79.18a9.916 9.916 0 0 1-1.84-.164 5.544 5.544 0 0 1-1.512-.493v-2.63a5.033 5.033 0 0 0 3.237 1.2c.333 0 .624-.03.872-.09.249-.06.456-.144.623-.25.166-.108.29-.234.373-.38a1.023 1.023 0 0 0-.074-1.089 2.12 2.12 0 0 0-.537-.5 5.597 5.597 0 0 0-.807-.444 27.72 27.72 0 0 0-1.007-.436c-.918-.383-1.602-.852-2.053-1.405-.45-.553-.676-1.222-.676-2.005 0-.614.123-1.141.369-1.582.246-.441.58-.804 1.004-1.089a4.494 4.494 0 0 1 1.47-.629 7.536 7.536 0 0 1 1.77-.201zm-15.113.188h9.563v2.166H9.506v9.646H6.789v-9.646H3.375z"/></svg><span>TypeScript</span></li>
+                <li class="skill-box"><svg class="ico ico--brand ico--react" viewBox="0 0 24 24"><path d="M14.23 12.004a2.236 2.236 0 0 1-2.235 2.236 2.236 2.236 0 0 1-2.236-2.236 2.236 2.236 0 0 1 2.235-2.236 2.236 2.236 0 0 1 2.236 2.236zm2.648-10.69c-1.346 0-3.107.96-4.888 2.622-1.78-1.653-3.542-2.602-4.887-2.602-.41 0-.783.093-1.106.278-1.375.793-1.683 3.264-.973 6.365C1.98 8.917 0 10.42 0 12.004c0 1.59 1.99 3.097 5.043 4.03-.704 3.113-.39 5.588.988 6.38.32.187.69.275 1.102.275 1.345 0 3.107-.96 4.888-2.624 1.78 1.654 3.542 2.603 4.887 2.603.41 0 .783-.09 1.106-.275 1.374-.792 1.683-3.263.973-6.365C22.02 15.096 24 13.59 24 12.004c0-1.59-1.99-3.097-5.043-4.032.704-3.11.39-5.587-.988-6.38-.318-.184-.688-.277-1.092-.278zm-.005 1.09v.006c.225 0 .406.044.558.127.666.382.955 1.835.73 3.704-.054.46-.142.945-.25 1.44-.96-.236-2.006-.417-3.107-.534-.66-.905-1.345-1.727-2.035-2.447 1.592-1.48 3.087-2.292 4.105-2.295zm-9.77.02c1.012 0 2.514.808 4.11 2.28-.686.72-1.37 1.537-2.02 2.442-1.107.117-2.154.298-3.113.538-.112-.49-.195-.964-.254-1.42-.23-1.868.054-3.32.714-3.707.19-.09.4-.127.563-.132zm4.882 3.05c.455.468.91.992 1.36 1.564-.44-.02-.89-.034-1.345-.034-.46 0-.915.01-1.36.034.44-.572.895-1.096 1.345-1.565zM12 8.1c.74 0 1.477.034 2.202.093.406.582.802 1.203 1.183 1.86.372.64.71 1.29 1.018 1.946-.308.655-.646 1.31-1.013 1.95-.38.66-.773 1.288-1.18 1.87-.728.063-1.466.098-2.21.098-.74 0-1.477-.035-2.202-.093-.406-.582-.802-1.204-1.183-1.86-.372-.64-.71-1.29-1.018-1.946.303-.657.646-1.313 1.013-1.954.38-.66.773-1.286 1.18-1.868.728-.064 1.466-.098 2.21-.098zm-3.635.254c-.24.377-.48.763-.704 1.16-.225.39-.435.782-.635 1.174-.265-.656-.49-1.31-.676-1.947.64-.15 1.315-.283 2.015-.386zm7.26 0c.695.103 1.365.23 2.006.387-.18.632-.405 1.282-.66 1.933-.2-.39-.41-.783-.64-1.174-.225-.392-.465-.774-.705-1.146zm3.063.675c.484.15.944.317 1.375.498 1.732.74 2.852 1.708 2.852 2.476-.005.768-1.125 1.74-2.857 2.475-.42.18-.88.342-1.355.493-.28-.958-.646-1.956-1.1-2.98.45-1.017.81-2.01 1.085-2.964zm-13.395.004c.278.96.645 1.957 1.1 2.98-.45 1.017-.812 2.01-1.086 2.964-.484-.15-.944-.318-1.37-.5-1.732-.737-2.852-1.706-2.852-2.474 0-.768 1.12-1.742 2.852-2.476.42-.18.88-.342 1.356-.494zm11.678 4.28c.265.657.49 1.312.676 1.948-.64.157-1.316.29-2.016.39.24-.375.48-.762.705-1.158.225-.39.435-.788.636-1.18zm-9.945.02c.2.392.41.783.64 1.175.23.39.465.772.705 1.143-.695-.102-1.365-.23-2.006-.386.18-.63.406-1.282.66-1.933zM17.92 16.32c.112.493.2.968.254 1.423.23 1.868-.054 3.32-.714 3.708-.147.09-.338.128-.563.128-1.012 0-2.514-.807-4.11-2.28.686-.72 1.37-1.536 2.02-2.44 1.107-.118 2.154-.3 3.113-.54zm-11.83.01c.96.234 2.006.415 3.107.532.66.905 1.345 1.727 2.035 2.446-1.595 1.483-3.092 2.295-4.11 2.295-.22-.005-.406-.05-.553-.132-.666-.38-.955-1.834-.73-3.703.054-.46.142-.944.25-1.438zm4.56.64c.44.02.89.034 1.345.034.46 0 .915-.01 1.36-.034-.44.572-.895 1.095-1.345 1.565-.455-.47-.91-.993-1.36-1.565z"/></svg><span>React</span></li>
+                <li class="skill-box"><svg class="ico ico--brand ico--tailwind" viewBox="0 0 24 24"><path d="M12.001,4.8c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 C13.666,10.618,15.027,12,18.001,12c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C16.337,6.182,14.976,4.8,12.001,4.8z M6.001,12c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 c1.177,1.194,2.538,2.576,5.512,2.576c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C10.337,13.382,8.976,12,6.001,12z"/></svg><span>Tailwind CSS</span></li>
+                <li class="skill-box"><svg class="ico ico--brand ico--vite" viewBox="0 0 24 24"><path d="m8.286 10.578.512-8.657a.306.306 0 0 1 .247-.282L17.377.006a.306.306 0 0 1 .353.385l-1.558 5.403a.306.306 0 0 0 .352.385l2.388-.46a.306.306 0 0 1 .332.438l-6.79 13.55-.123.19a.294.294 0 0 1-.252.14c-.177 0-.35-.152-.305-.369l1.095-5.301a.306.306 0 0 0-.388-.355l-1.433.435a.306.306 0 0 1-.389-.354l.69-3.375a.306.306 0 0 0-.37-.36l-2.32.536a.306.306 0 0 1-.374-.316zm14.976-7.926L17.284 3.74l-.544 1.887 2.077-.4a.8.8 0 0 1 .84.369.8.8 0 0 1 .034.783L12.9 19.93l-.013.025-.015.023-.122.19a.801.801 0 0 1-.672.37.826.826 0 0 1-.634-.302.8.8 0 0 1-.16-.67l1.029-4.981-1.12.34a.81.81 0 0 1-.86-.262.802.802 0 0 1-.165-.67l.63-3.08-2.027.468a.808.808 0 0 1-.768-.233.81.81 0 0 1-.217-.6l.389-6.57-7.44-1.33a.612.612 0 0 0-.64.906L11.58 23.691a.612.612 0 0 0 1.066-.004l11.26-20.135a.612.612 0 0 0-.644-.9z"/></svg><span>Vite</span></li>
+                <li class="skill-box"><svg class="ico ico--brand ico--threejs" viewBox="0 0 24 24"><path d="M.38 0a.268.268 0 0 0-.256.332l2.894 11.716a.268.268 0 0 0 .01.04l2.89 11.708a.268.268 0 0 0 .447.128L23.802 7.15a.268.268 0 0 0-.112-.45l-5.784-1.667a.268.268 0 0 0-.123-.035L6.38 1.715a.268.268 0 0 0-.144-.04L.456.01A.268.268 0 0 0 .38 0zm.374.654L5.71 2.08 1.99 5.664zM6.61 2.34l4.864 1.4-3.65 3.515zm-.522.12l1.217 4.926-4.877-1.4zm6.28 1.538l4.878 1.404-3.662 3.53zm-.52.13l1.208 4.9-4.853-1.392zm6.3 1.534l4.947 1.424-3.715 3.574zm-.524.12l1.215 4.926-4.876-1.398zm-15.432.696l4.964 1.424-3.726 3.586zM8.047 8.15l4.877 1.4-3.66 3.527zm-.518.137l1.236 5.017-4.963-1.432zm6.274 1.535l4.965 1.425-3.73 3.586zm-.52.127l1.235 5.012-4.958-1.43zm-9.63 2.438l4.873 1.406-3.656 3.523zm5.854 1.687l4.863 1.403-3.648 3.51zm-.54.04l1.214 4.927-4.875-1.4zm-3.896 4.02l5.037 1.442-3.782 3.638z"/></svg><span>Three.js</span></li>
+                <li class="skill-box"><svg class="ico ico--line ico--globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg><span>Web Development</span></li>
+                <li class="skill-box"><svg class="ico ico--line ico--grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg><span>UI/UX Design</span></li>
+              </ul>
             </div>
-            <div class="skills__group skills__group--sub">
-              <h4 class="skills__group-title">Tooling &amp; delivery</h4>
-              <div class="skills__grid">
-                <div class="skill-box">
-                  <svg class="ico ico--brand ico--github" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-                  GitHub
-                </div>
-                <div class="skill-box">
-                  <svg class="ico ico--brand ico--docker" viewBox="0 0 24 24"><path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.184-.186h-2.12a.186.186 0 00-.186.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.082.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.376 11.376 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 003.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288z"/></svg>
-                  Docker
-                </div>
-                <div class="skill-box">
-                  <svg class="ico ico--brand ico--cloudflare" viewBox="0 0 24 24"><path d="M16.5088 16.8447c.1475-.5068.0908-.9707-.1553-1.3154-.2246-.3164-.6045-.499-1.0615-.5205l-8.6592-.1123a.1559.1559 0 0 1-.1333-.0713c-.0283-.042-.0351-.0986-.0215-.1548.0263-.084.1042-.1479.1919-.1553l8.7402-.1123c1.0361-.0479 2.1592-.8877 2.5518-1.918l.498-1.2998a.2705.2705 0 0 0 .0127-.1553c-.5615-2.541-2.8281-4.4365-5.5391-4.4365-2.499 0-4.6172 1.6123-5.3789 3.8506a2.5732 2.5732 0 0 0-1.8027-.499c-1.2129.1201-2.1885 1.0947-2.3086 2.3076-.0303.3135-.0068.6172.0664.8984C1.4258 12.751 0 14.207 0 16.002c0 .1611.0117.3193.0332.4756a.1547.1547 0 0 0 .1533.1338l15.9873.002h.0009c.0752 0 .1445-.0498.166-.123l.1681-.5947zM19.2354 9.9014c-.0791 0-.1592.002-.2383.0059-.0537.002-.1006.041-.1201.0947l-.3398 1.1699c-.1475.5078-.0908.9707.1553 1.3164.2246.3154.6045.498 1.0615.5195l1.8467.1133c.0537.002.1006.0361.1289.0781.0283.043.0361.1006.0215.1553-.0264.084-.1045.1475-.1924.1553l-1.9169.1123c-1.041.0488-2.1592.8877-2.5518 1.9179l-.1387.3604c-.0273.0703.0234.1416.0996.1416h6.5977a.1668.1668 0 0 0 .1611-.124c.1123-.4053.1729-.832.1729-1.2725 0-2.5859-2.1006-4.6875-4.6875-4.6875"/></svg>
-                  Cloudflare
-                </div>
-                <div class="skill-box">
-                  <svg class="ico ico--brand ico--vscode" viewBox="0 0 24 24"><path d="M23.15 2.587L18.21.21a1.494 1.494 0 0 0-1.705.29l-9.46 8.63-4.12-3.128a.999.999 0 0 0-1.276.057L.327 7.261A1 1 0 0 0 .326 8.74L3.899 12 .326 15.26a1 1 0 0 0 .001 1.479L1.65 17.94a.999.999 0 0 0 1.276.057l4.12-3.128 9.46 8.63a1.492 1.492 0 0 0 1.704.29l4.942-2.377A1.5 1.5 0 0 0 24 20.06V3.939a1.5 1.5 0 0 0-.85-1.352zm-5.146 14.861L10.826 12l7.178-5.448v10.896z"/></svg>
-                  VS Code
-                </div>
-                <div class="skill-box">
-                  <svg class="ico ico--brand ico--supabase" viewBox="0 0 24 24"><path d="M11.9 1.036c-.015-.986-1.26-1.41-1.874-.637L.764 12.05C-.33 13.427.65 15.455 2.409 15.455h9.579l.113 7.51c.014.985 1.259 1.408 1.873.636l9.262-11.653c1.093-1.375.113-3.403-1.645-3.403h-9.642z"/></svg>
-                  Supabase
-                </div>
-                <div class="skill-box">
-                  <svg class="ico ico--brand ico--vercel" viewBox="0 0 24 24"><path d="m12 1.608 12 20.784H0Z"/></svg>
-                  Vercel
+            <div class="cap cap--b">
+              <div class="cap__head">
+                <span class="cap__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><path d="M6 6h.01M6 18h.01"/></svg></span>
+                <div>
+                  <h4 class="cap__title">Backend, tooling &amp; delivery</h4>
+                  <p class="cap__sub">Powerful tools for scalable solutions.</p>
                 </div>
               </div>
+              <ul class="cap__list">
+                <li class="skill-box"><svg class="ico ico--brand ico--github" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg><span>GitHub</span></li>
+                <li class="skill-box"><svg class="ico ico--brand ico--docker" viewBox="0 0 24 24"><path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.184-.186h-2.12a.186.186 0 00-.186.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.082.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.376 11.376 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 003.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288z"/></svg><span>Docker</span></li>
+                <li class="skill-box"><svg class="ico ico--brand ico--cloudflare" viewBox="0 0 24 24"><path d="M16.5088 16.8447c.1475-.5068.0908-.9707-.1553-1.3154-.2246-.3164-.6045-.499-1.0615-.5205l-8.6592-.1123a.1559.1559 0 0 1-.1333-.0713c-.0283-.042-.0351-.0986-.0215-.1548.0263-.084.1042-.1479.1919-.1553l8.7402-.1123c1.0361-.0479 2.1592-.8877 2.5518-1.918l.498-1.2998a.2705.2705 0 0 0 .0127-.1553c-.5615-2.541-2.8281-4.4365-5.5391-4.4365-2.499 0-4.6172 1.6123-5.3789 3.8506a2.5732 2.5732 0 0 0-1.8027-.499c-1.2129.1201-2.1885 1.0947-2.3086 2.3076-.0303.3135-.0068.6172.0664.8984C1.4258 12.751 0 14.207 0 16.002c0 .1611.0117.3193.0332.4756a.1547.1547 0 0 0 .1533.1338l15.9873.002h.0009c.0752 0 .1445-.0498.166-.123l.1681-.5947zM19.2354 9.9014c-.0791 0-.1592.002-.2383.0059-.0537.002-.1006.041-.1201.0947l-.3398 1.1699c-.1475.5078-.0908.9707.1553 1.3164.2246.3154.6045.498 1.0615.5195l1.8467.1133c.0537.002.1006.0361.1289.0781.0283.043.0361.1006.0215.1553-.0264.084-.1045.1475-.1924.1553l-1.9169.1123c-1.041.0488-2.1592.8877-2.5518 1.9179l-.1387.3604c-.0273.0703.0234.1416.0996.1416h6.5977a.1668.1668 0 0 0 .1611-.124c.1123-.4053.1729-.832.1729-1.2725 0-2.5859-2.1006-4.6875-4.6875-4.6875"/></svg><span>Cloudflare</span></li>
+                <li class="skill-box"><svg class="ico ico--brand ico--vscode" viewBox="0 0 24 24"><path d="M23.15 2.587L18.21.21a1.494 1.494 0 0 0-1.705.29l-9.46 8.63-4.12-3.128a.999.999 0 0 0-1.276.057L.327 7.261A1 1 0 0 0 .326 8.74L3.899 12 .326 15.26a1 1 0 0 0 .001 1.479L1.65 17.94a.999.999 0 0 0 1.276.057l4.12-3.128 9.46 8.63a1.492 1.492 0 0 0 1.704.29l4.942-2.377A1.5 1.5 0 0 0 24 20.06V3.939a1.5 1.5 0 0 0-.85-1.352zm-5.146 14.861L10.826 12l7.178-5.448v10.896z"/></svg><span>VS Code</span></li>
+                <li class="skill-box"><svg class="ico ico--brand ico--codex" viewBox="0 0 24 24"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg><span>Codex</span></li>
+                <li class="skill-box"><svg class="ico ico--brand ico--supabase" viewBox="0 0 24 24"><path d="M11.9 1.036c-.015-.986-1.26-1.41-1.874-.637L.764 12.05C-.33 13.427.65 15.455 2.409 15.455h9.579l.113 7.51c.014.985 1.259 1.408 1.873.636l9.262-11.653c1.093-1.375.113-3.403-1.645-3.403h-9.642z"/></svg><span>Supabase</span></li>
+                <li class="skill-box"><svg class="ico ico--brand ico--vercel" viewBox="0 0 24 24"><path d="m12 1.608 12 20.784H0Z"/></svg><span>Vercel</span></li>
+                <li class="skill-box"><svg class="ico ico--brand ico--node" viewBox="0 0 24 24"><path d="M11.998,24c-0.321,0-0.641-0.084-0.922-0.247l-2.936-1.737c-0.438-0.245-0.224-0.332-0.08-0.383 c0.585-0.203,0.703-0.25,1.328-0.604c0.065-0.037,0.151-0.023,0.218,0.017l2.256,1.339c0.082,0.045,0.197,0.045,0.272,0l8.795-5.076 c0.082-0.047,0.134-0.141,0.134-0.238V6.921c0-0.099-0.053-0.192-0.137-0.242l-8.791-5.072c-0.081-0.047-0.189-0.047-0.271,0 L3.075,6.68C2.99,6.729,2.936,6.825,2.936,6.921v10.15c0,0.097,0.054,0.189,0.139,0.235l2.409,1.392 c1.307,0.654,2.108-0.116,2.108-0.89V7.787c0-0.142,0.114-0.253,0.256-0.253h1.115c0.139,0,0.255,0.112,0.255,0.253v10.021 c0,1.745-0.95,2.745-2.604,2.745c-0.508,0-0.909,0-2.026-0.551L2.28,18.675c-0.57-0.329-0.922-0.945-0.922-1.604V6.921 c0-0.659,0.353-1.275,0.922-1.603l8.795-5.082c0.557-0.315,1.296-0.315,1.848,0l8.794,5.082c0.57,0.329,0.924,0.944,0.924,1.603 v10.15c0,0.659-0.354,1.273-0.924,1.604l-8.794,5.078C12.643,23.916,12.324,24,11.998,24z M19.099,13.993 c0-1.9-1.284-2.406-3.987-2.763c-2.731-0.361-3.009-0.548-3.009-1.187c0-0.528,0.235-1.233,2.258-1.233 c1.807,0,2.473,0.389,2.747,1.607c0.024,0.115,0.129,0.199,0.247,0.199h1.141c0.071,0,0.138-0.031,0.186-0.081 c0.048-0.054,0.074-0.123,0.067-0.196c-0.177-2.098-1.571-3.076-4.388-3.076c-2.508,0-4.004,1.058-4.004,2.833 c0,1.925,1.488,2.457,3.895,2.695c2.88,0.282,3.103,0.703,3.103,1.269c0,0.983-0.789,1.402-2.642,1.402 c-2.327,0-2.839-0.584-3.011-1.742c-0.02-0.124-0.126-0.215-0.253-0.215h-1.137c-0.141,0-0.254,0.112-0.254,0.253 c0,1.482,0.806,3.248,4.655,3.248C17.501,17.007,19.099,15.91,19.099,13.993z"/></svg><span>Node.js</span></li>
+                <li class="skill-box"><svg class="ico ico--line ico--sliders" viewBox="0 0 24 24"><path d="M21 4h-7M10 4H3M21 12h-9M8 12H3M21 20h-5M12 20H3M14 2v4M8 10v4M16 18v4"/></svg><span>REST APIs</span></li>
+              </ul>
             </div>
-            <div class="skills__group skills__group--sub">
-              <h4 class="skills__group-title">Design, 3D &amp; AI media</h4>
-              <div class="skills__grid">
-                <div class="skill-box">
-                  <svg class="ico ico--figma" viewBox="0 0 38 57"><path fill="#1abcfe" d="M19 28.5a9.5 9.5 0 1 1 19 0 9.5 9.5 0 1 1-19 0z"/><path fill="#0acf83" d="M0 47.5A9.5 9.5 0 0 1 9.5 38H19v9.5a9.5 9.5 0 1 1-19 0z"/><path fill="#ff7262" d="M19 0v19h9.5a9.5 9.5 0 1 0 0-19H19z"/><path fill="#f24e1e" d="M0 9.5A9.5 9.5 0 0 0 9.5 19H19V0H9.5A9.5 9.5 0 0 0 0 9.5z"/><path fill="#a259ff" d="M0 28.5A9.5 9.5 0 0 0 9.5 38H19V19H9.5A9.5 9.5 0 0 0 0 28.5z"/></svg>
-                  Figma
-                </div>
-                <div class="skill-box">
-                  <svg class="ico ico--brand ico--photoshop" viewBox="0 0 24 24"><path d="M9.85 8.42c-.37-.15-.77-.21-1.18-.2-.26 0-.49 0-.68.01-.2-.01-.34 0-.41.01v3.36c.14.01.27.02.39.02h.53c.39 0 .78-.06 1.15-.18.32-.09.6-.28.82-.53.21-.25.31-.59.31-1.03.01-.31-.07-.62-.23-.89-.17-.26-.41-.46-.7-.57zM19.75.3H4.25C1.9.3 0 2.2 0 4.55v14.899c0 2.35 1.9 4.25 4.25 4.25h15.5c2.35 0 4.25-1.9 4.25-4.25V4.55C24 2.2 22.1.3 19.75.3zm-7.391 11.65c-.399.56-.959.98-1.609 1.22-.68.25-1.43.34-2.25.34-.24 0-.4 0-.5-.01s-.24-.01-.43-.01v3.209c.01.07-.04.131-.11.141H5.52c-.08 0-.12-.041-.12-.131V6.42c0-.07.03-.11.1-.11.17 0 .33 0 .56-.01.24-.01.49-.01.76-.02s.56-.01.87-.02c.31-.01.61-.01.91-.01.82 0 1.5.1 2.06.31.5.17.96.45 1.34.82.32.32.57.71.73 1.14.149.42.229.85.229 1.3.001.86-.199 1.57-.6 2.13zm7.091 3.89c-.28.4-.671.709-1.12.891-.49.209-1.09.318-1.811.318-.459 0-.91-.039-1.359-.129-.35-.061-.7-.17-1.02-.32-.07-.039-.121-.109-.111-.189v-1.74c0-.029.011-.07.041-.09.029-.02.06-.01.09.01.39.23.8.391 1.24.49.379.1.779.15 1.18.15.38 0 .65-.051.83-.141.16-.07.27-.24.27-.42 0-.141-.08-.27-.24-.4-.16-.129-.489-.279-.979-.471-.51-.18-.979-.42-1.42-.719-.31-.221-.569-.51-.761-.85-.159-.32-.239-.67-.229-1.021 0-.43.12-.84.341-1.21.25-.4.619-.72 1.049-.92.469-.239 1.059-.349 1.769-.349.41 0 .83.03 1.24.09.3.04.59.12.86.23.039.01.08.05.1.09.01.04.02.08.02.12v1.63c0 .04-.02.08-.05.1-.09.02-.14.02-.18 0-.3-.16-.62-.27-.96-.34-.37-.08-.74-.13-1.12-.13-.2-.01-.41.02-.601.07-.129.03-.24.1-.31.2-.05.08-.08.18-.08.27s.04.18.101.26c.09.11.209.2.34.27.229.12.47.23.709.33.541.18 1.061.43 1.541.73.33.209.6.49.789.83.16.318.24.67.23 1.029.011.471-.129.94-.389 1.331z"/></svg>
-                  Photoshop
-                </div>
-                <div class="skill-box">
-                  <svg class="ico ico--brand ico--illustrator" viewBox="0 0 24 24"><path d="M10.53 10.73c-.1-.31-.19-.61-.29-.92-.1-.31-.19-.6-.27-.89-.08-.28-.15-.54-.22-.78h-.02c-.09.43-.2.86-.34 1.29-.15.48-.3.98-.46 1.48-.14.51-.29.98-.44 1.4h2.54c-.06-.211-.14-.46-.23-.721-.09-.269-.18-.559-.27-.859zM19.75.3H4.25C1.9.3 0 2.2 0 4.55v14.9c0 2.35 1.9 4.25 4.25 4.25h15.5c2.35 0 4.25-1.9 4.25-4.25V4.55C24 2.2 22.1.3 19.75.3zM14.7 16.83h-2.091c-.069.01-.139-.04-.159-.11l-.82-2.38H7.91l-.76 2.35c-.02.09-.1.15-.19.141H5.08c-.11 0-.14-.061-.11-.18L8.19 7.38c.03-.1.06-.21.1-.33.04-.21.06-.43.06-.65-.01-.05.03-.1.08-.11h2.59c.08 0 .12.03.13.08l3.65 10.3c.03.109 0 .16-.1.16zm3.4-.15c0 .11-.039.16-.129.16H16.01c-.1 0-.15-.061-.15-.16v-7.7c0-.1.041-.14.131-.14h1.98c.09 0 .129.05.129.14v7.7zm-.209-9.03c-.231.24-.571.37-.911.35-.33.01-.65-.12-.891-.35-.23-.25-.35-.58-.34-.92-.01-.34.12-.66.359-.89.242-.23.562-.35.892-.35.391 0 .689.12.91.35.22.24.34.56.33.89.01.34-.11.67-.349.92z"/></svg>
-                  Illustrator
-                </div>
-                <div class="skill-box">
-                  <svg class="ico ico--logo" viewBox="0 0 512 512"><path fill="#4aa0cd" d="M56 128 120 100V404l-64 28z"/><path fill="#2f6d88" d="M140 100h296a20 20 0 0 1 20 20v272a20 20 0 0 1-20 20H140a20 20 0 0 1-20-20V120a20 20 0 0 1 20-20z"/><path fill="#3d8db5" d="M120 120a20 20 0 0 1 20-20h296a20 20 0 0 1 20 20v208H120z"/><text x="288" y="290" font-family="Arial,Helvetica,sans-serif" font-size="220" font-weight="800" fill="#fff" text-anchor="middle">M</text><text x="290" y="394" font-family="Arial,Helvetica,sans-serif" font-size="70" font-weight="800" letter-spacing="4" fill="#fff" text-anchor="middle">AYA</text></svg>
-                  Maya
-                </div>
-                <div class="skill-box">
-                  <svg class="ico ico--logo" viewBox="0 0 512 512"><path fill="#e0342b" d="M256 40 452 154v204L256 472 60 358V154z"/><text x="256" y="368" font-family="Arial,Helvetica,sans-serif" font-size="330" font-weight="800" fill="#fff" text-anchor="middle">S</text></svg>
-                  Substance Painter
-                </div>
-                <div class="skill-box">
-                  <svg class="ico ico--line" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96 12 12.01l8.73-5.05"/><path d="M12 22.08V12"/></svg>
-                  3D Model/Render
-                </div>
-                <div class="skill-box">
-                  <svg class="ico ico--line" viewBox="0 0 24 24"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2"/></svg>
-                  AI Development
-                </div>
-                <div class="skill-box">
-                  <img class="ico ico--img" src="./images/opt/create_anything_logo-48.webp" alt="Create Anything logo" loading="lazy" decoding="async" width="22" height="22" />
-                  Create Anything
+            <div class="cap cap--c">
+              <div class="cap__head">
+                <span class="cap__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m9.06 11.9 8.07-8.06a2.85 2.85 0 1 1 4.03 4.03l-8.06 8.08"/><path d="M7.07 14.94c-1.66 0-3 1.35-3 3.02 0 1.33-2.5 1.52-2 2.02 1.08 1.1 2.49 2.02 4 2.02 2.2 0 4-1.8 4-4.04a3.01 3.01 0 0 0-3-3.02z"/></svg></span>
+                <div>
+                  <h4 class="cap__title">Design, 3D &amp; AI media</h4>
+                  <p class="cap__sub">Bring ideas to life.</p>
                 </div>
               </div>
-            </div>
+              <ul class="cap__list">
+                <li class="skill-box"><svg class="ico ico--figma" viewBox="0 0 38 57"><path fill="#1abcfe" d="M19 28.5a9.5 9.5 0 1 1 19 0 9.5 9.5 0 1 1-19 0z"/><path fill="#0acf83" d="M0 47.5A9.5 9.5 0 0 1 9.5 38H19v9.5a9.5 9.5 0 1 1-19 0z"/><path fill="#ff7262" d="M19 0v19h9.5a9.5 9.5 0 1 0 0-19H19z"/><path fill="#f24e1e" d="M0 9.5A9.5 9.5 0 0 0 9.5 19H19V0H9.5A9.5 9.5 0 0 0 0 9.5z"/><path fill="#a259ff" d="M0 28.5A9.5 9.5 0 0 0 9.5 38H19V19H9.5A9.5 9.5 0 0 0 0 28.5z"/></svg><span>Figma</span></li>
+                <li class="skill-box"><svg class="ico ico--brand ico--photoshop" viewBox="0 0 24 24"><path d="M9.85 8.42c-.37-.15-.77-.21-1.18-.2-.26 0-.49 0-.68.01-.2-.01-.34 0-.41.01v3.36c.14.01.27.02.39.02h.53c.39 0 .78-.06 1.15-.18.32-.09.6-.28.82-.53.21-.25.31-.59.31-1.03.01-.31-.07-.62-.23-.89-.17-.26-.41-.46-.7-.57zM19.75.3H4.25C1.9.3 0 2.2 0 4.55v14.899c0 2.35 1.9 4.25 4.25 4.25h15.5c2.35 0 4.25-1.9 4.25-4.25V4.55C24 2.2 22.1.3 19.75.3zm-7.391 11.65c-.399.56-.959.98-1.609 1.22-.68.25-1.43.34-2.25.34-.24 0-.4 0-.5-.01s-.24-.01-.43-.01v3.209c.01.07-.04.131-.11.141H5.52c-.08 0-.12-.041-.12-.131V6.42c0-.07.03-.11.1-.11.17 0 .33 0 .56-.01.24-.01.49-.01.76-.02s.56-.01.87-.02c.31-.01.61-.01.91-.01.82 0 1.5.1 2.06.31.5.17.96.45 1.34.82.32.32.57.71.73 1.14.149.42.229.85.229 1.3.001.86-.199 1.57-.6 2.13zm7.091 3.89c-.28.4-.671.709-1.12.891-.49.209-1.09.318-1.811.318-.459 0-.91-.039-1.359-.129-.35-.061-.7-.17-1.02-.32-.07-.039-.121-.109-.111-.189v-1.74c0-.029.011-.07.041-.09.029-.02.06-.01.09.01.39.23.8.391 1.24.49.379.1.779.15 1.18.15.38 0 .65-.051.83-.141.16-.07.27-.24.27-.42 0-.141-.08-.27-.24-.4-.16-.129-.489-.279-.979-.471-.51-.18-.979-.42-1.42-.719-.31-.221-.569-.51-.761-.85-.159-.32-.239-.67-.229-1.021 0-.43.12-.84.341-1.21.25-.4.619-.72 1.049-.92.469-.239 1.059-.349 1.769-.349.41 0 .83.03 1.24.09.3.04.59.12.86.23.039.01.08.05.1.09.01.04.02.08.02.12v1.63c0 .04-.02.08-.05.1-.09.02-.14.02-.18 0-.3-.16-.62-.27-.96-.34-.37-.08-.74-.13-1.12-.13-.2-.01-.41.02-.601.07-.129.03-.24.1-.31.2-.05.08-.08.18-.08.27s.04.18.101.26c.09.11.209.2.34.27.229.12.47.23.709.33.541.18 1.061.43 1.541.73.33.209.6.49.789.83.16.318.24.67.23 1.029.011.471-.129.94-.389 1.331z"/></svg><span>Photoshop</span></li>
+                <li class="skill-box"><svg class="ico ico--brand ico--illustrator" viewBox="0 0 24 24"><path d="M10.53 10.73c-.1-.31-.19-.61-.29-.92-.1-.31-.19-.6-.27-.89-.08-.28-.15-.54-.22-.78h-.02c-.09.43-.2.86-.34 1.29-.15.48-.3.98-.46 1.48-.14.51-.29.98-.44 1.4h2.54c-.06-.211-.14-.46-.23-.721-.09-.269-.18-.559-.27-.859zM19.75.3H4.25C1.9.3 0 2.2 0 4.55v14.9c0 2.35 1.9 4.25 4.25 4.25h15.5c2.35 0 4.25-1.9 4.25-4.25V4.55C24 2.2 22.1.3 19.75.3zM14.7 16.83h-2.091c-.069.01-.139-.04-.159-.11l-.82-2.38H7.91l-.76 2.35c-.02.09-.1.15-.19.141H5.08c-.11 0-.14-.061-.11-.18L8.19 7.38c.03-.1.06-.21.1-.33.04-.21.06-.43.06-.65-.01-.05.03-.1.08-.11h2.59c.08 0 .12.03.13.08l3.65 10.3c.03.109 0 .16-.1.16zm3.4-.15c0 .11-.039.16-.129.16H16.01c-.1 0-.15-.061-.15-.16v-7.7c0-.1.041-.14.131-.14h1.98c.09 0 .129.05.129.14v7.7zm-.209-9.03c-.231.24-.571.37-.911.35-.33.01-.65-.12-.891-.35-.23-.25-.35-.58-.34-.92-.01-.34.12-.66.359-.89.242-.23.562-.35.892-.35.391 0 .689.12.91.35.22.24.34.56.33.89.01.34-.11.67-.349.92z"/></svg><span>Illustrator</span></li>
+                <li class="skill-box"><svg class="ico ico--logo" viewBox="0 0 512 512"><path fill="#4aa0cd" d="M56 128 120 100V404l-64 28z"/><path fill="#2f6d88" d="M140 100h296a20 20 0 0 1 20 20v272a20 20 0 0 1-20 20H140a20 20 0 0 1-20-20V120a20 20 0 0 1 20-20z"/><path fill="#3d8db5" d="M120 120a20 20 0 0 1 20-20h296a20 20 0 0 1 20 20v208H120z"/><text x="288" y="290" font-family="Arial,Helvetica,sans-serif" font-size="220" font-weight="800" fill="#fff" text-anchor="middle">M</text><text x="290" y="394" font-family="Arial,Helvetica,sans-serif" font-size="70" font-weight="800" letter-spacing="4" fill="#fff" text-anchor="middle">AYA</text></svg><span>Maya</span></li>
+                <li class="skill-box"><svg class="ico ico--logo" viewBox="0 0 512 512"><path fill="#e0342b" d="M256 40 452 154v204L256 472 60 358V154z"/><text x="256" y="368" font-family="Arial,Helvetica,sans-serif" font-size="330" font-weight="800" fill="#fff" text-anchor="middle">S</text></svg><span>Substance Painter</span></li>
+                <li class="skill-box"><img class="ico ico--img" src="./images/opt/create_anything_logo-48.webp" alt="Create Anything logo" loading="lazy" decoding="async" width="22" height="22" /><span>Create Anything</span></li>
+                <li class="skill-box"><svg class="ico ico--line" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96 12 12.01l8.73-5.05"/><path d="M12 22.08V12"/></svg><span>3D Model/Render</span></li>
+                <li class="skill-box"><svg class="ico ico--line ico--brain" viewBox="0 0 24 24"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/><path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"/><path d="M17.599 6.5a3 3 0 0 0 .399-1.375M6.003 5.125A3 3 0 0 0 6.401 6.5M3.477 10.896a4 4 0 0 1 .585-.396M19.938 10.5a4 4 0 0 1 .585.396M6 18a4 4 0 0 1-1.967-.516M19.967 17.484A4 4 0 0 1 18 18"/></svg><span>AI Development</span></li>
+              </ul>
             </div>
           </div>
         </div>
@@ -487,46 +402,25 @@
 
     <!-- ===================== CONTACT ===================== -->
     <section class="contact" id="contact">
-      <div class="container">
-        <div class="section__header">
-          <div class="section__label reveal"><span class="label__line"></span>GET IN TOUCH</div>
-          <h2 class="section__title reveal">LET'S WORK <span class="text--green">TOGETHER</span></h2>
-        </div>
-        <div class="contact__direct reveal">
-          <p class="contact__lead">No forms. No waiting. Reach me directly and I'll get back to you soon.</p>
-          <div class="contact__cards">
-            <a href="mailto:Dansonhar8@gmail.com" class="contact-card">
-              <div class="contact-card__icon contact-card__icon--brand">
-                <svg width="26" height="26" viewBox="0 0 48 48"><path fill="#4caf50" d="M45,16.2l-5,2.75l-5,4.75L35,40h7c1.657,0,3-1.343,3-3V16.2z"/><path fill="#1e88e5" d="M3,16.2l3.614,1.71L13,23.7V40H6c-1.657,0-3-1.343-3-3V16.2z"/><polygon fill="#e53935" points="35,11.2 24,19.45 13,11.2 12,17 13,23.7 24,31.95 35,23.7 36,17"/><path fill="#c62828" d="M3,12.298V16.2l10,7.5V11.2L9.876,8.859C9.132,8.301,8.228,8,7.298,8h0C4.924,8,3,9.924,3,12.298z"/><path fill="#fbc02d" d="M45,12.298V16.2l-10,7.5V11.2l3.124-2.341C38.868,8.301,39.772,8,40.702,8h0C43.076,8,45,9.924,45,12.298z"/></svg>
-              </div>
-              <div class="contact-card__text">
-                <h4>Email</h4>
-                <span>Dansonhar8@gmail.com</span>
-              </div>
-            </a>
-            <a href="https://wa.me/60194732520" target="_blank" rel="noopener noreferrer" class="contact-card">
-              <div class="contact-card__icon contact-card__icon--brand">
-                <svg width="26" height="26" viewBox="0 0 48 48"><path fill="#40c351" d="M4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98c-0.001,0,0,0,0,0h-0.008c-3.177-0.001-6.3-0.798-9.073-2.311L4.868,43.303z"/><path fill="#fff" fill-rule="evenodd" d="M19.268,16.045c-0.355-0.79-0.729-0.806-1.068-0.82c-0.277-0.012-0.593-0.011-0.909-0.011c-0.316,0-0.83,0.119-1.265,0.594c-0.435,0.475-1.661,1.622-1.661,3.956c0,2.334,1.7,4.59,1.937,4.906c0.237,0.316,3.282,5.259,8.104,7.161c4.007,1.58,4.823,1.266,5.693,1.187c0.87-0.079,2.807-1.147,3.202-2.255c0.395-1.108,0.395-2.057,0.277-2.255c-0.119-0.198-0.435-0.316-0.909-0.554c-0.474-0.238-2.807-1.385-3.242-1.543c-0.435-0.158-0.751-0.237-1.068,0.238c-0.316,0.474-1.225,1.543-1.502,1.859c-0.277,0.317-0.554,0.357-1.028,0.119c-0.474-0.238-2.002-0.738-3.815-2.354c-1.41-1.257-2.362-2.81-2.639-3.285c-0.277-0.474-0.03-0.731,0.208-0.968c0.213-0.213,0.474-0.554,0.712-0.831c0.237-0.277,0.316-0.475,0.474-0.791c0.158-0.317,0.079-0.594-0.04-0.831C20.61,19.329,19.689,16.983,19.268,16.045z" clip-rule="evenodd"/></svg>
-              </div>
-              <div class="contact-card__text">
-                <h4>WhatsApp</h4>
-                <span>019-473 2520</span>
-              </div>
-            </a>
-          </div>
-        </div>
+      <div class="wrap">
+        <header class="sect reveal">
+          <span class="sect__no mono">03</span>
+          <h2 class="sect__title">Contact</h2>
+        </header>
+        <p class="contact__big reveal">Have a project, a role or just a question?<br /><span class="hero__soft">Write to me — I reply fast.</span></p>
+        <a href="mailto:Dansonhar8@gmail.com" class="contact__mail reveal">Dansonhar8@gmail.com <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+        <ul class="contact__list reveal">
+          <li><span class="mono">WhatsApp</span><a href="https://wa.me/60194732520" target="_blank" rel="noopener noreferrer">019-473 2520</a></li>
+          <li><span class="mono">Resume</span><a href="./Danson-Resume.pdf" download="Danson-Resume.pdf">Download PDF</a></li>
+          <li><span class="mono">3D work</span><a href="https://www.behance.net/dansonhar" target="_blank" rel="noopener noreferrer">Behance</a></li>
+        </ul>
       </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
-      <div class="container footer__inner">
-        <a href="#" class="footer__logo">DANSON<span>.</span></a>
-        <p>&copy; 2026 Danson. All rights reserved.</p>
-        <a href="#home" class="footer__top">
-          Back to Top
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-        </a>
+      <div class="wrap footer__inner">
+        <span>&copy; 2026 Danson Har · All rights reserved.</span>
+        <a href="#home" class="footer__top">Back to top ↑</a>
       </div>
     </footer>
 
