@@ -77,7 +77,15 @@ ul{list-style:none}
 }
 /* Once content scrolls underneath, the bar gets more opaque so text behind it
    doesn't show through. */
-.nav--scrolled .nav__inner{background:linear-gradient(135deg,rgba(255,255,255,.92),rgba(255,255,255,.8))}
+.nav--scrolled .nav__inner{background:linear-gradient(135deg,rgba(255,255,255,.98),rgba(252,249,255,.95))}
+/* Content scrolling up through the gap above the floating bar fades out
+   instead of showing in a sharp strip at the top of the screen. */
+.nav::before{
+  content:"";position:fixed;inset:0 0 auto;height:96px;z-index:-1;pointer-events:none;
+  background:linear-gradient(rgba(246,242,251,.96) 40%,rgba(246,242,251,0));
+  opacity:0;transition:opacity .3s ease;
+}
+.nav--scrolled::before{opacity:1}
 .nav__status{padding-right:12px}
 .nav__mark{font-weight:600;letter-spacing:-.02em;font-size:.98rem}
 .nav__links{display:flex;gap:4px}
@@ -533,11 +541,26 @@ section{position:relative}
   .facts>div:first-child{border-top:0}
 }
 
-/* Touch screens: a tap would leave the hover ring stuck on. */
+/* Mouse users get the browser's focus ring only from the keyboard; taps and
+   clicks shouldn't leave a black outline behind. */
+.nav__link:focus:not(:focus-visible),.filter-btn:focus:not(:focus-visible),
+.link-btn:focus:not(:focus-visible),.row:focus:not(:focus-visible){outline:none}
+
+/* Touch screens: hover would leave the ring stuck on after a tap, so instead
+   the ring marks what's selected (current section, chosen filter) and flashes
+   on whatever is being pressed. */
 @media(hover:none){
-  .row::before,.link-btn::before,.filter-btn::before,.nav__link::before,.lightbox__visit::before,.lightbox__close::before,.gallery__nav::before,.zoom-overlay__close::before,.zoom-overlay__nav::before{display:none}
+  .row:hover::before,.link-btn:hover::before,.filter-btn:hover::before,.nav__link:hover::before,
+  .lightbox__visit:hover::before,.lightbox__close:hover::before,.gallery__nav:hover::before,
+  .zoom-overlay__close:hover::before,.zoom-overlay__nav:hover::before{opacity:0;animation:none}
   .row:hover{padding-left:0;padding-right:0;border-bottom-color:var(--line)}
+
+  .nav__link.active::before,.filter-btn.active::before,
+  .row:active::before,.link-btn:active::before,.filter-btn:active::before,.nav__link:active::before,
+  .lightbox__visit:active::before,.lightbox__close:active::before,.gallery__nav:active::before,
+  .zoom-overlay__close:active::before,.zoom-overlay__nav:active::before{opacity:1;animation:spin 3s linear infinite}
 }
+a,button{-webkit-tap-highlight-color:transparent}
 
 /* Narrow phones: tighter skill rows so long names fit both columns. */
 @media(max-width:480px){
