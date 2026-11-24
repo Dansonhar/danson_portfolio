@@ -89,6 +89,8 @@ const JOBS = [
   { rel: 'agency_crm/2.png',                     kind: 'card' },
   { rel: 'product-explode/flatwise-offset.webp', kind: 'card' },
   { rel: 'hunter/architecture.webp',             kind: 'card', position: 'left top' },
+  { rel: 'hideout/01-hero.webp',                 kind: 'card' },
+  { rel: 'gym-booking/01-hero.webp',             kind: 'card' },
   { rel: 'alien-vs-malaysian/bg.webp',           kind: 'card', position: 'centre' },
   { rel: 'alien-vs-malaysian/alien-red.webp',    kind: 'sprite' },
   { rel: 'alien-vs-malaysian/alien-green.webp',  kind: 'sprite' },
