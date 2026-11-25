@@ -82,7 +82,7 @@ const JOBS = [
   { rel: 'AlcPest/alcpest-home.webp',            kind: 'card' },
   { rel: 'qparking/park1.webp',                  kind: 'card' },
   { rel: 'qpos/qbot-home.webp',                  kind: 'card' },
-  { rel: 'aigenius/1.webp',                      kind: 'card' },
+  { rel: 'aigenius/01-hero.webp',                kind: 'card' },
   { rel: '3d-house/house-1.webp',                kind: 'card' },
   { rel: '3d-rube-goldberg/rube-goldberg-1.webp',kind: 'card' },
   { rel: 'Wedding-Invitations/page1.webp',       kind: 'card' },
